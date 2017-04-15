@@ -1,0 +1,632 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/24dfd512/shCoreDefault.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/549c7c0e/yui3-min.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/30602b63/css/common_header20150616.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/4d5a11f8/h_themes.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/4d5a11f8/h_style.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/4d5a11f8/style.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/4d5a11f8/themes20150407.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/7fc46f51/themes/default/ueditor.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/eb6eb58e/listview/styles.css" />
+<link rel="stylesheet" type="text/css" href="http://assets.bdqn.cn/resources/7a453495/pager.css" />
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/24903dac/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/24dfd512/shCore.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/791b454d/jquery.ba-bbq.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/24903dac/backtop.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/24903dac/wenda.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/30602b63/js/common.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/30602b63/js/menu.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/30602b63/js/md5.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/30602b63/js/common20151027.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/7fc46f51/ueditor.config.js"></script>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/7fc46f51/ueditor.all.min.js"></script>
+<title> 20160905【百度模块】关键词分组与添加</title><script async src="http://c.cnzz.com/core.php"></script>
+   
+</head>
+<body class="h">
+<!--header-->
+<!-- top -->
+<div class="yui3-g bd-top bd-bottom">
+    <div class="wrap gray">
+        <div class="yui3-u-1-8">
+            <div class="collect">
+                <a href="javascript:void(0);" id="sethomepage" title="">设为首页</a>
+                <a href="javascript:void(0);" id="addcollect" rel="sidebar" title="">收藏本站</a>
+            </div>
+        </div>
+        <div class="yui3-u-7-8" id="loginInfo">
+            <div class="score right exit"><a href="http://user.bdqn.cn/logout">退出</a></div>
+<div class="right score user">
+
+	<div class="user-span top-mouse-event"><a target="_blank" class="mar-none" href="http://home.bdqn.cn/home.php?mod=spacecp&ac=usergroup"   id='show_block'
+	           >用户组：青豆豆</a>
+		<div class="user-tip p_pop" style="display:none;">
+			<ul class="mbn">
+									<li class="hm mtn"><span class="group_star" style="width:16px;"></span></li>
+					<li class="hm">
+						距离下一级还需<p class="xi1">28社区积分</p>
+					</li>
+											</ul>
+
+		</div></div>
+  	</div>
+<div class="right score look-bd">
+	<ul id="integralMenus">
+		<li><span><a id="integralMenu" class="integralMenu" href="http://home.bdqn.cn/home.php?mod=spacecp&ac=credit&showcredit=1" target="_blank">社区积分：72</a>
+			<ul>
+				<li class="last">社区积分：72</li>
+				<li class="last">青鸟豆：3980</li>
+				<li class="last">技能值：362</li>
+			</ul></span>
+		</li>
+	</ul>
+</div>
+<div class="right infrom">
+	<ul class="bar">
+		<li><a href="http://home.bdqn.cn/home.php?mod=spacecp&ac=avatar" target="_blank">
+				<img src="http://home.bdqn.cn/uc_server/avatar.php?uid=38834&size=small"
+					 width="15" height="15" />
+			</a>
+		</li>
+		<li class="strong padding10"><a target="_blank" href="http://home.bdqn.cn/home.php?mod=space&uid=38834" title="">弄潮儿</a></li>
+		<li class="top-split padding10">
+			<div class="top-mouse-event">
+				<a href="javascript:;" id="myitem" class="showmenu">我的</a>
+				<ul id="myitem_menu" class="p_pop" style="display: none;">
+					<li><a href="http://user.bdqn.cn/course">课程</a></li>
+					<li><a href="http://note.bdqn.cn">笔记</a></li>
+					<li><a href="http://ask.bdqn.cn/ask/userquestion.shtml">问答</a></li>
+					<li><a href="http://home.bdqn.cn/forum.php?mod=guide&view=my">帖子</a></li>
+					<li><a href="http://home.bdqn.cn/home.php?mod=space&do=favorite&view=me">收藏</a></li>
+					<li><a href="http://home.bdqn.cn/home.php?mod=space&do=friend">好友</a></li>
+				</ul>
+			</div>
+			<a href="http://home.bdqn.cn/home.php?mod=spacecp">设置</a>
+		</li>
+				<li class="top-split padding10">
+			<a target="_blank" href="http://home.bdqn.cn/home.php?mod=space&do=pm" title="消息" class="">消息</a>
+		
+			</a>
+			<div class="top-mouse-event">
+				<a target="_blank" href="http://home.bdqn.cn/home.php?mod=space&do=notice" title="提醒" class="integralMenu ">提醒
+				</a>
+				<ul id="myprompt_menu" class="p_pop" style="display: none;">
+					<li>
+						<a href="http://home.bdqn.cn/home.php?mod=space&do=pm" id="pm_ntc" style="background-repeat: no-repeat; background-position: 0 50%;"><em class="prompt_news_0"></em>消息</a>
+					</li>
+					<li>
+						<a href="http://home.bdqn.cn/home.php?mod=follow&do=follower">
+						<em class="prompt_follower"></em>新听众
+												</a>
+					</li>
+																<li class="ignore_noticeli"><a href="javascript:;" id="ignore_notice" title="暂不提醒"><em class="ignore_notice"></em></a></li>
+										</li>
+				</ul>
+			</div>
+			</li>
+			</ul>
+</div>
+
+
+        </div>
+    </div>
+</div>
+<!-- top -->
+<div class="yui3-g">
+    <div class="yui3-u-1 header">
+        <div class="yui3-g wrap">
+            <div class="yui3-u-2-5">
+				<a class="logo f0" target="_blank" title="云豆网" href="http://home.bdqn.cn">云豆网</a>
+			</div>
+            <div class="yui3-u-3-5">
+                <div class="srch">
+                    <form name="form1" id="searchForm" method="post" action="http://home.bdqn.cn/search.php?searchsubmit=yes" target="_blank">
+                    	<input id="scbar_mod" type="hidden" value="forum" name="mod" />                        <fieldset>
+                            <legend class="hide">搜索区</legend>
+                            <input type="text" name="srchtxt" value="请输入搜索内容" class="input-txt" id="searchContent"/>
+                            <ul id="menu_search">
+                                <li class="a">
+                                    <span class="srcmenu acenter">搜索</span>
+                                    <ul>
+                                                                            <li><a rel="article" href="javascript:void(0);">文章</a></li>
+                                                                                                                <li><a rel="forum" href="javascript:void(0);">帖子</a></li>
+                                                                                                                                                                                        <li class="last"><a rel="user" href="javascript:void(0);">用户</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <input type="image" src="/img/h_btn_srch.gif" alt="搜索" class="btn-srch"/>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-g nav">
+            <div class="yui3-u-1 wrap">
+                <ul>
+
+											<li >
+						<a href="http://home.bdqn.cn/portal.php">首   页</a>
+						</li>
+											<li >
+						<a href="http://www.kgc.cn/">课工场</a>
+						</li>
+											<li >
+						<a href="http://home.bdqn.cn/forum.php">学员论坛</a>
+						</li>
+											<li >
+						<a href="http://home.bdqn.cn/forum.php?gid=203">活跃校区</a>
+						</li>
+											<li >
+						<a href="http://i.bdqn.cn/mianshi">面试第一站</a>
+						</li>
+											<li class='on'>
+						<a href="http://ask.bdqn.cn">互动问答</a>
+						</li>
+											<li >
+						<a href="http://home.bdqn.cn/home.php">同学圈子</a>
+						</li>
+											<li >
+						<a href="http://d.bdqn.cn">客户端下载</a>
+						</li>
+											<li >
+						<a href="http://help.bdqn.cn">帮助中心</a>
+						</li>
+					                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="yui3-g wrap">
+   <div class="yui3-u-1">
+        <div class="crumb-bar">
+            <div class="breadcrumbs">
+<a href="http://home.bdqn.cn" class="ico-home"></a>&gt; <a href="/list.shtml">互动问答</a>&nbsp;&gt;&nbsp;<span> 20160905【百度模块】关键词分组与添加</span></div> 
+        </div>
+    </div>
+</div>
+<!--middle-->
+	<!-- content start -->
+	<div class="yui3-g wrap">
+		<div class="yui3-u-3-4">
+			<div class="yui3-u-1 wd-left">
+								<h2 class="wd-con-title yhf-h"> 20160905【百度模块】关键词分组与添加</h2>
+				<div class="question-box">
+					<p class="qst-tip"><span>2016-09-06 07:22</span><a href="http://home.bdqn.cn/home.php?mod=space&uid=144651">刘校锋</a> 											</p>
+					<div class="qst-zw f14">
+						<p>同学们，大家上午好啊！。今天我们学习的内容是关键词的分组与添加，也是一个比较重要的内容，要注意听讲，加油加油！<br/></p>					</div>
+															<div class="qst-handle fix">
+						<span class="djj-no-hf-l login-r-nc login-hide"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=144651&size=small" class="login-img" width="25" height="25"/><span class="login-nc">刘校锋</span></span>
+						<span class="djj-no-hf-r f12">悬赏<span class="xs-color">10青鸟豆</span>&emsp;|&emsp;浏览370</span>
+					</div>
+					<form id="form" method="post" enctype="multipart/form-data">
+					<div class="hd-textarea">
+						<img src="/img/jt.jpg" class="area-img"/>
+																		<textarea id="ask_content" name="content"></textarea>
+
+						<p class="erro-p"><span id="editor-tip" class="errMessage"></span></p>
+											</div>
+					<input type="hidden" value="16434" name="question_id"/>
+					<p class="tr"><a href="javascript:void(0);" id="reply" class="yui3-u submit-btn">提交</a></p>
+					</form>
+					
+				</div>
+				<div class="qst-hf-box">
+										<h2 class="all-hf-num">共54条回答</h2>
+					<div id="ask-question-detail-grid" class="list-view">
+<ul class="all-hf">
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=8040344"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=8040344&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=8040344" class="graw1" target="_blank">-Danny</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;打开啊&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;" name="content">
+		<input type="hidden" value="打开啊" name="content_cut">
+		<div class="hf-ask f14">打开啊</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7967447"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7967447&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7967447" class="graw1" target="_blank">心静如水91</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;N应该标范围多少&lt;/p&gt;" name="content">
+		<input type="hidden" value="N应该标范围多少" name="content_cut">
+		<div class="hf-ask f14">N应该标范围多少</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7918533"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7918533&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7918533" class="graw1" target="_blank">周立民</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;老师说的太对了&lt;br/&gt;&lt;/p&gt;" name="content">
+		<input type="hidden" value="老师说的太对了" name="content_cut">
+		<div class="hf-ask f14">老师说的太对了</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7984747"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7984747&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7984747" class="graw1" target="_blank">李露00</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;100&lt;/p&gt;" name="content">
+		<input type="hidden" value="100" name="content_cut">
+		<div class="hf-ask f14">100</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7967447"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7967447&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7967447" class="graw1" target="_blank">心静如水91</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;1000&lt;/p&gt;" name="content">
+		<input type="hidden" value="1000" name="content_cut">
+		<div class="hf-ask f14">1000</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=196402"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=196402&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=196402" class="graw1" target="_blank">王微</a> <img src="http://home.bdqn.cn/data/attachment/common/c4/common_1_verify_icon.png" alt="中心老师" title="中心老师"/> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;3&lt;/p&gt;" name="content">
+		<input type="hidden" value="3" name="content_cut">
+		<div class="hf-ask f14">3</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7940624"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7940624&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7940624" class="graw1" target="_blank">Savage growth(野蛮生长)</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;c看着舒服&lt;/p&gt;" name="content">
+		<input type="hidden" value="c看着舒服" name="content_cut">
+		<div class="hf-ask f14">c看着舒服</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7851797"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7851797&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7851797" class="graw1" target="_blank">叶之秋</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;3&lt;/p&gt;" name="content">
+		<input type="hidden" value="3" name="content_cut">
+		<div class="hf-ask f14">3</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=8058894"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=8058894&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=8058894" class="graw1" target="_blank">艾梅玲</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;3&lt;/p&gt;" name="content">
+		<input type="hidden" value="3" name="content_cut">
+		<div class="hf-ask f14">3</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7974873"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7974873&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7974873" class="graw1" target="_blank">独占你的心</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;选3&lt;/p&gt;" name="content">
+		<input type="hidden" value="选3" name="content_cut">
+		<div class="hf-ask f14">选3</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7984747"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7984747&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7984747" class="graw1" target="_blank">李露00</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;3，便于管理&lt;/p&gt;" name="content">
+		<input type="hidden" value="3，便于管理" name="content_cut">
+		<div class="hf-ask f14">3，便于管理</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=8043711"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=8043711&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=8043711" class="graw1" target="_blank">故酒</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;2&lt;/p&gt;" name="content">
+		<input type="hidden" value="2" name="content_cut">
+		<div class="hf-ask f14">2</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7998382"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7998382&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7998382" class="graw1" target="_blank">一个~少年</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;教师机装什么电脑&lt;/p&gt;" name="content">
+		<input type="hidden" value="教师机装什么电脑" name="content_cut">
+		<div class="hf-ask f14">教师机装什么电脑</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7705510"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7705510&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7705510" class="graw1" target="_blank">执着的心2</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;2&lt;/p&gt;" name="content">
+		<input type="hidden" value="2" name="content_cut">
+		<div class="hf-ask f14">2</div>
+			</div>
+</li>
+<li>
+	<div class="yui3-u-1-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7930123"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7930123&size=small" width="50" height="50" class="hf-l-img"/></a>
+</div>
+	<div class="yui3-u-8-9">
+		<div class="fix">
+			<span class="graw1 hf-left left"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7930123" class="graw1" target="_blank">edowei</a> &emsp;&ensp;2016-09-06</span>
+					</div>
+		<input type="hidden" value="&lt;p&gt;2&lt;/p&gt;" name="content">
+		<input type="hidden" value="2" name="content_cut">
+		<div class="hf-ask f14">2</div>
+			</div>
+</li>
+</ul>
+<div class="pager"><ul id="yw0" class="yiiPager"><li class="first hidden"><a href="/view/16434.shtml">&lt;&lt; 首页</a></li>
+<li class="previous hidden"><a href="/view/16434.shtml">&lt; 前页</a></li>
+<li class="page selected"><a href="/view/16434.shtml">1</a></li>
+<li class="page"><a href="/view/16434.shtml?YundouAskAnswerAr_page=2">2</a></li>
+<li class="page"><a href="/view/16434.shtml?YundouAskAnswerAr_page=3">3</a></li>
+<li class="page"><a href="/view/16434.shtml?YundouAskAnswerAr_page=4">4</a></li>
+<li class="next"><a href="/view/16434.shtml?YundouAskAnswerAr_page=2">后页 &gt;</a></li>
+<li class="last"><a href="/view/16434.shtml?YundouAskAnswerAr_page=4">末页 &gt;&gt;</a></li></ul></div><div class="keys" style="display:none" title="/view/16434.shtml"><span>149832</span><span>149831</span><span>149830</span><span>149829</span><span>149828</span><span>149827</span><span>149826</span><span>149825</span><span>149824</span><span>149823</span><span>149822</span><span>149821</span><span>149820</span><span>149819</span><span>149818</span></div>
+</div>				</div>
+			</div>
+		</div>
+		<div class="yui3-u-1-4">
+			<div class="yui3-u-1 wd-right">
+								<a href="/post.shtml" class="yui3-u ask-a">我要提问</a>
+								<div class="member-box top10">
+					<div class="member-t fix">
+						<a href="http://home.bdqn.cn/home.php?mod=space&uid=38834"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=38834&size=small" width="56" height="56" class="m-img left"/></a>
+						<div class="mem-t-r left">
+							<h2 class="member-name"><span><a href="http://home.bdqn.cn/home.php?mod=space&uid=38834">弄潮儿</a></span>&nbsp;
+														</h2>
+							<p>社区积分：72</p>
+							<p>青 鸟 豆：3980</p>
+						</div>
+					</div>
+					<div class="mem-box-a">
+												<a href="/ask/userquestion.shtml" class="yui3-u member-q">我的提问</a>
+						<a href="/ask/useranswer.shtml" class="yui3-u member-ask">我的回答</a>
+					</div>
+				</div>
+								<div class="wdfl top10">
+					<h2 class="title-h2">问答分类</h2>
+					<div class="fl-main">
+						<dl>
+							<dt>培训产品</dt>
+							<dd class="fix">
+															<a href="/list.shtml?id=1" >学士后Java</a>
+															<a href="/list.shtml?id=2" >学士后.NET</a>
+															<a href="/list.shtml?id=3" >学士后Android</a>
+															<a href="/list.shtml?id=4" >网络营销</a>
+														</dd>
+						</dl>
+						<dl>
+							<dt>教育产品</dt>
+							<dd class="fix">
+															<a href="/list.shtml?id=5" >ACCP</a>
+															<a href="/list.shtml?id=6" >BENET</a>
+															<a href="/list.shtml?id=7" >BTEST</a>
+															<a href="/list.shtml?id=8" >启蒙星IT工程师基础课程</a>
+														</dd>
+						</dl>
+						<dl>
+							<dt>院校产品</dt>
+							<dd class="fix">
+															<a href="/list.shtml?id=9" >BEWEB网页设计工程师</a>
+															<a href="/list.shtml?id=10" >BECSR信息服务专家</a>
+															<a href="/list.shtml?id=11" >BECOM互联网软件开发工程师</a>
+															<a href="/list.shtml?id=12" >ACCP启蒙星</a>
+														</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="dtb-box top10">
+					<h2 class="title-h2 dtb-color">本周答题榜</h2>
+					<div class="dtb-main">
+												<dl>
+							<dt class="yui3-u-5-19">
+																	<img src="/img/dtb1.png" class="abso-img"/>
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=114704"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=114704&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=114704" class="underline">中关村青鸟</a><br/><span>本周回答69题</span></dd>
+						</dl>
+												<dl>
+							<dt class="yui3-u-5-19">
+																	<img src="/img/dtb2.png" class="abso-img"/>
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=7836148"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7836148&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7836148" class="underline">张NARUTO張</a><br/><span>本周回答62题</span></dd>
+						</dl>
+												<dl>
+							<dt class="yui3-u-5-19">
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=179732"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=179732&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=179732" class="underline">王忠梅</a><br/><span>本周回答42题</span></dd>
+						</dl>
+												<dl>
+							<dt class="yui3-u-5-19">
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=7708691"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7708691&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7708691" class="underline">小三失忆</a><br/><span>本周回答40题</span></dd>
+						</dl>
+												<dl>
+							<dt class="yui3-u-5-19">
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=7917156"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7917156&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7917156" class="underline">尐蛋黄 ﻬ.</a><br/><span>本周回答40题</span></dd>
+						</dl>
+												<dl>
+							<dt class="yui3-u-5-19">
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=7919661"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7919661&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7919661" class="underline">沙滩</a><br/><span>本周回答38题</span></dd>
+						</dl>
+												<dl>
+							<dt class="yui3-u-5-19">
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=7945236"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7945236&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7945236" class="underline">齐侯</a><br/><span>本周回答33题</span></dd>
+						</dl>
+												<dl>
+							<dt class="yui3-u-5-19">
+																<a href="http://home.bdqn.cn/home.php?mod=space&uid=7716595"><img src="http://home.bdqn.cn/uc_server/avatar.php?uid=7716595&size=small" width="50" height="50" class="radiu-obj"/></a>
+							</dt>
+							<dd class="yui3-u-7-10"><a href="http://home.bdqn.cn/home.php?mod=space&uid=7716595" class="underline">叶宝华</a><br/><span>本周回答30题</span></dd>
+						</dl>
+											</div>
+				</div>
+				<div class="dtb-box top10">
+					<h2 class="title-h2 dtb-color">热门问题</h2>
+					<ul class="hot-wt">
+												<li><a href="/view/15581.shtml">想要豆豆吗？给我一个送你的理由！哈哈哈······ </a></li>
+												<li><a href="/view/15626.shtml">2222222 </a></li>
+												<li><a href="/view/11349.shtml">20150619【互动直播】串讲和考试 </a></li>
+												<li><a href="/view/10995.shtml">PS软件下载地址是什么 </a></li>
+												<li><a href="/view/14449.shtml">111111111111111 </a></li>
+												<li><a href="/view/13658.shtml">豆豆都不知道怎么用 </a></li>
+												<li><a href="/view/15625.shtml">张艺兴你想怎么玩？画下道来，哥陪你玩玩，哈哈 .....谁与争锋，鹿死谁手还未知 </a></li>
+												<li><a href="/view/15512.shtml">求徐建芳的差评率，哪个大神能算出来？ </a></li>
+											</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- content end -->
+<div class="yui3-g footer gray top20 wrap">
+    <div class="yui3-u-1 acenter">
+        <div class="bd-bottom  f-about">
+            <!--<a target="_blank" href="/forum.php?mobile=yes" title="">手机版社区</a> |
+            <a target="_blank" href="" title="">帮助中心</a> |
+            <a target="_blank" href="mailto:YL003@bdqn.cn" title="">联系我们</a> |
+            <a target="_blank" href="/sitemap.php" title="">导航地图</a> |
+            <a target="_blank" href="" title=""> 北大青鸟官方网站</a>-->
+                                                                                                                                                                                                            <a target="_blank" href="http://home.bdqn.cn/forum.php?mobile=yes" title="">手机版社区</a> |<a target="_blank" href="http://home.bdqn.cn/forum.php?mod=misc&action=showdarkroom" title="">小黑屋</a> |<a target="_blank" href="http://help.bdqn.cn/" title="">帮助中心</a> |<a target="_blank" href="mailto:YL003@bdqn.cn" title="">联系我们</a> |<a target="_blank" href="http://www.bdqn.cn/sitemap" title="">网站地图</a> |<a target="_blank" href="http://www.bdqn.cn" title="北大青鸟官方网站">北大青鸟官方网站</a>        </div>
+        <div class="wrap acenter top10">
+            <p>Copyright 1999-2016 Beijing Aptech Beida Jade Bird Information Technology Co.,Ltd<br />北大青鸟IT教育 北京阿博泰克北大青鸟信息技术有限公司 版权所有</p>
+
+            <p class="inte">
+                <span>
+                    京ICP备11045574号-3<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F7ced51c827c3a33db126bfa816d97326' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript" src=" http://hm.baidu.com/h.js?7ced51c827c3a33db126bfa816d97326"></script>                </span>
+                <a class="offset5" href="https://search.szfw.org/cert/l/CX20120920001700001750" id="___szfw_logo___" ><img src="/img/footer_img.png"/></a>
+                <script type="text/javascript">(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script>
+            </p>
+        </div>
+    </div>
+</div>
+<div id="backTop" class="hide"><a href="#" title="回顶部">回顶部</a></div>
+<script type="text/javascript" src="http://assets.bdqn.cn/resources/eb6eb58e/listview/jquery.yiilistview.js"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+var editor = new baidu.editor.ui.Editor({UEDITOR_HOME_URL : 'http://assets.bdqn.cn/resources/7fc46f51/',toolbars:[["bold","italic","underline","insertcode","simpleupload","unlink","link","undo","redo","preview"]],
+								wordCount:false,
+								elementPathEnabled:false,
+								initialFrameHeight:100
+								}); 
+editor.render('ask_content');
+jQuery(function($) {
+//var editor = UE.getEditor('ask_content');
+var onSubmit = false;
+$("#reply").click(function(){
+			if(onSubmit == true){
+				return false;
+			}
+			editor.sync();
+			if(editor.getContent().length == 0){
+				$("#editor-tip").html('请输入回复的内容');
+				return false;
+			}
+			if(editor.getContent().length > 2000){
+				$("#editor-tip").html('输入的内容过长，超过2000个字符');
+				return false;
+			}
+			$("#form").attr("action","/ask/reply");
+			
+			$("#reply").text('提交中...');
+			onSubmit = true;
+			var frm = $('#form');
+			$.post(frm.attr('action'), frm.serialize(), function(data){
+				if(data.code && data.code==1) {
+					window.location.href = '/ask/view/id/' + data.question_id;
+				} else {
+					$("#reply").text('提交');
+					$("#editor-tip").html(data.msg);
+					onSubmit = false;
+				}
+			}, 'json');
+		});
+
+$(".solve").live('click',
+	function(){
+		//alert($(this).attr('id'));
+		$.post(
+			"/ask/solve",
+			{id:$(this).attr('id')}, 
+			function(json) { 
+				if(json.code == 0){
+                	alert(json.msg);
+                }else{
+                	window.location.reload();
+                }
+			},
+			'json' 
+		);
+	}
+);
+	SyntaxHighlighter.highlight();
+jQuery('#ask-question-detail-grid').yiiListView({'ajaxUpdate':['1','ask-question-detail-grid'],'ajaxVar':'ajax','pagerClass':'pager','loadingClass':'list-view-loading','sorterClass':'sorter','enableHistory':false});
+	$(".top-mouse-event").bind({
+		mouseover:function(){
+			$(this).addClass("userBox").find(".p_pop").show();
+		},
+		mouseout:function(){
+			$(this).removeClass("userBox").find(".p_pop").hide();
+		}
+	})
+});
+/*]]>*/
+</script>
+</body>
+</html>

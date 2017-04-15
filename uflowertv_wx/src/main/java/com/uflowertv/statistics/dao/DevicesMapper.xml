@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uflowertv.statistics.dao.DevicesMapper" >
+  <resultMap id="BaseResultMap" type="com.uflowertv.statistics.model.Devices" >
+    <id column="platformID" property="platformid" jdbcType="INTEGER" />
+    <id column="zoneID" property="zoneid" jdbcType="VARCHAR" />
+    <id column="deviceID" property="deviceid" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="swVersion" property="swversion" jdbcType="VARCHAR" />
+    <result column="deviceSystem" property="devicesystem" jdbcType="VARCHAR" />
+    <result column="buildDevice" property="builddevice" jdbcType="VARCHAR" />
+    <result column="buildID" property="buildid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    platformID, zoneID, deviceID, model, swVersion, deviceSystem, buildDevice, buildID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.uflowertv.statistics.model.DevicesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from devices
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.uflowertv.statistics.model.DevicesKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from devices
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.uflowertv.statistics.model.DevicesKey" >
+    delete from devices
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.uflowertv.statistics.model.DevicesExample" >
+    delete from devices
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.uflowertv.statistics.model.Devices" >
+    insert into devices (platformID, zoneID, deviceID, 
+      model, swVersion, deviceSystem, 
+      buildDevice, buildID)
+    values (#{platformid,jdbcType=INTEGER}, #{zoneid,jdbcType=VARCHAR}, #{deviceid,jdbcType=VARCHAR}, 
+      #{model,jdbcType=VARCHAR}, #{swversion,jdbcType=VARCHAR}, #{devicesystem,jdbcType=VARCHAR}, 
+      #{builddevice,jdbcType=VARCHAR}, #{buildid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.uflowertv.statistics.model.Devices" >
+    insert into devices
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="platformid != null" >
+        platformID,
+      </if>
+      <if test="zoneid != null" >
+        zoneID,
+      </if>
+      <if test="deviceid != null" >
+        deviceID,
+      </if>
+      <if test="model != null" >
+        model,
+      </if>
+      <if test="swversion != null" >
+        swVersion,
+      </if>
+      <if test="devicesystem != null" >
+        deviceSystem,
+      </if>
+      <if test="builddevice != null" >
+        buildDevice,
+      </if>
+      <if test="buildid != null" >
+        buildID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="platformid != null" >
+        #{platformid,jdbcType=INTEGER},
+      </if>
+      <if test="zoneid != null" >
+        #{zoneid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="swversion != null" >
+        #{swversion,jdbcType=VARCHAR},
+      </if>
+      <if test="devicesystem != null" >
+        #{devicesystem,jdbcType=VARCHAR},
+      </if>
+      <if test="builddevice != null" >
+        #{builddevice,jdbcType=VARCHAR},
+      </if>
+      <if test="buildid != null" >
+        #{buildid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.uflowertv.statistics.model.DevicesExample" resultType="java.lang.Integer" >
+    select count(*) from devices
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update devices
+    <set >
+      <if test="record.platformid != null" >
+        platformID = #{record.platformid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zoneid != null" >
+        zoneID = #{record.zoneid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceid != null" >
+        deviceID = #{record.deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.model != null" >
+        model = #{record.model,jdbcType=VARCHAR},
+      </if>
+      <if test="record.swversion != null" >
+        swVersion = #{record.swversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devicesystem != null" >
+        deviceSystem = #{record.devicesystem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.builddevice != null" >
+        buildDevice = #{record.builddevice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildid != null" >
+        buildID = #{record.buildid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update devices
+    set platformID = #{record.platformid,jdbcType=INTEGER},
+      zoneID = #{record.zoneid,jdbcType=VARCHAR},
+      deviceID = #{record.deviceid,jdbcType=VARCHAR},
+      model = #{record.model,jdbcType=VARCHAR},
+      swVersion = #{record.swversion,jdbcType=VARCHAR},
+      deviceSystem = #{record.devicesystem,jdbcType=VARCHAR},
+      buildDevice = #{record.builddevice,jdbcType=VARCHAR},
+      buildID = #{record.buildid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.uflowertv.statistics.model.Devices" >
+    update devices
+    <set >
+      <if test="model != null" >
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="swversion != null" >
+        swVersion = #{swversion,jdbcType=VARCHAR},
+      </if>
+      <if test="devicesystem != null" >
+        deviceSystem = #{devicesystem,jdbcType=VARCHAR},
+      </if>
+      <if test="builddevice != null" >
+        buildDevice = #{builddevice,jdbcType=VARCHAR},
+      </if>
+      <if test="buildid != null" >
+        buildID = #{buildid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.uflowertv.statistics.model.Devices" >
+    update devices
+    set model = #{model,jdbcType=VARCHAR},
+      swVersion = #{swversion,jdbcType=VARCHAR},
+      deviceSystem = #{devicesystem,jdbcType=VARCHAR},
+      buildDevice = #{builddevice,jdbcType=VARCHAR},
+      buildID = #{buildid,jdbcType=VARCHAR}
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </update>
+</mapper>

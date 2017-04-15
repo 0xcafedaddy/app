@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uflowertv.statistics.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.uflowertv.statistics.model.Users" >
+    <id column="platformID" property="platformid" jdbcType="INTEGER" />
+    <id column="zoneID" property="zoneid" jdbcType="VARCHAR" />
+    <id column="deviceID" property="deviceid" jdbcType="VARCHAR" />
+    <result column="dt" property="dt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    platformID, zoneID, deviceID, dt
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.uflowertv.statistics.model.UsersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.uflowertv.statistics.model.UsersKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.uflowertv.statistics.model.UsersKey" >
+    delete from users
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.uflowertv.statistics.model.UsersExample" >
+    delete from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.uflowertv.statistics.model.Users" >
+    insert into users (platformID, zoneID, deviceID, 
+      dt)
+    values (#{platformid,jdbcType=INTEGER}, #{zoneid,jdbcType=VARCHAR}, #{deviceid,jdbcType=VARCHAR}, 
+      #{dt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.uflowertv.statistics.model.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="platformid != null" >
+        platformID,
+      </if>
+      <if test="zoneid != null" >
+        zoneID,
+      </if>
+      <if test="deviceid != null" >
+        deviceID,
+      </if>
+      <if test="dt != null" >
+        dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="platformid != null" >
+        #{platformid,jdbcType=INTEGER},
+      </if>
+      <if test="zoneid != null" >
+        #{zoneid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="dt != null" >
+        #{dt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.uflowertv.statistics.model.UsersExample" resultType="java.lang.Integer" >
+    select count(*) from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update users
+    <set >
+      <if test="record.platformid != null" >
+        platformID = #{record.platformid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zoneid != null" >
+        zoneID = #{record.zoneid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceid != null" >
+        deviceID = #{record.deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dt != null" >
+        dt = #{record.dt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update users
+    set platformID = #{record.platformid,jdbcType=INTEGER},
+      zoneID = #{record.zoneid,jdbcType=VARCHAR},
+      deviceID = #{record.deviceid,jdbcType=VARCHAR},
+      dt = #{record.dt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.uflowertv.statistics.model.Users" >
+    update users
+    <set >
+      <if test="dt != null" >
+        dt = #{dt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.uflowertv.statistics.model.Users" >
+    update users
+    set dt = #{dt,jdbcType=TIMESTAMP}
+    where platformID = #{platformid,jdbcType=INTEGER}
+      and zoneID = #{zoneid,jdbcType=VARCHAR}
+      and deviceID = #{deviceid,jdbcType=VARCHAR}
+  </update>
+</mapper>
