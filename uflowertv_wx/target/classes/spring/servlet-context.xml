@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+					    http://www.springframework.org/schema/context
+					    http://www.springframework.org/schema/context/spring-context.xsd
+					    http://www.springframework.org/schema/mvc
+					    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 扫描 controller -->
+	<context:component-scan base-package="com.uflowertv.controller" />
+
+    <!-- 重定向视图控制器标签 -->
+    <mvc:redirect-view-controller path="/redirect"
+                                  redirect-url="/status" context-relative="true" status-code="301"
+                                  keep-query-params="true" />
+
+    <mvc:default-servlet-handler />
+
+    <!-- 状态控制器标签 -->
+    <mvc:status-controller path="/status" status-code="200" />
+
+    <!-- 带状态的视图控制器标签 -->
+    <mvc:view-controller path="/error/**" status-code="200" />
+
+    <!-- 配置静态资源，直接映射到对应的文件夹，DispatcherServlet 不处理 -->
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
+
+    <!-- 获取ApplicationContext上下文 -->
+    <bean id="springContextHolder" class="com.baomidou.framework.spring.SpringContextHolder" />
+
+	<mvc:annotation-driven>
+        <!-- 编码转换 -->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+</beans>
