@@ -160,10 +160,14 @@
               <artifactId>jetty-maven-plugin</artifactId>
               <version>9.4.3.v20170317</version>
               <configuration>
+                  <scanIntervalSeconds>10</scanIntervalSeconds>
                   <httpConnector>
                       <port>8888</port>
                       <host>localhost</host>
                   </httpConnector>
+                  <webApp>
+                      <contextPath>/app</contextPath>
+                  </webApp>
               </configuration>
           </plugin>
       </plugins>
