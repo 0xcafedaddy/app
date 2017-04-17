@@ -1,13 +1,20 @@
 package com.uflowertv.model;
 
-import java.text.SimpleDateFormat;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Date;
+@Data
+@TableName(value = "wx_user")
+public class User implements Serializable{
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.uflowertv.util.GUIDUtil;
-
-public class User {
+    /** 主键ID */
+    @TableId
     private String id;
 
     private String pwd;
@@ -25,83 +32,4 @@ public class User {
     private Date outdate;
     
     private String ip;
-
-    public String getId() {
-    	if(StringUtils.isBlank(id))
-    		return GUIDUtil.get();
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd == null ? null : pwd.trim();
-    }
-
-    public String getUname() {
-        return uname;
-    }
-
-    public void setUname(String uname) {
-        this.uname = uname == null ? null : uname.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created == null ? null : created.trim();
-    }
-
-    public String getLogintime() {
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	if(StringUtils.isBlank(logintime))
-    		return sdf.format(new Date());
-        return logintime;
-    }
-
-    public void setLogintime(String logintime) {
-        this.logintime = logintime == null ? null : logintime.trim();
-    }
-
-	public String getValidatecode() {
-		return validatecode;
-	}
-
-	public void setValidatecode(String validatecode) {
-		this.validatecode = validatecode;
-	}
-
-	public Date getOutdate() {
-		return outdate;
-	}
-
-	public void setOutdate(Date outdate) {
-		this.outdate = outdate;
-	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-	
-	
 }

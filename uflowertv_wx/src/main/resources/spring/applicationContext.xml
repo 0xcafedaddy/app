@@ -12,7 +12,6 @@
 	</context:component-scan>
 	<context:property-placeholder location="classpath:properties/jdbc.properties"/>
 
-	<import resource="spring-datasource-ychstatistics.xml"/>
-	<import resource="spring-datasource-ychweixin.xml"/>
+	<import resource="spring-datasource.xml"/>
 
 </beans>

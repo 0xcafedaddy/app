@@ -9,10 +9,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
       <base href="<%=basePath%>">
 	  <title>油菜花微信平台管理中心</title>
-	  <link href="<%=path %>/css/style.css" rel="stylesheet" type="text/css" />
+	  <link href="<%=path%>/static/css/style.css" rel="stylesheet" type="text/css" />
     </head>
 	<body> 
-	  <form method="post" action="<%=path %>/user/login.do" class="loginform">
+	  <form method="post" action="<%=path %>/user/login" class="loginform">
 	    <div id="bg">
 	      <div id="logo"></div>
 	      <div id="lay">
@@ -41,8 +41,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      </div>
 	    </div>
 	  </form>
-  	  <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
-	 <script type="text/javascript" src="<%=path %>/js/Validform_min.js"></script>
+  	  <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
+	 <script type="text/javascript" src="<%=path %>/static/js/Validform_min.js"></script>
 	  <script type="text/javascript">
 	  $(".loginform").Validform({
 	    tiptype:3,

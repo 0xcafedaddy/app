@@ -1,9 +1,7 @@
 package com.uflowertv.dao;
 
-import java.util.List;
-
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.uflowertv.model.User;
-import com.uflowertv.model.UserExample;
 /**
  * 
  * 版权所有：2016-油菜花
@@ -18,9 +16,10 @@ import com.uflowertv.model.UserExample;
  * 修改备注：   
  * @version   V1.0
  */
-public interface UserMapper {
-	
-	//登录
+public interface UserMapper extends BaseMapper<User> {
+    User login(User user);
+    User findByEmail(String email);
+	/*//登录
 	User login(User user);
 	//通过邮件查询用户
 	User findByEmail(String email);
@@ -41,5 +40,5 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(User record);*/
 }

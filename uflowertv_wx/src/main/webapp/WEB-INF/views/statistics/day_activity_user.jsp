@@ -9,7 +9,7 @@
   <head>
     <base href="<%=basePath%>">
     <title>已处理</title>
-   	<jsp:include page="../../inc.jsp"></jsp:include>
+   	<jsp:include page="../inc.jsp"></jsp:include>
    	<script type="text/javascript">
    	$(function() {
    		initGride('<%=path %>/start/list.do');

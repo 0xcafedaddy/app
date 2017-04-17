@@ -1,12 +1,11 @@
 package com.uflowertv.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.baomidou.framework.annotations.Log;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.uflowertv.dao.UserMapper;
 import com.uflowertv.model.User;
+import com.uflowertv.service.support.BaseServiceImpl;
+import org.springframework.stereotype.Service;
 /**
  * 
  * 版权所有：2016-油菜花
@@ -22,18 +21,14 @@ import com.uflowertv.model.User;
  * @version   V1.0
  */
 @Service
-public class UserService {
-	private transient final Logger log = LoggerFactory.getLogger(getClass());
+public class UserService extends BaseServiceImpl<UserMapper,User>{
 
-	@Autowired
-	private UserMapper userMapper;
-	
+	@Log("用户登录")
 	public User findLogin(User user ){
-		log.info("用户登录");
-		return userMapper.login(user);
+		return super.selectOne(new EntityWrapper<User>(user));
 	}
 
-	public int saveReg(User user) {
+	/*public int saveReg(User user) {
 		log.info("用户注册");
 		return userMapper.insert(user);
 	}
@@ -52,5 +47,5 @@ public class UserService {
 		log.info("更新用户");
 		return userMapper.updateByPrimaryKeySelective(user);
 		
-	}
+	}*/
 }
