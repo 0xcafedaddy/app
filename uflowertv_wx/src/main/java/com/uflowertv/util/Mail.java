@@ -20,15 +20,15 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
 import org.apache.commons.codec.binary.Base64;
-
-import com.uflowertv.commons.BaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
  * 版权所有：2016-油菜花
  * 项目名称：Weixin   
  *
- * 类描述：
+ * 类描述：邮件发送工具
  * 类名称：com.uflowertv.util.mail.Mail     
  * 创建人：liguoliang 
  * 创建时间：2016年8月18日 下午12:40:43   
@@ -37,7 +37,11 @@ import com.uflowertv.commons.BaseService;
  * 修改备注：   
  * @version   V1.0
  */
-public class Mail extends BaseService{
+public class Mail {
+	
+	private static Logger log = LoggerFactory.getLogger(Mail.class);
+
+	
    private static String to; // 收件人
    private static String from; // 发件人
    private static String host; // smtp主机
@@ -46,7 +50,7 @@ public class Mail extends BaseService{
    private static String subject; // 邮件主题
    private static String content; // 邮件正文
     // 配置文件路径
-    private static String mailPath = "mail.properties";
+    private static String mailPath = "properties/mail.properties";
 	//日志记录对象
 	
     public Mail() {

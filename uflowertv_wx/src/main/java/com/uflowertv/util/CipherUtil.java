@@ -4,7 +4,18 @@ import java.security.MessageDigest;
 
 
 /** 
- * 对密码进行加密和验证的类
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：对密码进行加密和验证的类
+ * 类名称：com.uflowertv.util.CipherUtil     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:46:04   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:46:04   
+ * 修改备注：   
+ * @version   V1.0
  */
 public class CipherUtil{
     

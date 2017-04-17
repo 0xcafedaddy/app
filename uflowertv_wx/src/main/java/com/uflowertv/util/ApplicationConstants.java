@@ -6,6 +6,20 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：系统信息记录工具类
+ * 类名称：com.uflowertv.util.ApplicationConstants     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:47:03   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:47:03   
+ * 修改备注：   
+ * @version   V1.0
+ */
 public class ApplicationConstants {
 
 	// 所有的 Session

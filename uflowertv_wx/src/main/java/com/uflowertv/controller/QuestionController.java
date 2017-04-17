@@ -112,17 +112,13 @@ public class QuestionController extends WechatWebSupport{
             } 
         }  
   	}
-  	
-   /**
-    * 提交反馈问题
-    * @Title: save
-    * @Description: TODO(这里用一句话描述这个方法的作用)
-    * @param questionWithBLOBs
-    * @param response
-    * @return
- * @throws IOException 
- * @throws IllegalStateException 
-    */
+
+	/**
+	 * 提交反馈问题
+	 * @param request
+	 * @param questionWithBLOBs
+	 * @return
+	 */
 	@RequestMapping("/saveQuestion.do")
 	@ResponseBody
 	public Map<String,Object> save(HttpServletRequest request,QuestionWithBLOBs questionWithBLOBs){
@@ -282,12 +278,10 @@ public class QuestionController extends WechatWebSupport{
 			return map;
 		}
 	}
-	
+
 	/**
 	 * 图片列表
-	 * @Title: getImgNameList
-	 * @Description: TODO(这里用一句话描述这个方法的作用)
-	 * @param fbId
+	 * @param id
 	 * @param request
 	 * @return
 	 */

@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
-import com.uflowertv.commons.BaseService;
 import com.uflowertv.dao.CommonQuestionMapper;
 import com.uflowertv.model.CommonQuestion;
 import com.uflowertv.model.CommonQuestionExample;
@@ -29,7 +30,8 @@ import com.uflowertv.model.CommonQuestionExample.Criteria;
  * @version   V1.0
  */
 @Service
-public class CommonQuestionService extends BaseService{
+public class CommonQuestionService {
+	private transient final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private CommonQuestionMapper commonQuestionMapper;

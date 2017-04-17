@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
-import com.uflowertv.commons.BaseService;
 import com.uflowertv.dao.QuestionMapper;
 import com.uflowertv.dao.UserMapper;
 import com.uflowertv.model.QuestionExample;
@@ -34,7 +35,8 @@ import com.uflowertv.model.User;
  * @version   V1.0
  */
 @Service
-public class QuestionService extends BaseService{
+public class QuestionService{
+	private transient final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private QuestionMapper questionMapper;

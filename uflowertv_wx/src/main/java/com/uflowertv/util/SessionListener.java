@@ -7,7 +7,20 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：监听用户Session状态
+ * 类名称：com.uflowertv.util.SessionListener     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:07:27   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:07:27   
+ * 修改备注：   
+ * @version   V1.0
+ */
 public class SessionListener implements HttpSessionListener,
 		HttpSessionAttributeListener {
 

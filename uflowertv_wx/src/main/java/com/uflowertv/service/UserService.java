@@ -1,9 +1,10 @@
 package com.uflowertv.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uflowertv.commons.BaseService;
 import com.uflowertv.dao.UserMapper;
 import com.uflowertv.model.User;
 /**
@@ -21,7 +22,8 @@ import com.uflowertv.model.User;
  * @version   V1.0
  */
 @Service
-public class UserService extends BaseService{
+public class UserService {
+	private transient final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private UserMapper userMapper;

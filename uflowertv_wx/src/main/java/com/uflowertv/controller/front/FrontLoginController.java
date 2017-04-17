@@ -1,7 +1,10 @@
 package com.uflowertv.controller.front;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.uflowertv.model.PhoneCode;
 import com.uflowertv.service.PhoneCodeService;
+import com.uflowertv.util.ConstantHolder;
+import com.uflowertv.util.JsonUtils;
+import com.uflowertv.util.MessageUtil;
 /**
  * 
  * 版权所有：2016-油菜花
@@ -62,7 +68,7 @@ public class FrontLoginController {
 	 * @param isRegisterValidate
 	 * @return
 	 */
-	/*@RequestMapping("/check_code.shtml")
+	@RequestMapping("/check_code.shtml")
 	@ResponseBody
 	public Map<String,Object> check_code(HttpSession session,String mobilePhone, String catpcha,String isRegisterValidate){
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -77,17 +83,15 @@ public class FrontLoginController {
 				int resultCode = (int) JsonUtils.json2Map(result).get("code");
 				String resultMsg = (String) JsonUtils.json2Map(result).get("msg");
 				if(resultCode == 1000){
-					save
 					PhoneCode phoneCode = phoneCodeService.getPhoneCode(mobilePhone);
-					if(phoneCode == null){
+					if(phoneCode == null){//save
 						PhoneCode phoneCode2 = new PhoneCode();
 						phoneCode2.setPhone(mobilePhone);
 						phoneCode2.setCode(validata);
 						phoneCode2.setAmount((byte)1);
 						phoneCode2.setTime(new Date());
 						phoneCodeService.save(phoneCode2);
-					update
-					}else{
+					}else{//update
 						phoneCode.setPhone(mobilePhone);
 						phoneCode.setCode(validata);
 						phoneCode.setAmount((byte)(phoneCode.getAmount()+1));
@@ -99,12 +103,11 @@ public class FrontLoginController {
 					return map;
 				}
 			}
-	        
 	        map.put("resultCode", 100000);
 			return map;
 		}else{
 			map.put("errorCode", "图片验证码无效");
 			return map;
 		}
-	}*/
+	}
 }

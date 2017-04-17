@@ -1,5 +1,6 @@
 package com.uflowertv.statistics.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -31,7 +32,7 @@ public interface StartMapper {
 
     int updateByPrimaryKey(Start record);
     
-	List<DayActiveCount> getDayActiveList(@Param(value = "recordIndex") int recordIndex, @Param(value = "pageSize") int pageSize);
-	int getDayActiveCount();
+	List<DayActiveCount> getTimeUserActiveList(@Param(value = "start") Date start, @Param(value = "end") Date end);
+	int getTimeUserActiveCount(@Param(value = "start") Date start, @Param(value = "end") Date end);
 
 }

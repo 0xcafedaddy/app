@@ -31,7 +31,7 @@ import org.dom4j.io.XMLWriter;
  * 版权所有：2016-油菜花
  * 项目名称：Weixin   
  *
- * 类描述：
+ * 类描述：XMLUtil
  * 类名称：com.uflowertv.xml.XMLUtil     
  * 创建人：liguoliang 
  * 创建时间：2016年8月11日 下午6:04:49   

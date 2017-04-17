@@ -3,8 +3,18 @@ package com.uflowertv.util;
 import java.util.ResourceBundle;
 
 /**
- * 项目参数工具类
  * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：项目参数工具类
+ * 类名称：com.uflowertv.util.ConfigUtil     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:45:53   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:45:53   
+ * 修改备注：   
+ * @version   V1.0
  */
 public class ConfigUtil {
 

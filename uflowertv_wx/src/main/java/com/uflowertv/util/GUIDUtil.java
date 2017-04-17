@@ -4,9 +4,18 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- *GUIDUtil  generate a guid string
- *@author summerblue.bit
  * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：GUIDUtil
+ * 类名称：com.uflowertv.util.GUIDUtil     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:43:36   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:43:36   
+ * 修改备注：   
+ * @version   V1.0
  */
 public class GUIDUtil {
 	public static String get() {

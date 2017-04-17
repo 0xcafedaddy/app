@@ -2,15 +2,19 @@ package com.uflowertv.util.sftp;
 
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import com.uflowertv.commons.BaseService;
 import com.uflowertv.util.ConstantHolder;
 
-public class SFTPChannel extends BaseService{
+public class SFTPChannel {
+	private Logger log = LoggerFactory.getLogger(getClass());
+
     Session session = null;
     Channel channel = null;
 

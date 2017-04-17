@@ -11,10 +11,12 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.uflowertv.commons.BaseService;
 
 /**
  * Utilities to serialize/deserialize objects using Gson library.
@@ -64,8 +66,9 @@ import com.uflowertv.commons.BaseService;
  *
  *
  */
-public class GsonUtils extends BaseService{
+public class GsonUtils {
 
+	private static Logger log = LoggerFactory.getLogger(GsonUtils.class);
 
 	/***************************************Gson类*******************************************/
 	/**
@@ -175,7 +178,7 @@ public class GsonUtils extends BaseService{
 	 * 通过URL方式JSON对象 TypeToken:TypeToken<List<String>> list = new TypeToken<List<String>>() {};
 	 */
 
-	/** see {@link GsonUtils#getJsonFromFile(InputStream, com.google.gson.reflect.TypeToken)} */
+	/** see {@link GsonUtils#getJsonFromFile(InputStream, TypeToken)} */
 	@SuppressWarnings("rawtypes")
 	public static Object getJsonFromFile(String path, TypeToken typeToken) {
 		return getJsonFromFile(new File(path), typeToken);
@@ -185,7 +188,7 @@ public class GsonUtils extends BaseService{
 	 * 通过文件方式JSON对象 TypeToken:TypeToken<List<String>> list = new TypeToken<List<String>>() {};
 	 */
 
-	/** see {@link GsonUtils#getJsonFromFile(InputStream, com.google.gson.reflect.TypeToken)} */
+	/** see {@link GsonUtils#getJsonFromFile(InputStream, TypeToken)} */
 	@SuppressWarnings("rawtypes")
 	public static Object getJsonFromFile(File file, TypeToken typeToken) {
 

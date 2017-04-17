@@ -3,7 +3,9 @@ package com.uflowertv.util.tulin;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import com.uflowertv.commons.BaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.uflowertv.util.HttpClientUtils;
 import com.uflowertv.util.JsonUtils;
 
@@ -21,8 +23,9 @@ import com.uflowertv.util.JsonUtils;
  * 修改备注：   
  * @version   V1.0
  */
-public class TulingAutoReply extends BaseService{
-	
+public class TulingAutoReply {
+	private static Logger log = LoggerFactory.getLogger(TulingAutoReply.class);
+
 	
 	/**
 	 * 调用图灵机器人api接口，获取智能回复内容，解析获取自己所需结果

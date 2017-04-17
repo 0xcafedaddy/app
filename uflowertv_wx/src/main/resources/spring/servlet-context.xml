@@ -10,15 +10,19 @@
 					    http://www.springframework.org/schema/mvc
 					    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<!-- 扫描 controller -->
-	<context:component-scan base-package="com.uflowertv.controller" />
+    <!-- 自动扫描(自动注入) -->
+    <context:component-scan base-package="com.uflowertv" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+    <!-- 所有Controller请求，必须通过此拦截器解析 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!-- 除Controller以外的请求，通过此拦截器解析。比如：访问静态资源 -->
+    <mvc:default-servlet-handler/>
 
     <!-- 重定向视图控制器标签 -->
     <mvc:redirect-view-controller path="/redirect"
                                   redirect-url="/status" context-relative="true" status-code="301"
                                   keep-query-params="true" />
-
-    <mvc:default-servlet-handler />
 
     <!-- 状态控制器标签 -->
     <mvc:status-controller path="/status" status-code="200" />
@@ -32,18 +36,49 @@
     <!-- 获取ApplicationContext上下文 -->
     <bean id="springContextHolder" class="com.baomidou.framework.spring.SpringContextHolder" />
 
-	<mvc:annotation-driven>
-        <!-- 编码转换 -->
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>text/plain;charset=UTF-8</value>
-                        <value>text/html;charset=UTF-8</value>
-                        <value>application/json;charset=UTF-8</value>
-                    </list>
-                </property>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+    <!-- default index -->
+    <mvc:view-controller path="/" view-name="index"/>
+    <mvc:view-controller path="/redirect/home" view-name="home"/>
+    <mvc:view-controller path="/redirect/index" view-name="index"/>
+    <mvc:view-controller path="/redirect/exception" view-name="test/testException"/>
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix">
+            <value>/WEB-INF/views/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    <!-- 总错误处理 -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
+        <property name="exceptionMappings">
+            <props>
+                <!-- 上传文件大于最大尺寸后转向出错页面 -->
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">exception/error</prop>
+                <prop key="java.lang.Exception">exception/error</prop>
+                <prop key="com.uflowertv.exception.DaoException">exception/error</prop>
+                <prop key="com.uflowertv.exception.ServiceException">exception/error-business</prop>
+                <prop key="com.uflowertv.exception.BusinessException">exception/error-business</prop>
+                <prop key="com.uflowertv.exception.ParameterException">exception/error-parameter</prop>
+            </props>
+        </property>
+        <!-- 定义默认的异常处理页面，当该异常类型的注册时使用 -->
+        <property name="defaultErrorView" value="error"></property>
+        <!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
+        <property name="exceptionAttribute" value="ex"></property>
+        <!-- 相关状态码对应的错误页面 -->
+        <property name="statusCodes">
+            <props>
+                <prop key="errors/500">500</prop>
+                <prop key="errors/404">404</prop>
+            </props>
+        </property>
+        <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+        <property name="warnLogCategory" value="WARN" />
+        <!-- 默认HTTP状态码 -->
+        <property name="defaultStatusCode" value="500" />
+    </bean>
 </beans>

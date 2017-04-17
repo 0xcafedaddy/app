@@ -3,13 +3,27 @@ package com.uflowertv.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：拦截非法操作
+ * 类名称：com.uflowertv.util.SessionInterceptor     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:08:18   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:08:18   
+ * 修改备注：   
+ * @version   V1.0
+ */
+public class SessionInterceptor implements HandlerInterceptor{
+	private Logger log = LoggerFactory.getLogger(getClass());
 
-import com.uflowertv.commons.BaseService;
-
-public class SessionInterceptor extends BaseService implements HandlerInterceptor{
-	
 	@Override
 	public void postHandle(HttpServletRequest requestuest,
 			HttpServletResponse response, Object handler,

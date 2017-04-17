@@ -17,14 +17,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-
-import com.uflowertv.commons.BaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * 用于过滤需要拦截的JSP文件
  * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：用于过滤需要拦截的JSP文件
+ * 类名称：com.uflowertv.util.SessionFilter     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:09:34   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:09:34   
+ * 修改备注：   
+ * @version   V1.0
  */
-public class SessionFilter extends BaseService implements Filter {
+public class SessionFilter implements Filter {
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	private List<String> list = new ArrayList<String>();
 

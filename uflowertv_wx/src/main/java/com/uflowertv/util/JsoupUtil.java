@@ -6,10 +6,25 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.uflowertv.commons.BaseService;
-
-public class JsoupUtil extends BaseService{
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：图片工具
+ * 类名称：com.uflowertv.util.JsoupUtil     
+ * 创建人：liguoliang 
+ * 创建时间：2015年9月23日下午5:04:51   
+ * 修改人：
+ * 修改时间：2015年9月23日下午5:04:51
+ * 修改备注：   
+ * @version   V1.0
+ */
+public class JsoupUtil {
+	private static Logger log = LoggerFactory.getLogger(JsoupUtil.class);
 
 	/**
 	 * 获取DOM

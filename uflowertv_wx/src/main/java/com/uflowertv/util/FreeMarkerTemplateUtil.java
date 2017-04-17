@@ -11,7 +11,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.uflowertv.commons.BaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
@@ -21,9 +22,24 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.Version;
 
-public class FreeMarkerTemplateUtil extends BaseService{
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：FreeMarkerTemplateUtil
+ * 类名称：com.uflowertv.util.FreeMarkerTemplateUtil     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:43:44   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:43:44   
+ * 修改备注：   
+ * @version   V1.0
+ */
+public class FreeMarkerTemplateUtil {
 
-	
+	private static Logger log = LoggerFactory.getLogger(FreeMarkerTemplateUtil.class);
+
 	private static Configuration freemarker_cfg = null;
 	
 	/**
@@ -108,17 +124,13 @@ public class FreeMarkerTemplateUtil extends BaseService{
 			}
 		}
 	}*/
+
 	/**
 	 * 生成静态文件.（正式环境下使用）
-	 * 
-	 * @param templateFileName
-	 *            模板文件名,相对htmlskin路径,例如"/tpxw/view.ftl"
+	 * @param req
 	 * @param propMap
-	 *            用于处理模板的属性Object映射
-	 * @param htmlFilePath
-	 *            要生成的静态文件的路径,相对设置中的根路径,例如 "/tpxw/1/2005/4/"
-	 * @param htmlFileName
-	 *            要生成的文件名,例如 "1.htm"
+	 * @param htmlFileFtl
+	 * @return
 	 */
 	public static String geneHtmlFile(HttpServletRequest req,Map<String, Object> propMap, String htmlFileFtl) {
 		Writer out = null;

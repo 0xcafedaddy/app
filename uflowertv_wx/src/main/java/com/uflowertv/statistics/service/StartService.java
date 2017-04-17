@@ -1,7 +1,5 @@
 package com.uflowertv.statistics.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,41 +8,22 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.uflowertv.statistics.dao.StartMapper;
 import com.uflowertv.statistics.model.DayActiveCount;
 import com.uflowertv.statistics.model.Series;
 import com.uflowertv.statistics.model.StartExample;
 import com.uflowertv.statistics.model.StartExample.Criteria;
-import com.uflowertv.statistics.model.StartJson;
 @Service
 public class StartService {
 
 	@Autowired
 	private StartMapper startMapper;
-	
-	private StartJson startJsonObj(DateTime start,DateTime end,int count){
-		StartJson startJson = new StartJson();
-		startJson.setTime(end.getMonthOfYear()+"月"+end.getDayOfMonth()+"日-"+start.getMonthOfYear()+"月"+start.getDayOfMonth()+"日");
-		startJson.setPlatformID("联通");
-		startJson.setCount(count);
-		return startJson;
-	}
-	
-	public Map<String,Object> getDayActiveCount(String start, String end, int currentPage, int pageSize){
-		Map<String, Object> map = new HashMap<String, Object>();
-		if (StringUtils.isNotBlank(start) && StringUtils.isNotBlank(end)) {//不为空
-			return map;
-		}
-		List<DayActiveCount> dayActiveCount = startMapper.getDayActiveList(currentPage,pageSize);
-		int count = startMapper.getDayActiveCount();
-		map.put("total", count);
-		map.put("rows", dayActiveCount);
-		return map;
-	}
 	
 	/**
 	 * 用户日活跃量（表格）
@@ -54,57 +33,22 @@ public class StartService {
 	 * @param pageSize
 	 * @return
 	 */
-	public Map<String,Object> list(String start, String end, int currentPage, int pageSize){
-		int firstInfo = (currentPage-1)*pageSize;//起始位置
-		int total = 0;//总数
-		int toIndex = 0;//结束位置
-		int count = 0;//不为0的记录
-		List<StartJson> list = new ArrayList<StartJson>();
-		Map<String, Object> map = new HashMap<String, Object>();
-		if (StringUtils.isNotBlank(start) && StringUtils.isNotBlank(end)) {
-			 DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-			 DateTime startDateTime = formatter.parseDateTime(start);
-			 DateTime endDateTime = formatter.parseDateTime(end);
-		     LocalDate starLocalDate=new LocalDate(startDateTime);    
-		     LocalDate endLocalDate=new LocalDate(endDateTime);   
-		     total = Days.daysBetween(starLocalDate, endLocalDate).getDays();
-		     for (int i = 0; i < total;i++) {
-				startDateTime=startDateTime.plusDays(1);
-				endDateTime=startDateTime.minusDays(1);
-				StartExample example = new StartExample();
-				Criteria criteria = example.createCriteria().andIdIsNotNull();
-				criteria.andDtBetween(endDateTime.toDate(),startDateTime.toDate());
-				int countByExample = startMapper.countByExample(example);
-				if(countByExample >0){
-					count++;
-					StartJson startJsonObj = startJsonObj(startDateTime, endDateTime, countByExample);
-					list.add(startJsonObj);
-				}
-			}
-		    toIndex = (pageSize*currentPage)>count?count:(pageSize*currentPage);
-		    map.put("total", count);
-		    map.put("rows", list.subList(firstInfo,toIndex));
+	public Map<String,Object> getMonthActiveUser(String start, String end, int currentPage, int pageSize){
+		Map<String, Object> map = Maps.newHashMap();
+		PageHelper.startPage(currentPage, pageSize);
+		DateTime startTime = null;
+		DateTime endTime = null;
+		if (StringUtils.isBlank(start) || StringUtils.isBlank(end)) {
+			endTime = new DateTime();
+			startTime = endTime.minusMonths(1);
 		}else{
-			DateTime startTime = new DateTime();
-			DateTime endTime = new DateTime();
-			total = 30;
-			for (int i = 0; i < total;i++) {
-				startTime=startTime.minusDays(1);
-				endTime=startTime.minusDays(1);
-				StartExample example = new StartExample();
-				Criteria criteria = example.createCriteria().andIdIsNotNull();
-				criteria.andDtBetween(endTime.toDate(),startTime.toDate());
-				int countByExample = startMapper.countByExample(example);
-				if(countByExample>0){
-					count++;
-					StartJson startJsonObj = startJsonObj(startTime, endTime, countByExample);
-					list.add(startJsonObj);
-				}
-			}
-		    toIndex = (pageSize*currentPage)>count?count:(pageSize*currentPage);
-			map.put("total", count);
-			map.put("rows", list.subList(firstInfo, toIndex));
+			startTime = DateTime.parse(start,DateTimeFormat.forPattern("yyyy-MM-dd"));
+			endTime = DateTime.parse(end,DateTimeFormat.forPattern("yyyy-MM-dd"));
 		}
+		List<DayActiveCount> timeUserActiveList = startMapper.getTimeUserActiveList(startTime.toDate(),endTime.toDate());
+		int timeUserActiveCount = startMapper.getTimeUserActiveCount(startTime.toDate(),endTime.toDate());
+		map.put("total", timeUserActiveCount);
+		map.put("rows", timeUserActiveList);
 		return map;
 	}
 	
@@ -115,13 +59,12 @@ public class StartService {
 	 * @return
 	 */
 	public Map<String,Object> getCharts(String start, String end){
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<String> categories = new ArrayList<String>();
-		List<Series> seriesList = new ArrayList<Series>();
+		Map<String, Object> map = Maps.newHashMap();
+		List<String> categories = Lists.newArrayList();
+		List<Series> seriesList = Lists.newArrayList();
 		if (StringUtils.isNotBlank(start) && StringUtils.isNotBlank(end)) {
-			 DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-			 DateTime startDateTime = formatter.parseDateTime(start);
-			 DateTime endDateTime = formatter.parseDateTime(end);
+			 DateTime startDateTime = DateTime.parse(start,DateTimeFormat.forPattern("yyyy-MM-dd"));
+			 DateTime endDateTime = DateTime.parse(end,DateTimeFormat.forPattern("yyyy-MM-dd"));
 		     LocalDate starLocalDate=new LocalDate(startDateTime);    
 		     LocalDate endLocalDate=new LocalDate(endDateTime);   
 		     int days = Days.daysBetween(starLocalDate, endLocalDate).getDays();
@@ -143,10 +86,10 @@ public class StartService {
 				criteria.andDtBetween(endDateTime.toDate(),startDateTime.toDate());
 				int countByExample = startMapper.countByExample(example);
 				if(countByExample>0){
-					categories.add(endDateTime.getMonthOfYear()+"月"+endDateTime.getDayOfMonth()+"日-"+startDateTime.getMonthOfYear()+"月"+startDateTime.getDayOfMonth()+"日");
+					categories.add(startDateTime.getMonthOfYear()+"月"+startDateTime.getDayOfMonth()+"日");
 					Series series = new Series();
 					series.setValue(countByExample);
-					series.setName(endDateTime.getMonthOfYear()+"月"+endDateTime.getDayOfMonth()+"日-"+startDateTime.getMonthOfYear()+"月"+startDateTime.getDayOfMonth()+"日");
+					series.setName(startDateTime.getMonthOfYear()+"月"+startDateTime.getDayOfMonth()+"日");
 					seriesList.add(series);
 				}
 			}
@@ -161,10 +104,10 @@ public class StartService {
 				criteria.andDtBetween(endTime.toDate(),startTime.toDate());
 				int countByExample = startMapper.countByExample(example);
 				if(countByExample>0){
-					categories.add(endTime.getMonthOfYear()+"月"+endTime.getDayOfMonth()+"日-"+startTime.getMonthOfYear()+"月"+startTime.getDayOfMonth()+"日");
+					categories.add(startTime.getMonthOfYear()+"月"+startTime.getDayOfMonth()+"日");
 					Series series = new Series();
 					series.setValue(countByExample);
-					series.setName(endTime.getMonthOfYear()+"月"+endTime.getDayOfMonth()+"日-"+startTime.getMonthOfYear()+"月"+startTime.getDayOfMonth()+"日");
+					series.setName(startTime.getMonthOfYear()+"月"+startTime.getDayOfMonth()+"日");
 					seriesList.add(series);
 				}
 			}

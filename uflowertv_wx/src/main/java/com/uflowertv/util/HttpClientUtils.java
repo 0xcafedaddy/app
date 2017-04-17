@@ -59,6 +59,20 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.CharsetUtils;
 import org.apache.http.util.EntityUtils;
 
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：HttpClientUtils
+ * 类名称：com.uflowertv.util.HttpClientUtils     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:42:38   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:42:38   
+ * 修改备注：   
+ * @version   V1.0
+ */
 public class HttpClientUtils {
 
 	private static final Log log = LogFactory.getLog(HttpClientUtils.class);

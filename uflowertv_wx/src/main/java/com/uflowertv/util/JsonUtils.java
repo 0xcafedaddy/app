@@ -17,6 +17,20 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：JSON工具
+ * 类名称：com.uflowertv.util.JsonUtils     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:42:25   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:42:25   
+ * 修改备注：   
+ * @version   V1.0
+ */
 public class JsonUtils {
 	
 	private static final Log log = LogFactory.getLog(JsonUtils.class);

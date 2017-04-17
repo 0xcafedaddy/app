@@ -7,9 +7,27 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
-import com.uflowertv.commons.BaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.uflowertv.model.SessionInfo;
-public class LoginSessionListener extends BaseService implements HttpSessionAttributeListener {
+
+/**
+ * 
+ * 版权所有：2017年2月23日-油菜花
+ * 项目名称：uflowertv_wx   
+ *
+ * 类描述：单点登录
+ * 类名称：com.uflowertv.util.LoginSessionListener     
+ * 创建人：liguoliang 
+ * 创建时间：2017年2月23日 下午5:41:39   
+ * 修改人：
+ * 修改时间：2017年2月23日 下午5:41:39   
+ * 修改备注：   
+ * @version   V1.0
+ */
+public class LoginSessionListener implements HttpSessionAttributeListener {
+	private transient Logger log = LoggerFactory.getLogger(getClass());
 
 	Map<String, HttpSession> map = new HashMap<String, HttpSession>();
 	

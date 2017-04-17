@@ -1,21 +1,22 @@
 package com.uflowertv.service;
 
-import io.github.elkan1788.mpsdk4j.vo.api.Menu;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uflowertv.commons.BaseService;
 import com.uflowertv.dao.ConfigurationMapper;
 import com.uflowertv.model.Configuration;
 import com.uflowertv.model.Content;
 import com.uflowertv.util.xml.XMLUtil;
+
+import io.github.elkan1788.mpsdk4j.vo.api.Menu;
 /**
  * 
  * 版权所有：2016-油菜花
@@ -31,7 +32,8 @@ import com.uflowertv.util.xml.XMLUtil;
  * @version   V1.0
  */
 @Service
-public class MenuService extends BaseService{
+public class MenuService {
+	private transient final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private ConfigurationMapper configurationMapper;

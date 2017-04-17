@@ -1,9 +1,10 @@
 package com.uflowertv.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uflowertv.commons.BaseService;
 import com.uflowertv.dao.PhoneCodeMapper;
 import com.uflowertv.model.PhoneCode;
 /**
@@ -21,7 +22,8 @@ import com.uflowertv.model.PhoneCode;
  * @version   V1.0
  */
 @Service
-public class PhoneCodeService extends BaseService{
+public class PhoneCodeService {
+	private transient final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private PhoneCodeMapper phoneCodeMapper;
