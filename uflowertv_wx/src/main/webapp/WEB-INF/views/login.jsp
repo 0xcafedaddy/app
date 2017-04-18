@@ -3,12 +3,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-      <base href="<%=basePath%>">
 	  <title>油菜花微信平台管理中心</title>
+		<meta charset="UTF-8">
 	  <link href="<%=path%>/static/css/style.css" rel="stylesheet" type="text/css" />
     </head>
 	<body> 
