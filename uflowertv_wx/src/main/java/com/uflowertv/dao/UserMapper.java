@@ -2,6 +2,8 @@ package com.uflowertv.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.uflowertv.model.User;
+import org.apache.ibatis.annotations.Param;
+
 /**
  * 
  * 版权所有：2016-油菜花
@@ -18,7 +20,7 @@ import com.uflowertv.model.User;
  */
 public interface UserMapper extends BaseMapper<User> {
     User login(User user);
-    User findByEmail(String email);
+    User findByEmail(@Param("email") String email);
 	/*//登录
 	User login(User user);
 	//通过邮件查询用户

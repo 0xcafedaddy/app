@@ -1,28 +1,24 @@
 package com.uflowertv.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
+import com.baomidou.framework.controller.SuperController;
 import com.uflowertv.model.SessionInfo;
 import com.uflowertv.model.User;
 import com.uflowertv.model.ValidationData;
 import com.uflowertv.service.UserService;
 import com.uflowertv.util.CipherUtil;
 import com.uflowertv.util.ConfigUtil;
-import com.uflowertv.util.GUIDUtil;
-import com.uflowertv.util.Mail;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 /**
  * 
  * 版权所有：2016-油菜花
@@ -39,48 +35,49 @@ import com.uflowertv.util.Mail;
  */
 @Controller
 @RequestMapping("user")
-public class UserController {
+public class UserController extends SuperController {
 
 	@Autowired
 	private UserService userService;
-	
-	
-	/**
-	 * 登录
-	 * @Title: login
-	 * @Description: TODO(这里用一句话描述这个方法的作用)
-	 * @param user
-	 * @return
-	 */
+
+
+    /**
+     * 登录
+     * @param user
+     * @param session
+     * @param request
+     * @return
+     */
 	@RequestMapping("/login")
 	@ResponseBody
 	public Map<String,Object> login(User user,HttpSession session,HttpServletRequest request){
 		ValidationData data = new ValidationData();
-		Map<String,Object> map = new HashMap<String,Object>();
+		String email = user.getEmail();
+        String pwd = user.getPwd();
+        Map<String,Object> map = new HashMap<String,Object>();
 		user.setPwd(CipherUtil.generator(user.getPwd()));
-		User user2 = userService.findLogin(user);
-		System.out.println(user2);
-		/*if(user2!=null){
-			user2.setIp(request.getRemoteAddr());//记录IP地址
+		user = userService.findLogin(user);
+		if(user!=null){
+			user.setIp(request.getRemoteAddr());//记录IP地址
 			SessionInfo sessionInfo = new SessionInfo();
-			sessionInfo.setUser(user2);
+			sessionInfo.setUser(user);
 			session.setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			user.setId(user2.getId());
-			user.setLogintime(sdf.format(new Date()));
-			userService.update(user);
+			user.setId(user.getId());
+			user.setLogintime(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
+			userService.updateById(user);
 			map.put("code", 200);
 			map.put("message", "登录成功");
 			return map;
 		}
-		User user3 = userService.findByEmail(user.getEmail());
-		if(user3 != null && !user3.getPwd().equals(user.getPwd())){
+        user = userService.findByEmail(email);
+        boolean equals = StringUtils.equals(user.getPwd(), pwd);
+        if(user != null && !equals){
 			data.setPwdMsg("密码错误");
 			map.put("data", data);
 			return map;
 		}
 		data.setEmialMsg("该邮箱还没有被注册");
-		map.put("data", data);*/
+		map.put("data", data);
 		return map;
 	}
 	

@@ -12,9 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <%
 		SessionInfo sessionInfo = (SessionInfo) session.getAttribute("sessionInfo");
 		if (sessionInfo != null) {
-			request.getRequestDispatcher("/jsp/main.jsp").forward(request, response);
+			request.getRequestDispatcher("/redirect/main").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/redirect/login").forward(request, response);
 		}
 	%>
   </head>

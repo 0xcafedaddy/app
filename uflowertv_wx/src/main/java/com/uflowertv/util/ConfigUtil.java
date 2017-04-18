@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  */
 public class ConfigUtil {
 
-	private static final ResourceBundle bundle = ResourceBundle.getBundle("constant");
+	private static final ResourceBundle bundle = ResourceBundle.getBundle("properties/constant");
 
 	/**
 	 * 获得sessionInfo名字

@@ -14,9 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <servlet-api.version>2.5</servlet-api.version>
         <spring-wind.version>1.1.5</spring-wind.version>
-        <velocity.version>1.7</velocity.version>
-        <velocity-tools.version>2.0</velocity-tools.version>
-
         <!-- log -->
         <logback-classic.version>1.1.7</logback-classic.version>
         <logback-ext-spring.version>0.1.4</logback-ext-spring.version>
@@ -55,41 +52,6 @@
       <artifactId>mybatis-plus</artifactId>
       <version>2.0.5</version>
     </dependency>
-
-    <!-- velocity begin -->
-    <dependency>
-      <groupId>org.apache.velocity</groupId>
-      <artifactId>velocity-tools</artifactId>
-      <version>${velocity-tools.version}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>dom4j</artifactId>
-          <groupId>dom4j</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>struts-core</artifactId>
-          <groupId>org.apache.struts</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>struts-tiles</artifactId>
-          <groupId>org.apache.struts</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>struts-taglib</artifactId>
-          <groupId>org.apache.struts</groupId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.velocity</groupId>
-      <artifactId>velocity</artifactId>
-      <version>${velocity.version}</version>
-    </dependency>
-    <!-- velocity end -->
 
     <!-- log begin -->
     <dependency>

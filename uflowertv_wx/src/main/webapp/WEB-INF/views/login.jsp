@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    ajaxPost:true,
 	    callback:function(data){
 	      if(data.code==200){
-	        window.location.href="index.jsp";
+	        window.location.href="<%=path %>/redirect/index";
 	      }else{
 	        var datas = data.data;
 	        if (datas.emialMsg) {

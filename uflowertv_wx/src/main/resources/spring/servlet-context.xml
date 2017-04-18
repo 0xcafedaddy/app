@@ -38,6 +38,8 @@
 
     <!-- default index -->
     <mvc:view-controller path="/redirect/login" view-name="login"/>
+    <mvc:view-controller path="/redirect/index" view-name="index"/>
+    <mvc:view-controller path="/redirect/main" view-name="main"/>
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

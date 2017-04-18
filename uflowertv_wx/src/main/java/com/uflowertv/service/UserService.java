@@ -28,6 +28,9 @@ public class UserService extends BaseServiceImpl<UserMapper,User>{
 		return super.selectOne(new EntityWrapper<User>(user));
 	}
 
+	@Log("通过邮件查找用户")
+	public User findByEmail(String email){return baseMapper.findByEmail(email);}
+
 	/*public int saveReg(User user) {
 		log.info("用户注册");
 		return userMapper.insert(user);

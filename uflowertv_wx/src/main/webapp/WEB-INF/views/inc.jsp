@@ -22,11 +22,11 @@
 <head>
  <base href="<%=basePath%>">
 <title></title>
-<link id="easyuiTheme" rel="stylesheet" type="text/css" href="<%=path %>/resources/jquery-easyui-1.4.3/themes/<%=easyuiTheme%>/easyui.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/jquery-easyui-1.4.3/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/jquery-easyui-1.4.3/themes/easyui_icons.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/jquery-easyui-1.4.3/themes/demo.css">
-<link rel="stylesheet" type="text/css" href="<%=path %>/resources/ueditor/themes/default/css/ueditor.min.css" />
+<link id="easyuiTheme" rel="stylesheet" type="text/css" href="../static/resources/jquery-easyui-1.4.3/themes/<%=easyuiTheme%>/easyui.css">
+<link rel="stylesheet" type="text/css" href="../static/resources/jquery-easyui-1.4.3/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../static/resources/jquery-easyui-1.4.3/themes/easyui_icons.css">
+<link rel="stylesheet" type="text/css" href="../static/resources/jquery-easyui-1.4.3/themes/demo.css">
+<link rel="stylesheet" type="text/css" href="../static/resources/ueditor/themes/default/css/ueditor.min.css" />
 <%-- 引入jQuery --%>
 <%
 String User_Agent = request.getHeader("User-Agent");
@@ -37,12 +37,12 @@ if (StringUtils.indexOfIgnoreCase(User_Agent, "MSIE") > -1 && (StringUtils.index
 	out.println("<script src='js/jquery-2.0.3.js' type='text/javascript' charset='utf-8'></script>");
 }
 %>
-<script type="text/javascript" src="<%=path %>/resources/jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="<%=path %>/resources/jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=path %>/resources/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=path %>/resources/ueditor/ueditor.all.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=path %>/resources/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" src="<%=path %>/js/my_js.js"></script>
+<script type="text/javascript" src="../static/resources/jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../static/resources/jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="../static/resources/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="../static/resources/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="../static/resources/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="../static/js/my_js.js"></script>
 </head>
 <body>
 </body>

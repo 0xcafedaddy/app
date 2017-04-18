@@ -8,13 +8,14 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 @Data
-@TableName(value = "wx_user")
+@TableName(value = "wx_system_user")
 public class User implements Serializable{
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
     /** 主键ID */
     @TableId
+
     private String id;
 
     private String pwd;
@@ -30,6 +31,6 @@ public class User implements Serializable{
     private String validatecode;
 
     private Date outdate;
-    
-    private String ip;
+
+    private transient String ip;
 }

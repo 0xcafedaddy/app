@@ -1,16 +1,14 @@
 package com.uflowertv.util;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.uflowertv.model.SessionInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.uflowertv.model.SessionInfo;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
