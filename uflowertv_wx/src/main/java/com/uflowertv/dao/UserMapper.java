@@ -19,28 +19,9 @@ import org.apache.ibatis.annotations.Param;
  * @version   V1.0
  */
 public interface UserMapper extends BaseMapper<User> {
+
     User login(User user);
+
     User findByEmail(@Param("email") String email);
-	/*//登录
-	User login(User user);
-	//通过邮件查询用户
-	User findByEmail(String email);
-	
-    int countByExample(UserExample example);
 
-    int deleteByExample(UserExample example);
-
-    int deleteByPrimaryKey(String id);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    List<User> selectByExample(UserExample example);
-
-    User selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);*/
 }

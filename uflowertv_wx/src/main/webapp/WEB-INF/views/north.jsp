@@ -67,7 +67,7 @@
 </script>
 <div class="top">
 	<div class="global-width">
-		<img src="images/logo.gif" class="logo" />
+		<img src="static/images/logo.gif" class="logo" />
 	</div>
 </div>
 <div id="sessionInfoDiv" style="position: absolute; right: 10px; top: 5px;">

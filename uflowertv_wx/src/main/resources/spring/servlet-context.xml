@@ -31,7 +31,7 @@
     <mvc:view-controller path="/error/**" status-code="200" />
 
     <!-- 配置静态资源，直接映射到对应的文件夹，DispatcherServlet 不处理 -->
-    <mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
+    <!--<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />-->
 
     <!-- 获取ApplicationContext上下文 -->
     <bean id="springContextHolder" class="com.baomidou.framework.spring.SpringContextHolder" />
@@ -40,6 +40,9 @@
     <mvc:view-controller path="/redirect/login" view-name="login"/>
     <mvc:view-controller path="/redirect/index" view-name="index"/>
     <mvc:view-controller path="/redirect/main" view-name="main"/>
+    <mvc:view-controller path="/redirect/north" view-name="north"/>
+    <mvc:view-controller path="/redirect/reg" view-name="reg"/>
+    <mvc:view-controller path="/redirect/redirect" view-name="redirect"/>
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

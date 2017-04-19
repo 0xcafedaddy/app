@@ -11,14 +11,14 @@
 <base href="<%=basePath%>">
 <style type="text/css">
 .global-width{ width:960px; margin:0 auto;}
-.top{ width:100%; height:88px; background:url(../static/images/Top_bg.gif) repeat-x;}
+.top{ width:100%; height:88px; background:url(static/images/Top_bg.gif) repeat-x;}
 .top .logo{ margin:17px 0 0 0;}
 .copyright{ text-align:center; font:12px Arial; margin:5px 0; color:#000;}
 </style>
-<link rel="stylesheet" type="text/css" href="../static/css/index.css">
+<link rel="stylesheet" type="text/css" href="static/css/index.css">
 <jsp:include page="inc.jsp"></jsp:include>
 
-<script type="text/javascript" src="../static/js/index.js"></script>
+<script type="text/javascript" src="static/js/index.js"></script>
 <script type="text/javascript">
 
 	/* var themes = '${themesName}';
@@ -61,12 +61,12 @@
 		}); */
 		//加载菜单树
 		$("#tt").tree({
-			url:'<%=path%>/tree/getTreeList',
+			url:'tree/getTreeList',
 			onLoadSuccess:function(node,data){
 				if(data==-1){
 					$.messager.alert('警告','登陆已过期，请重新登陆','warning');
 					setTimeout(function(){
-						window.location.href='<%=path%>/redirect/login';
+						window.location.href='redirect/login';
 					}, 1000);
 				}
 			},
@@ -122,7 +122,7 @@
 			$('#adminDiv form :input:eq(0)').focus();
 		}else{
 			$.ajax({
-				url:'<%=path%>/user/aftUpdatePwd',
+				url:'user/aftUpdatePwd',
 				type:'post',
 				data:$("#adminDiv form").serialize(),
 				success:function(result){
@@ -131,7 +131,7 @@
 						$.post('<%=path %>/user/logout', function(result) {
 							if(result.flag){
 								setTimeout(function(){
-									location.replace('login.jsp');
+									location.replace('redirect/login');
 								}, 1000);
 							}
 						}, 'json');
@@ -152,7 +152,7 @@
 			$('#loginDiv form :input:eq(1)').focus();
 		}else{
 			$.ajax({
-				url:'<%=path%>/user/login',
+				url:'user/login',
 				type:'post',
 				data:$('#loginDiv form').serialize(),
 				success:function(result){
@@ -168,7 +168,7 @@
 
 	//锁定密码
 	var lockWindowFun = function() {
-		$.post('<%=path%>/user/logout', function(result) {
+		$.post('user/logout', function(result) {
 			if(result.flag){
 				$('#loginDiv').window('open');
 			}
@@ -181,12 +181,12 @@
 	function logoutFun(){
 		$.messager.confirm('确认对话框', '确定退出?', function(r){
 			if (r){
-				$.post('<%=path%>/user/logout.do', function(result) {
+				$.post('user/logout.do', function(result) {
 					if(result.flag){
 						/* setTimeout(function(){
 							location.replace('login.jsp');
 						}, 1000); */
-						window.location.href='<%=path%>/redirect/login';
+						window.location.href='redirect/login';
 					}
 				}, 'json');
 			}
@@ -197,7 +197,7 @@
 </head>
 <body class="easyui-layout">
     <!-- 页眉 -->
-    <div data-options="region:'north',href:'north.jsp'" style="height: 90px;"></div>
+    <div data-options="region:'north',href:'redirect/north'" style="height: 90px;"></div>
     <!-- 页脚 -->
  	<div data-options="region:'south'" style="height:30px;">
 	   	<div class="copyright">Copyright&nbsp; 2016 &nbsp; &copy; &nbsp; <a href="http://www.uflowertv.com" target="_blank">北京油菜花文化传播有限公司</a></div>

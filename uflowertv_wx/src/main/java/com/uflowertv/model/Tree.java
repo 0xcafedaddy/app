@@ -1,6 +1,18 @@
 package com.uflowertv.model;
 
-public class Tree {
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
+
+import java.io.Serializable;
+
+@Data
+@TableName(value = "wx_menu_tree")
+public class Tree implements Serializable{
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+    @TableId
     private String id;
 
     private String pid;
@@ -9,35 +21,4 @@ public class Tree {
 
     private String url;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getPid() {
-        return pid;
-    }
-
-    public void setPid(String pid) {
-        this.pid = pid == null ? null : pid.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
 }

@@ -1,12 +1,16 @@
 package com.uflowertv.controller;
 
 import com.baomidou.framework.controller.SuperController;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.google.common.collect.Maps;
 import com.uflowertv.model.SessionInfo;
 import com.uflowertv.model.User;
 import com.uflowertv.model.ValidationData;
 import com.uflowertv.service.UserService;
 import com.uflowertv.util.CipherUtil;
 import com.uflowertv.util.ConfigUtil;
+import com.uflowertv.util.GUIDUtil;
+import com.uflowertv.util.Mail;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
 /**
  * 
  * 版权所有：2016-油菜花
@@ -40,7 +48,6 @@ public class UserController extends SuperController {
 	@Autowired
 	private UserService userService;
 
-
     /**
      * 登录
      * @param user
@@ -51,31 +58,33 @@ public class UserController extends SuperController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public Map<String,Object> login(User user,HttpSession session,HttpServletRequest request){
+		Map<String,Object> map = Maps.newHashMap();
 		ValidationData data = new ValidationData();
 		String email = user.getEmail();
-        String pwd = user.getPwd();
-        Map<String,Object> map = new HashMap<String,Object>();
+		String pwd = user.getPwd();
 		user.setPwd(CipherUtil.generator(user.getPwd()));
 		user = userService.findLogin(user);
-		if(user!=null){
-			user.setIp(request.getRemoteAddr());//记录IP地址
-			SessionInfo sessionInfo = new SessionInfo();
-			sessionInfo.setUser(user);
-			session.setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
-			user.setId(user.getId());
-			user.setLogintime(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
-			userService.updateById(user);
-			map.put("code", 200);
-			map.put("message", "登录成功");
-			return map;
-		}
+        if(user!=null){
+            user.setIp(request.getRemoteAddr());//记录IP地址
+            SessionInfo sessionInfo = new SessionInfo();
+            sessionInfo.setUser(user);
+            session.setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
+            user.setId(user.getId());
+            user.setLogintime(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
+            userService.updateById(user);
+            map.put("code", 200);
+            map.put("message", "登录成功");
+            return map;
+        }
         user = userService.findByEmail(email);
-        boolean equals = StringUtils.equals(user.getPwd(), pwd);
-        if(user != null && !equals){
-			data.setPwdMsg("密码错误");
-			map.put("data", data);
-			return map;
-		}
+        if(user != null){
+            boolean equals = StringUtils.equals(user.getPwd(), pwd);
+            if(!equals){
+                data.setPwdMsg("密码错误");
+                map.put("data", data);
+                return map;
+            }
+        }
 		data.setEmialMsg("该邮箱还没有被注册");
 		map.put("data", data);
 		return map;
@@ -89,7 +98,7 @@ public class UserController extends SuperController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/logout.do")
+	@RequestMapping("/logout")
 	@ResponseBody
 	public Map<String,Object> logout(HttpSession session){
 		session.invalidate();
@@ -107,13 +116,13 @@ public class UserController extends SuperController {
 	 * @param passwd
 	 * @return
 	 */
-	@RequestMapping("/reg.do")
+	@RequestMapping("/reg")
 	@ResponseBody
 	public Map<String,Object> reg(User user,String passwd){
 		Map<String,Object> map = new HashMap<String,Object>();
-		/*ValidationData data = new ValidationData();
-		User user2 = userService.findByEmail(user.getEmail());
-		if(user2 != null){
+		ValidationData data = new ValidationData();
+		user = userService.findByEmail(user.getEmail());
+		if(user != null){
 			data.setEmialMsg("该邮箱已被注册");
 			map.put("data", data);
 			return map;
@@ -122,14 +131,15 @@ public class UserController extends SuperController {
 		user.setPwd(CipherUtil.generator(passwd));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		user.setCreated(sdf.format(new Date()));
-		int count = userService.saveReg(user);
-		if(count > 0){
+		user.setId(UUID.randomUUID().toString().replace("-",""));
+        boolean insert = userService.insert(user);
+        if(insert){
 			map.put("code", 200);
 			map.put("message", "注册成功");
 			return map;
 		}
 		map.put("code", 200);
-		map.put("message", "注册失败，请联系管理员");*/
+		map.put("message", "注册失败，请联系管理员");
 		return map;
 	}
 	
@@ -142,26 +152,26 @@ public class UserController extends SuperController {
 	 * @param uPwd
 	 * @return
 	 */
-	@RequestMapping("/aftUpdatePwd.do")
+	@RequestMapping("/aftUpdatePwd")
 	@ResponseBody
 	public Map<String,Object> update(String uId, String uPwd) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		/*User u = userService.findById(uId);
+		User u = userService.selectById(uId);
 		if(u != null){
 			if(CipherUtil.validate(u.getPwd(), uPwd)){
 				map.put("message", "不能与近期密码相同");
 				return map;
 			}
 			u.setPwd(CipherUtil.generator(uPwd));
-			int count =userService.update(u);
-			if(count > 0){
+            boolean flag = userService.updateById(u);
+            if(flag){
 				map.put("code", 200);
 				map.put("message", "密码修改成功，请重新登录！");
 				return map;
 			}
 		}
 		map.put("code", 200);
-		map.put("message", "用户不存在");*/
+		map.put("message", "用户不存在");
 		return map;
 	}
 	
@@ -173,43 +183,43 @@ public class UserController extends SuperController {
 	 * @param email
 	 * @return
 	 */
-	@RequestMapping("/forget_password.do")
+	@RequestMapping("/forget_password")
 	@ResponseBody
 	public Map<String,Object> befPwd(HttpServletRequest request,String email){
-		Map<String,Object> map = new HashMap<String,Object>();
-//		User user = userService.findByEmail(email);
-//		ValidationData data = new ValidationData();
-//		if(user == null){
-//			data.setEmialMsg("该邮箱不存在");
-//			map.put("data", data);
-//			return map;
-//		}
-//	 	String secretKey= GUIDUtil.get();  //密钥
-//        Date outDate = new Date(System.currentTimeMillis()+30*60*1000);//30分钟后过期
-//        long date = outDate.getTime()/1000*1000; //忽略毫秒数
-//        user.setValidatecode(secretKey);
-//        user.setOutdate(outDate);
-//        //保存到数据库
-//        int count = userService.update(user);
-//        if(count > 0){
-//        	String key = email+"$"+date+"$"+secretKey;
-//        	String path = request.getContextPath();
-//        	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-//        	String resetPassHref =  basePath+"user/reset_password.do?sid="+ CipherUtil.generator(key)+"&email="+email;
-//        	String emailContent = "请勿回复本邮件。点击下面的链接，重设密码。tips:本邮件超过30分钟链接将会失效，需要重新申请。<br/>"
-//        			+ "<a href="+resetPassHref +" target='_blank'>点击我重新设置密码</a>";
-//
-//        	Mail.setTo(user.getEmail());
-//        	Mail.setContent(emailContent);
-//        	boolean flag =	Mail.sendMail();
-//        	if(flag){
-//        		map.put("code", 200);
-//        		map.put("message", "邮件已发送");
-//        		return map;
-//        	}
-//        }
-//        map.put("code", 200);
-//        map.put("message", "邮件发送失败");
+        Map<String,Object> map = new HashMap<String,Object>();
+        User user = userService.findByEmail(email);
+        ValidationData data = new ValidationData();
+        if(user == null){
+            data.setEmialMsg("该邮箱不存在");
+            map.put("data", data);
+            return map;
+        }
+        String secretKey= GUIDUtil.get();  //密钥
+        Date outDate = new Date(System.currentTimeMillis()+30*60*1000);//30分钟后过期
+        long date = outDate.getTime()/1000*1000; //忽略毫秒数
+        user.setValidatecode(secretKey);
+        user.setOutdate(outDate);
+        //保存到数据库
+        boolean flag = userService.updateById(user);
+        if(flag){
+            String key = email+"$"+date+"$"+secretKey;
+            String path = request.getContextPath();
+            String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+            String resetPassHref =  basePath+"user/reset_password.do?sid="+ CipherUtil.generator(key)+"&email="+email;
+            String emailContent = "请勿回复本邮件。点击下面的链接，重设密码。tips:本邮件超过30分钟链接将会失效，需要重新申请。<br/>"
+                    + "<a href="+resetPassHref +" target='_blank'>点击我重新设置密码</a>";
+
+            Mail.setTo(user.getEmail());
+            Mail.setContent(emailContent);
+            boolean flag2 =	Mail.sendMail();
+            if(flag2){
+                map.put("code", 200);
+                map.put("message", "邮件已发送");
+                return map;
+            }
+        }
+        map.put("code", 200);
+        map.put("message", "邮件发送失败");
         return map;
 	}
 
@@ -219,10 +229,10 @@ public class UserController extends SuperController {
      * @param email
      * @return
      */
-	@RequestMapping("/reset_password.do")
+	@RequestMapping("/reset_password")
     public ModelAndView checkResetLink(String sid,String email){
 		ModelAndView model = new ModelAndView("mailException");
-        /*String msg = "";
+        String msg = "";
         if(StringUtils.isBlank(sid) || StringUtils.isBlank(email)){
 	        msg="链接不完整,请重新生成";
 	        model.addObject("message",msg) ;
@@ -250,7 +260,7 @@ public class UserController extends SuperController {
         	return model;
         }
         //返回到修改密码的界面
-        model.setViewName("pwd_update");  */
+        model.setViewName("pwd_update");
         return model;
     }
 	
@@ -262,11 +272,11 @@ public class UserController extends SuperController {
 	 * @param email
 	 * @return
 	 */
-	@RequestMapping("/befUpdatePwd.do")
+	@RequestMapping("/befUpdatePwd")
 	@ResponseBody
 	public Map<String,Object> updatePwd(String passwd,String email){
 		Map<String,Object> map = new HashMap<String,Object>();
-	/*	User user = userService.findByEmail(email);
+		User user = userService.findByEmail(email);
 		ValidationData data = new ValidationData();
 		if(user!=null && StringUtils.isNotBlank(passwd)){
 			if(CipherUtil.validate(user.getPwd(), passwd)){
@@ -275,15 +285,15 @@ public class UserController extends SuperController {
 				return map;
 			}
 			user.setPwd(CipherUtil.generator(passwd));
-			int count = userService.update(user);
-			if(count > 0){
+            boolean flag = userService.updateById(user);
+            if(flag){
 				map.put("code", 200);
 				map.put("message", "密码更新成功");
 				return map;
 			}
 		}
 		map.put("code", 200);
-		map.put("message", "用户不存在");*/
+		map.put("message", "用户不存在");
 		return map;
 	}
 }

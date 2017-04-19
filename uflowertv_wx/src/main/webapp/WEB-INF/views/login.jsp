@@ -9,10 +9,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
       <base href="<%=basePath%>">
 	  <title>油菜花微信平台管理中心</title>
-	  <link href="<%=path%>/static/css/style.css" rel="stylesheet" type="text/css" />
+	  <link href="static/css/style.css" rel="stylesheet" type="text/css" />
     </head>
 	<body> 
-	  <form method="post" action="<%=path %>/user/login" class="loginform">
+	  <form method="post" action="user/login" class="loginform">
 	    <div id="bg">
 	      <div id="logo"></div>
 	      <div id="lay">
@@ -36,13 +36,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </div>
 	        <div id="bottom">
 	          <input type="submit" class="btn" value="提交登陆" />
-	          <a href="reg.jsp" >注册</a>
+	          <a href="redirect/reg" >注册</a>
 	        </div>
 	      </div>
 	    </div>
 	  </form>
-  	  <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
-	 <script type="text/javascript" src="<%=path %>/static/js/Validform_min.js"></script>
+  	  <script type="text/javascript" src="static/js/jquery.min.js"></script>
+	 <script type="text/javascript" src="static/js/Validform_min.js"></script>
 	  <script type="text/javascript">
 	  $(".loginform").Validform({
 	    tiptype:3,
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    ajaxPost:true,
 	    callback:function(data){
 	      if(data.code==200){
-	        window.location.href="<%=path %>/redirect/index";
+	        window.location.href="redirect/index";
 	      }else{
 	        var datas = data.data;
 	        if (datas.emialMsg) {
