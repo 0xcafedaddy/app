@@ -1,4 +1,4 @@
-package com.uflowertv.jssdk;
+package com.uflowertv.util;
 import java.util.UUID;
 import java.util.Map;
 import java.util.HashMap;

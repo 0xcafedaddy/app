@@ -1,4 +1,4 @@
-package com.uflowertv.model;
+package com.uflowertv.model.po;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;

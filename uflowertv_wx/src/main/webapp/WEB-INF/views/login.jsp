@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </dd>
 	          </dl>
 	          <span class="erorr"></span>
-	          <a style="color:indigo;margin-left: 720px;" href="pwd_forward.jsp">忘记密码?</a>
+	          <a style="color:indigo;margin-left: 720px;" href="redirect/pwd_forward">忘记密码?</a>
 	        </div>
 	        <div id="bottom">
 	          <input type="submit" class="btn" value="提交登陆" />

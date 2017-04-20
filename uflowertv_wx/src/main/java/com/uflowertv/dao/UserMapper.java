@@ -1,7 +1,7 @@
 package com.uflowertv.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.uflowertv.model.User;
+import com.uflowertv.model.po.User;
 import org.apache.ibatis.annotations.Param;
 
 /**

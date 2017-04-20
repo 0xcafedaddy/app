@@ -3,9 +3,8 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String msg = request.getParameter("message");
+String msg =(String) request.getAttribute("message");
 if(StringUtils.isBlank(msg)) msg = "登录超时，请重新登录！";
-
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -37,8 +36,8 @@ if(StringUtils.isBlank(msg)) msg = "登录超时，请重新登录！";
 </head>
 <body>
 <div class="box yes">
-  <div class="tit"><%=msg %></div>
-  <div class="note">浏览器将在<span id="wait">5</span>秒后自动跳转，如果没有跳转请<a id="href" href="<%=path %>/WEB-INF/views/login.jsp">点击这里</a></div>
+  <div class="tit"><%=msg %></div>
+  <div class="note">浏览器将在<span id="wait">5</span>秒后自动跳转，如果没有跳转请<a id="href" href="redirect/login">点击这里</a></div>
 </div>
 <script type="text/javascript">
  function countDown(secs){

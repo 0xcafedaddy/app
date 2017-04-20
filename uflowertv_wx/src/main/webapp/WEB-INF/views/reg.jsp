@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    ajaxPost:true,
 	    callback:function(data){
 	      if(data.code==200){
-	        window.location.href="/redirect/redirect?message="+data.message;
+	        window.location.href="redirect/redirect/"+data.message;
 	      }else{
 	        var datas = data.data;
 	        if (datas.emialMsg) {

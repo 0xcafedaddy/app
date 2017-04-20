@@ -18,16 +18,16 @@
 		 text-decoration: none;
 		}
     </style>
-   	<jsp:include page="../../inc.jsp"></jsp:include>
+   	<jsp:include page="../inc.jsp"></jsp:include>
    	<script type="text/javascript">
    
    	$(function() {
-   		initGride('<%=path %>/question/userQuestionList.do?type=0');
+   		initGride('question/userQuestionList?type=0');
 	});
    	
   	//显示详情
 	function questionInfo(id,status){
-		window.location.href="<%=path %>/question/questionInfo.do?id="+id+"&status="+status;
+		window.location.href="question/questionInfo?id="+id+"&status="+status;
 	}
 	/**
 	 * 图片显示
@@ -35,7 +35,7 @@
 	function picture_Show(value){
 		$('#mydialog').dialog({
 			onOpen:function(){
-				$.post('<%=path %>/question/getImgNameList.do' , {id:value},function(result){
+				$.post('question/getImgNameList' , {id:value},function(result){
 					$('#imgName1').attr('src', result[0]);
 					$('#imgName2').attr('src', result[1]);
 					$('#imgName3').attr('src', result[2]);
@@ -134,7 +134,7 @@
 	 * 查询选项
 	 */
 	function choose(type){
-		var url = "<%=path %>/question/userQuestionList.do?type="+type;
+		var url = "question/userQuestionList?type="+type;
 		initGride(url);
 	}
    	</script>

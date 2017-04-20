@@ -1,6 +1,5 @@
-package com.uflowertv.model;
+package com.uflowertv.model.po;
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
@@ -10,12 +9,11 @@ import java.util.Date;
 @Data
 @TableName(value = "wx_system_user")
 public class User implements Serializable{
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+
+    private transient static final long serialVersionUID = 1L;
 
     /** 主键ID */
     @TableId
-
     private String id;
 
     private String pwd;
@@ -33,4 +31,5 @@ public class User implements Serializable{
     private Date outdate;
 
     private transient String ip;
+
 }

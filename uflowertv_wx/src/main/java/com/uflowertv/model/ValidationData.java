@@ -1,24 +1,10 @@
 package com.uflowertv.model;
 
+import lombok.Data;
+
+@Data
 public class ValidationData {
 
 	private String emialMsg;
 	private String pwdMsg;
-	
-	
-	public String getEmialMsg() {
-		return emialMsg;
-	}
-	public void setEmialMsg(String emialMsg) {
-		this.emialMsg = emialMsg;
-	}
-	public String getPwdMsg() {
-		return pwdMsg;
-	}
-	public void setPwdMsg(String pwdMsg) {
-		this.pwdMsg = pwdMsg;
-	}
-	
-	
-	
 }

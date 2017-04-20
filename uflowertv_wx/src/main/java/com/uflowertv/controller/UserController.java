@@ -1,11 +1,10 @@
 package com.uflowertv.controller;
 
 import com.baomidou.framework.controller.SuperController;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Maps;
 import com.uflowertv.model.SessionInfo;
-import com.uflowertv.model.User;
 import com.uflowertv.model.ValidationData;
+import com.uflowertv.model.po.User;
 import com.uflowertv.service.UserService;
 import com.uflowertv.util.CipherUtil;
 import com.uflowertv.util.ConfigUtil;
@@ -21,11 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * 
@@ -89,15 +86,13 @@ public class UserController extends SuperController {
 		map.put("data", data);
 		return map;
 	}
-	
-	
-	/**
-	 * 注销
-	 * @Title: logout
-	 * @Description: TODO(这里用一句话描述这个方法的作用)
-	 * @param session
-	 * @return
-	 */
+
+
+    /**
+     * 注销
+     * @param session
+     * @return
+     */
 	@RequestMapping("/logout")
 	@ResponseBody
 	public Map<String,Object> logout(HttpSession session){
@@ -106,44 +101,19 @@ public class UserController extends SuperController {
 		map.put("flag", true);
 		return map;
 	}
-	
-	
-	/**
-	 * 注册
-	 * @Title: reg
-	 * @Description: TODO(这里用一句话描述这个方法的作用)
-	 * @param user
-	 * @param passwd
-	 * @return
-	 */
+
+    /**
+     * 注册
+     * @param user
+     * @param passwd
+     * @return
+     */
 	@RequestMapping("/reg")
 	@ResponseBody
 	public Map<String,Object> reg(User user,String passwd){
-		Map<String,Object> map = new HashMap<String,Object>();
-		ValidationData data = new ValidationData();
-		user = userService.findByEmail(user.getEmail());
-		if(user != null){
-			data.setEmialMsg("该邮箱已被注册");
-			map.put("data", data);
-			return map;
-		}
-		//将密码加密保存
-		user.setPwd(CipherUtil.generator(passwd));
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		user.setCreated(sdf.format(new Date()));
-		user.setId(UUID.randomUUID().toString().replace("-",""));
-        boolean insert = userService.insert(user);
-        if(insert){
-			map.put("code", 200);
-			map.put("message", "注册成功");
-			return map;
-		}
-		map.put("code", 200);
-		map.put("message", "注册失败，请联系管理员");
-		return map;
+		return userService.register(user,passwd);
 	}
-	
-	
+
 	/**
 	 * 更新密码
 	 * @Title: update
@@ -186,7 +156,7 @@ public class UserController extends SuperController {
 	@RequestMapping("/forget_password")
 	@ResponseBody
 	public Map<String,Object> befPwd(HttpServletRequest request,String email){
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map = Maps.newHashMap();
         User user = userService.findByEmail(email);
         ValidationData data = new ValidationData();
         if(user == null){
@@ -205,7 +175,7 @@ public class UserController extends SuperController {
             String key = email+"$"+date+"$"+secretKey;
             String path = request.getContextPath();
             String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-            String resetPassHref =  basePath+"user/reset_password.do?sid="+ CipherUtil.generator(key)+"&email="+email;
+            String resetPassHref =  basePath+"user/reset_password?sid="+ CipherUtil.generator(key)+"&email="+email;
             String emailContent = "请勿回复本邮件。点击下面的链接，重设密码。tips:本邮件超过30分钟链接将会失效，需要重新申请。<br/>"
                     + "<a href="+resetPassHref +" target='_blank'>点击我重新设置密码</a>";
 

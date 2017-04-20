@@ -3,7 +3,7 @@ package com.uflowertv.service;
 import com.baomidou.framework.annotations.Log;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.uflowertv.dao.TreeMapper;
-import com.uflowertv.model.Tree;
+import com.uflowertv.model.po.Tree;
 import com.uflowertv.model.TreeAttributes;
 import com.uflowertv.model.TreeData;
 import com.uflowertv.service.support.BaseServiceImpl;

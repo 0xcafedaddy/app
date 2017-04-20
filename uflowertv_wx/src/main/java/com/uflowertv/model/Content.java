@@ -1,5 +1,7 @@
 package com.uflowertv.model;
 
+import lombok.Data;
+
 /**
  * 
  * 版权所有：2016-油菜花
@@ -14,40 +16,20 @@ package com.uflowertv.model;
  * 修改备注：   
  * @version   V1.0
  */
+@Data
 public class Content {
     private String id ;
     private String message ;
 
-public Content() {
-	// TODO Auto-generated constructor stub
-}
+	public Content() {
+		// TODO Auto-generated constructor stub
+	}
 
-public Content(String id, String message) {
-	super();
-	this.id = id;
-	this.message = message;
-}
-
-public String getId() {
-	return id;
-}
-
-public void setId(String id) {
-	this.id = id;
-}
-
-public String getMessage() {
-	return message;
-}
-
-public void setMessage(String message) {
-	this.message = message;
-}
-
-@Override
-public String toString() {
-	return "Content [id=" + id + ", message=" + message + "]";
-}
+	public Content(String id, String message) {
+		super();
+		this.id = id;
+		this.message = message;
+	}
 
 
 }

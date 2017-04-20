@@ -121,13 +121,20 @@
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="load*" read-only="true" />
 			<tx:method name="search*" read-only="true" />
+
+			<tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Throwable"></tx:method>
 		</tx:attributes>
 	</tx:advice>
+
     <!-- 需要引入aop的命名空间（配置事物的切入点） -->
 	<aop:config>
 		<!-- 切入点指明了在执行Service的所有方法时产生事务拦截操作 -->
 		<aop:pointcut expression="execution(public * com.uflowertv.service.*.*(..))" id="txPointCut" />
 		<!-- 定义了将采用何种拦截操作，这里引用到 txAdvice -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
+		<!--动态切换数据源-->
+		<!-- 关键配置，切换数据源一定要比持久层代码更先执行（事务也算持久层代码） -->
+		<!--<aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="2"/>
+		<aop:advisor advice-ref="dataSourceExchange" pointcut-ref="service" order="1"/>-->
 	</aop:config>
 </beans>

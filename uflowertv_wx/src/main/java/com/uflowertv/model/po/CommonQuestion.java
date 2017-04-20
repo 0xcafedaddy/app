@@ -1,4 +1,4 @@
-package com.uflowertv.model;
+package com.uflowertv.model.po;
 
 public class CommonQuestion {
     private Integer id;

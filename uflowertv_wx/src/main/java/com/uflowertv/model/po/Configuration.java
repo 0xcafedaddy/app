@@ -1,4 +1,4 @@
-package com.uflowertv.model;
+package com.uflowertv.model.po;
 
 import java.util.Date;
 

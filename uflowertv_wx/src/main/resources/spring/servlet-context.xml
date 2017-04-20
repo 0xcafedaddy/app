@@ -42,7 +42,12 @@
     <mvc:view-controller path="/redirect/main" view-name="main"/>
     <mvc:view-controller path="/redirect/north" view-name="north"/>
     <mvc:view-controller path="/redirect/reg" view-name="reg"/>
-    <mvc:view-controller path="/redirect/redirect" view-name="redirect"/>
+    <mvc:view-controller path="/redirect/pwd_forward" view-name="pwd_forward"/>
+    <mvc:view-controller path="/redirect/question/user_question_list" view-name="question/user_question_list"/>
+    <mvc:view-controller path="/redirect/question/reply_question_list" view-name="question/reply_question_list"/>
+    <mvc:view-controller path="/redirect/question/commonQuestion" view-name="question/commonQuestion"/>
+    <mvc:view-controller path="/redirect/statistics/day_activity_user" view-name="statistics/day_activity_user"/>
+
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

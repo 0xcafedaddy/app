@@ -1,6 +1,6 @@
 package com.uflowertv.datasources;
 
-public class DbContextHolder {
+public class DataSourceHolder {
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
 
     /**

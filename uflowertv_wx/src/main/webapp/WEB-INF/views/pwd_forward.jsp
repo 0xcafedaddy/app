@@ -9,10 +9,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
       <base href="<%=basePath%>">
 	  <title>密码修改</title>
-	  <link href="<%=path %>/css/style.css" rel="stylesheet" type="text/css" />
+	  <link href="static/css/style.css" rel="stylesheet" type="text/css" />
     </head>
 	<body> 
-	  <form method="post" action="<%=path %>/user/forget_password.do" class="loginform">
+	  <form method="post" action="user/forget_password" class="loginform">
 	    <div id="bg">
 	      <div id="logo"></div>
 	      <div id="lay">
@@ -33,8 +33,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      </div>
 	    </div>
 	  </form>
-  	  <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
-	 <script type="text/javascript" src="<%=path %>/js/Validform_min.js"></script>
+  	  <script type="text/javascript" src="static/js/jquery.min.js"></script>
+	 <script type="text/javascript" src="static/js/Validform_min.js"></script>
 	  <script type="text/javascript">
 	  $(".loginform").Validform({
 	    tiptype:3,
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    ajaxPost:true,
 	    callback:function(data){
 	      if(data.code==200){
-	        window.location.href="<%=path %>/redirect.jsp?message="+data.message;
+	        window.location.href="redirect/redirect/"+data.message;
 	      }else{
 	    	var datas = data.data;
     	  	if (datas.emialMsg) {

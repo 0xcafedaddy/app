@@ -1,6 +1,8 @@
 package com.uflowertv.model;
 
+import lombok.Data;
 
+@Data
 public class News {
 	private String title;
 	private String description;
@@ -18,38 +20,4 @@ public class News {
 		this.url = url;
 		this.picurl = picurl;
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getPicurl() {
-		return picurl;
-	}
-
-	public void setPicurl(String picurl) {
-		this.picurl = picurl;
-	}
-	
-	
 }

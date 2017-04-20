@@ -1,7 +1,6 @@
 package com.uflowertv.model;
 
-import java.util.Arrays;
-
+import lombok.Data;
 import org.nutz.json.JsonField;
 
 
@@ -11,6 +10,7 @@ import org.nutz.json.JsonField;
  * @author 凡梦星尘(elkan1788@gmail.com)
  * @since 2.0
  */
+@Data
 public class Follower {
     /**
      * 是否订阅(0 退订, 1 订阅)
@@ -71,129 +71,4 @@ public class Follower {
     private int groupid;
     
     private String[] privilege;
-
-    
-    public String[] getPrivilege() {
-		return privilege;
-	}
-
-	public void setPrivilege(String[] privilege) {
-		this.privilege = privilege;
-	}
-
-	public int getSubscribe() {
-        return subscribe;
-    }
-
-    public void setSubscribe(int subscribe) {
-        this.subscribe = subscribe;
-    }
-
-    public String getOpenid() {
-        return openid;
-    }
-
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getHeadimgurl() {
-        return headimgurl;
-    }
-
-    public void setHeadimgurl(String headimgurl) {
-        this.headimgurl = headimgurl;
-    }
-
-
-    public String getSubscribetime() {
-		return subscribetime;
-	}
-
-	public void setSubscribetime(String subscribetime) {
-		this.subscribetime = subscribetime;
-	}
-
-	public String getUnionid() {
-        return unionid;
-    }
-
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public int getGroupid() {
-        return groupid;
-    }
-
-    public void setGroupid(int groupid) {
-        this.groupid = groupid;
-    }
-
-	@Override
-	public String toString() {
-		return "Follower [subscribe=" + subscribe + ", openid=" + openid
-				+ ", nickname=" + nickname + ", sex=" + sex + ", city=" + city
-				+ ", country=" + country + ", province=" + province
-				+ ", language=" + language + ", headimgurl=" + headimgurl
-				+ ", subscribetime=" + subscribetime + ", unionid=" + unionid
-				+ ", remark=" + remark + ", groupid=" + groupid
-				+ ", privilege=" + Arrays.toString(privilege) + "]";
-	}
 }

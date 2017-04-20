@@ -10,12 +10,12 @@
   <head>
       <base href="<%=basePath%>">
 	  <title>油菜花微信平台管理中心</title>
-	  <link href="<%=path %>/css/style.css" rel="stylesheet" type="text/css" />
-	  <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
-	  <script type="text/javascript" src="<%=path %>/js/Validform_min.js"></script>
+	  <link href="static/css/style.css" rel="stylesheet" type="text/css" />
+	  <script type="text/javascript" src="static/js/jquery.min.js"></script>
+	  <script type="text/javascript" src="static/js/Validform_min.js"></script>
   </head>
 <body style="overflow:hidden">
-  <form method="post" action="<%=path %>/user/befUpdatePwd.do" class="regform">
+  <form method="post" action="user/befUpdatePwd" class="regform">
   	<input type="hidden" name="email" value="<%=email %>">
     <div id="bg">
       <div id="logo"></div>
@@ -49,7 +49,7 @@
     ajaxPost:true,
     callback:function(data){
       if(data.code==200){
-        window.location.href="<%=path %>/redirect.jsp?message="+data.message;
+        window.location.href="redirect/redirect/"+data.message;
       }else{
         var datas = data.data;
         if (datas.pwdMsg) {

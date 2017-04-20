@@ -1,5 +1,6 @@
 package com.uflowertv.model;
 
+import com.uflowertv.model.po.User;
 import lombok.Data;
 
 /**

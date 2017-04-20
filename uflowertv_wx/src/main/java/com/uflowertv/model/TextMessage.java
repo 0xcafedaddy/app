@@ -1,5 +1,8 @@
 package com.uflowertv.model;
 
+import lombok.Data;
+
+@Data
 public class TextMessage extends SendCustom{
 	
 	private TextMessage text;
@@ -12,17 +15,4 @@ public class TextMessage extends SendCustom{
 		super();
 		this.content = content;
 	}
-	public TextMessage getText() {
-		return text;
-	}
-	public void setText(TextMessage text) {
-		this.text = text;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
 }

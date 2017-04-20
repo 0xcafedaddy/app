@@ -5,7 +5,7 @@
       id, pwd, uname, email, created, loginTime, validatecode, outdate
     </sql>
     <!-- 登录 -->
-   <select id="login" parameterType="com.uflowertv.model.User" resultType="com.uflowertv.model.User">
+   <select id="login" parameterType="com.uflowertv.model.po.User" resultType="com.uflowertv.model.po.User">
 		select
 		<include refid="Base_Column_List" />
 		from wx_system_user where 1=1
@@ -17,7 +17,7 @@
 		</if>
    </select>
   <!-- 通过邮件查询 -->
-  <select id="findByEmail" resultType="com.uflowertv.model.User">
+  <select id="findByEmail" resultType="com.uflowertv.model.po.User">
   	select
 	<include refid="Base_Column_List" />
 	from wx_system_user where email = #{email}

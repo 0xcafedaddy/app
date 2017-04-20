@@ -68,11 +68,11 @@ public class CipherUtil{
         }
         return null;
     }
-    
-    /** 
+
+    /**
      * 转换字节数组为十六进制字符串
-     * @param     字节数组
-     * @return    十六进制字符串
+     * @param b
+     * @return
      */
     private static String byteArrayToHexString(byte[] b){
         StringBuffer resultSb = new StringBuffer();
@@ -90,5 +90,10 @@ public class CipherUtil{
         int d1 = n / 16;
         int d2 = n % 16;
         return hexDigits[d1] + hexDigits[d2];
+    }
+
+    public static void main(String[] args) {
+        String generator = CipherUtil.generator("111111");
+        System.out.println(generator);
     }
 }
