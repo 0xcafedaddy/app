@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import com.uflowertv.bean.ResponseError;
 import lombok.Data;
 
-@Data
 public class TransParmeter extends ResponseError{
 	//请求翻译query	UTF-8编码
 	private String q;
@@ -43,5 +42,77 @@ public class TransParmeter extends ResponseError{
 		this.appid = appid;
 		this.salt = salt;
 		this.sign = sign;
+	}
+
+	public String getQ() {
+		return q;
+	}
+
+	public void setQ(String q) {
+		this.q = q;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public String getAppid() {
+		return appid;
+	}
+
+	public void setAppid(String appid) {
+		this.appid = appid;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public String getMonLang() {
+		return monLang;
+	}
+
+	public void setMonLang(String monLang) {
+		this.monLang = monLang;
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public String getTrans_result() {
+		return trans_result;
+	}
+
+	public void setTrans_result(String trans_result) {
+		this.trans_result = trans_result;
 	}
 }
