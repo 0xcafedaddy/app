@@ -2,6 +2,7 @@ package com.uflowertv.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Maps;
+import com.uflowertv.controller.support.BaseController;
 import com.uflowertv.model.po.CommonQuestion;
 import com.uflowertv.service.CommonQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("question")
-public class CommonQuestionController {
+public class CommonQuestionController extends BaseController{
 
 	
 	@Autowired

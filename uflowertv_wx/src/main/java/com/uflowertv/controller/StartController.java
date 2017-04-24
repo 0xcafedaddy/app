@@ -1,5 +1,6 @@
 package com.uflowertv.controller;
 
+import com.uflowertv.controller.support.BaseController;
 import com.uflowertv.service.StartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("start")
-public class StartController {
+public class StartController extends BaseController{
 
 	@Autowired
 	private StartService startService;

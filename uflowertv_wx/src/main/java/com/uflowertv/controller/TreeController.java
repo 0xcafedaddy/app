@@ -1,5 +1,6 @@
 package com.uflowertv.controller;
 
+import com.uflowertv.controller.support.BaseController;
 import com.uflowertv.model.SessionInfo;
 import com.uflowertv.model.TreeData;
 import com.uflowertv.service.TreeService;
@@ -21,7 +22,7 @@ import java.util.Random;
 
 @Controller
 @RequestMapping("tree")
-public class TreeController {
+public class TreeController extends BaseController{
 	@Autowired
 	private TreeService treeService;
 

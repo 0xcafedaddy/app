@@ -5,19 +5,16 @@
     id, dt, platformID, zoneID, deviceID, entryID
   </sql>
   <!-- 统计 -->
-  <resultMap id="newResultMap" type="com.uflowertv.model.dto.DayActiveCount" >
+  <resultMap id="BaseResultMap" type="com.uflowertv.model.dto.DayActiveCount" >
 	    <result column="datetime" property="dateTime" jdbcType="DATE" />
 	    <result column="total" property="total" jdbcType="INTEGER" />
 	    <result column="platformID" property="platformID" jdbcType="INTEGER"/>
   </resultMap>
   <!-- 指定时间段的用户活跃数,默认为30天 -->
-  <select id="getTimeUserActiveList" resultMap="newResultMap">
+  <select id="getTimeUserActiveList" resultMap="BaseResultMap">
     SELECT id,platformID, DATE_FORMAT(dt,'%Y-%m-%d') datetime ,COUNT(1) total FROM start_2017 
     WHERE DATE(dt) BETWEEN #{start} AND #{end}
     GROUP BY datetime
-    <![CDATA[
-	   limit ${pageSize} offset ${recordIndex}
-	]]>
   </select>
   <select id="getTimeUserActiveCount" resultType="int">
      SELECT COUNT(1) FROM (

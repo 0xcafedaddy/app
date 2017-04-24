@@ -1,6 +1,7 @@
 package com.uflowertv.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.uflowertv.controller.support.BaseController;
 import com.uflowertv.model.po.CommonQuestion;
 import com.uflowertv.service.CommonQuestionService;
 import com.uflowertv.util.JsonUtils;
@@ -29,7 +30,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("chatserver")
-public class ChatController{
+public class ChatController extends BaseController{
 	
 	@Autowired
 	private CommonQuestionService commonQuestionService;

@@ -1,5 +1,6 @@
 package com.uflowertv.controller;
 
+import com.uflowertv.controller.support.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("redirect")
-public class RedirectController {
+public class RedirectController extends BaseController{
 
     @RequestMapping("/redirect/{message}")
     public ModelAndView redirect(@PathVariable String message){

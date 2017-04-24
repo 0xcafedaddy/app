@@ -13,9 +13,6 @@
 			http://www.springframework.org/schema/aop 
 			http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-     <!-- 激活自动代理功能 -->
-     <aop:aspectj-autoproxy proxy-target-class="true" />
-
 	 <bean id="dataSource_wx" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" >
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${ychweixin.jdbc.url}" />
@@ -97,33 +94,7 @@
 				</bean>
 			</array>
 		</property>
-		<!-- 全局配置注入 -->
-		<property name="globalConfig" ref="globalConfig" />
     </bean>
-	<bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
-		<!--
-            AUTO->`0`("数据库ID自增")
-             INPUT->`1`(用户输入ID")
-            ID_WORKER->`2`("全局唯一ID")
-            UUID->`3`("全局唯一ID")
-        -->
-		<property name="idType" value="2" />
-		<!--
-			MYSQL->`mysql`
-			ORACLE->`oracle`
-			DB2->`db2`
-			H2->`h2`
-			HSQL->`hsql`
-			SQLITE->`sqlite`
-			POSTGRE->`postgresql`
-			SQLSERVER2005->`sqlserver2005`
-			SQLSERVER->`sqlserver`
-		-->
-		<!-- Oracle需要添加该项 -->
-		<!-- <property name="dbType" value="oracle" /> -->
-		<!-- 全局表为下划线命名设置 true -->
-		<!-- <property name="dbColumnUnderline" value="true" /> -->
-	</bean>
     <!-- 加载 mapper.xml 接口 配置文件 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.uflowertv.dao" />
@@ -158,9 +129,5 @@
 		<aop:pointcut expression="execution(public * com.uflowertv.service.*.*(..))" id="txPointCut" />
 		<!-- 定义了将采用何种拦截操作，这里引用到 txAdvice -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
-		<!--动态切换数据源-->
-		<!-- 关键配置，切换数据源一定要比持久层代码更先执行（事务也算持久层代码） -->
-		<!--<aop:advisor advice-ref="txAdvice" pointcut-ref="service" order="2"/>
-		<aop:advisor advice-ref="dataSourceExchange" pointcut-ref="service" order="1"/>-->
 	</aop:config>
 </beans>
