@@ -11,6 +11,12 @@
     <name>uflowertv_wx Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
