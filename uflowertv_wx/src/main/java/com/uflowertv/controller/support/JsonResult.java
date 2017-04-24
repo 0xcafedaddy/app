@@ -1,4 +1,4 @@
-package com.uflowertv.commons;
+package com.uflowertv.controller.support;
 
 import lombok.Data;
 

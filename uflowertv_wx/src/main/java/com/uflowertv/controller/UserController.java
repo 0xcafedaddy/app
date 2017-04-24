@@ -1,8 +1,8 @@
 package com.uflowertv.controller;
 
-import com.baomidou.framework.controller.SuperController;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Maps;
+import com.uflowertv.controller.support.BaseController;
 import com.uflowertv.model.SessionInfo;
 import com.uflowertv.model.ValidationData;
 import com.uflowertv.model.po.User;

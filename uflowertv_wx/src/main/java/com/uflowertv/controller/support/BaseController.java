@@ -1,6 +1,5 @@
-package com.uflowertv.controller;
+package com.uflowertv.controller.support;
 
-import com.uflowertv.commons.JsonResult;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.controller.SuperController;
 import com.baomidou.mybatisplus.plugins.Page;
