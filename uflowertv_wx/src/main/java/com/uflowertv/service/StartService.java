@@ -3,7 +3,7 @@ package com.uflowertv.service;
 import com.google.common.collect.Maps;
 import com.uflowertv.dao.StartMapper;
 import com.uflowertv.datasources.DBTypeEnum;
-import com.uflowertv.datasources.DataSourceHolder;
+import com.uflowertv.datasources.DynamicDataSourceHolder;
 import com.uflowertv.model.dto.DayActiveCount;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -27,7 +27,7 @@ public class StartService {
 	 */
 	public Map<String,Object> getMonthActiveUser(String start, String end, int currentPage, int pageSize){
 		Map<String, Object> map = Maps.newHashMap();
-		DataSourceHolder.setDbType(DBTypeEnum.dataSource_tj);
+		DynamicDataSourceHolder.setRouteKey("dataSource_tj");
 		/*PageHelper.startPage(currentPage, pageSize);
 		DateTime startTime = null;
 		DateTime endTime = null;

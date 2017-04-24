@@ -71,13 +71,14 @@
         <property name="logAbandoned" value="true" />
     </bean>
     <!--动态配置数据源-->
-    <bean id="dataSource" class="com.baomidou.framework.datasource.DynamicDataSource">
+    <bean id="dataSource" class="com.uflowertv.datasources.MultipleDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 <entry key="dataSource_wx" value-ref="dataSource_wx" />
                 <entry key="dataSource_tj" value-ref="dataSource_tj" />
             </map>
         </property>
+        <!-- 默认数据源 -->
         <property name="defaultTargetDataSource" ref="dataSource_wx" />
     </bean>
     <!-- MyBatis SqlSessionFactoryBean 配置 -->
