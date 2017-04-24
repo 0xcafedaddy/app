@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     <title>常见问题</title>
-	<jsp:include page="../../inc.jsp"></jsp:include>
+	<jsp:include page="../inc.jsp"></jsp:include>
 	 <style type="text/css">
 		.cc {
 		 overflow:hidden;
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   
 		 //触发函数
 			/* $('#questionType').combobox({
-				url:'question/getQuestionType.do',    
+				url:'question/getQuestionType',    
 			    valueField:'id',    
 			    textField:'questionType',
 			    editable:false,
@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});   */
 		$(function() {
 			//初始化
-			initGride('<%=path %>/question/getCommonQuestionList.do');
+			initGride('question/getCommonQuestionList');
 	   		/**
 			 * 提交表单
 			 */
@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					if($('#myform').form('validate')){
 						$.ajax({
 							type: 'post' ,
-							url: flag=='add'?'<%=path %>/question/saveCommonQuestion.do':'<%=path %>/question/updateCommonQuestion.do',
+							url: flag=='add'?'question/saveCommonQuestion':'question/updateCommonQuestion',
 							data: $('#myform').serialize(),
 							dataType:'json' ,
 							success:function(result){
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					if($('#rootForm').form('validate')){
 						$.ajax({
 							type: 'post' ,
-							url: '<%=path %>/question/saveCommonQuestion.do',
+							url: 'question/saveCommonQuestion',
 							data: $('#rootForm').serialize(),
 							dataType:'json' ,
 							success:function(result){
@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('#myform').form('load',{	   //调用load方法把所选中的数据load到表单中,非常方便
 							pid:row.id,
 							questionType:row.questionType,
-							pQuestion:row.question
+							p_question:row.question
 						});
 					}
 				}
@@ -186,10 +186,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$('#myform').form('load',{	   //调用load方法把所选中的数据load到表单中,非常方便
 							id:row.id,
 							pid:row.pid,
-							pQuestion:row.pQuestion,
+                            p_question:row.p_question,
 							questionType:row.questionType,
 							question:row.question,
-							createtime:row.createtime,
+							createTime:row.createTime,
 							code:row.code
 						});
 					}
@@ -207,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						if(r){
 							$.ajax({
 								type: 'post' ,
-								url: '<%=path %>/question/delCommonQuestion.do',
+								url: 'question/delCommonQuestion',
 								data:{id:row.id} ,
 								dataType:'json' ,
 								success:function(result){
@@ -262,7 +262,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}
 						}
 					},{
-						field:'pQuestion' ,
+						field:'p_question' ,
 						title:'上级问题描述' ,
 						width:250,
 						align:'center',
@@ -318,9 +318,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		<form id="myform" action="" method="post">
 	  			<input type="hidden" name="id">
 	  			<input type="hidden" name="pid">
-	  			<input type="hidden" name="pQuestion">
+	  			<input type="hidden" name="p_question">
 	  			<input type="hidden" name="questionType">
-	  			<input type="hidden" name="createtime">
+	  			<input type="hidden" name="createTime">
 	  			<input type="hidden" name="code">
   				<table>
 					<tr>
@@ -350,7 +350,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<tr>
 						<td>问题描述:</td>
 						<td>
-							<textarea rows="5" cols="80" name="question" id="question" class="easyui-validatebox" required="true"></textarea>
+							<textarea rows="5" cols="80" name="question" class="easyui-validatebox" required="true"></textarea>
 						</td>
 					</tr>
   				</table>

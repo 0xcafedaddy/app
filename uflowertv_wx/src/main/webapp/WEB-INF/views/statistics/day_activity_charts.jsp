@@ -7,27 +7,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-   	<jsp:include page="../../inc.jsp"></jsp:include>
-	<script type="text/javascript" src="<%=path %>/js/echarts.js"></script>
+   	<jsp:include page="../inc.jsp"></jsp:include>
+	<script type="text/javascript" src="static/js/echarts.js"></script>
 	<script type="text/javascript">
 		$(function(){
-		    initData("<%=path %>/start/charts.do");
+		    initData("start/charts");
 		    /**
 			 * 查询
 			 */
 			$('#searchbtn').click(function(){
-				initData('<%=path %>/start/charts.do');
+				initData('start/charts');
 			});
 			/**
 			 * 清空
 			 */
 			$('#clearbtn').click(function(){
 				$('#from').form('clear');
-				initData('<%=path %>/start/charts.do');
+				initData('start/charts');
 			});
 			
 			$('#back').click(function(){
-				window.location.href="<%=path %>/jsp/statistics/day_activity_user.jsp";
+				window.location.href="redirect/statistics/day_activity_user";
 			});
 		});
 		

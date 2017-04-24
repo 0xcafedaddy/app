@@ -148,7 +148,7 @@ public class QuestionController extends WechatWebSupport{
 	    question.setWxUserQuestionImg(sb.substring(0, sb.length()-1).toString());
 		Map<String, Object> map = new HashMap<String,Object>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        question.setCreatetime(sdf.format(new Date()));
+        question.setCreateTime(sdf.format(new Date()));
         question.setStatus(0);
         question.setId(GUIDUtil.get());
 		boolean insert = questionService.insert(question);
@@ -175,7 +175,7 @@ public class QuestionController extends WechatWebSupport{
         Map<String,Object> map = Maps.newHashMap();
         User user= userService.selectById(question.getReplyQuestionHuman());
         question.setReplyQuestionHuman(user.getUname());
-        question.setCompletetime(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
+        question.setCompleteTime(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
         boolean update = questionService.updateById(question);
         if(update){
 		    /** Create a data model */
@@ -193,7 +193,8 @@ public class QuestionController extends WechatWebSupport{
 		    	desc = desc.substring(0, 25)+"……";
 		    }
 		    list.add(new News(question.getWxUserQuestionTitle(), desc , url, picUrl));
-		    wechatAPI.sendCoustomNews( question.getWxUserId(), list);
+		    //开启微信配置信息
+		   // wechatAPI.sendCoustomNews( question.getWxUserId(), list);
 			map.put("message", "回复成功!");
 			map.put("code", 1);
 			return map;
@@ -207,14 +208,14 @@ public class QuestionController extends WechatWebSupport{
      * 问题列表
      * @param page
      * @param rows
-     * @param type
+     * @param status
      * @param question
      * @return
      */
 	@RequestMapping("/userQuestionList")
 	@ResponseBody
-	public Map<String,Object> userQuestionList(int page,int rows,String type,Question question){
-		return questionService.list(page, rows, Integer.valueOf(type),question);
+	public Map<String,Object> userQuestionList(int page,int rows,String status,Question question){
+		return questionService.list(page, rows, Integer.valueOf(status),question);
 	}
 
     /**
@@ -230,13 +231,13 @@ public class QuestionController extends WechatWebSupport{
 		if(question!=null){
 			mv.addObject("question", question);
 			if("0".equals(status)){
-				mv.setViewName("/question/quesionInfo");
+				mv.setViewName("question/quesionInfo");
 			}else if("3".equals(status)){
-				mv.setViewName("/question/quesionInfo");
+				mv.setViewName("question/quesionInfo");
 			}else if("4".equals(status)){
-				mv.setViewName("/question/quesionInfo2");
+				mv.setViewName("question/quesionInfo2");
 			}else{
-				mv.setViewName("/question/quesionInfo2");
+				mv.setViewName("question/quesionInfo2");
 			}
 			return mv;
 		}
@@ -256,7 +257,7 @@ public class QuestionController extends WechatWebSupport{
         question.setId(questionId);
         question.setStatus(Integer.valueOf(stauts));
         boolean update = questionService.updateById(question);
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map = Maps.newHashMap();
 		if(update){
 			map.put("message", "转交成功!");
 			return map;

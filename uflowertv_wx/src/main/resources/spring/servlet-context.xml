@@ -47,6 +47,7 @@
     <mvc:view-controller path="/redirect/question/reply_question_list" view-name="question/reply_question_list"/>
     <mvc:view-controller path="/redirect/question/commonQuestion" view-name="question/commonQuestion"/>
     <mvc:view-controller path="/redirect/statistics/day_activity_user" view-name="statistics/day_activity_user"/>
+    <mvc:view-controller path="/redirect/statistics/day_activity_charts" view-name="statistics/day_activity_charts"/>
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

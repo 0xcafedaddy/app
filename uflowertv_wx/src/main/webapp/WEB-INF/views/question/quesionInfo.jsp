@@ -8,9 +8,9 @@
 <head>
 <base href="<%=basePath%>">
 <title>问题详情</title>
-<jsp:include page="../../inc.jsp"></jsp:include>
+<jsp:include page="../inc.jsp"></jsp:include>
 <script type="text/javascript">
-	var editor = new baidu.editor.ui.Editor({UEDITOR_HOME_URL : 'resources/ueditor/',toolbars:
+	var editor = new baidu.editor.ui.Editor({UEDITOR_HOME_URL : 'static/resources/ueditor/',toolbars:
 		[["fullscreen"]],
 // 		[["fullscreen","undo","redo","bold","italic","underline","fontfamily","fontsize","backcolor","forecolor", 
 // 		  "insertorderedlist", "insertunorderedlist", "selectall", "cleardoc","unlink","link", "emotion",
@@ -47,14 +47,14 @@
 				return false;
 			}
 			var frm = $('#addForm');
-			frm.attr("action","<%=path %>/question/replyQuestion.do");
+			frm.attr("action","question/replyQuestion");
 			$("#reply").text('提交中...');
 			onSubmit = true;
 			$.post(frm.attr('action'),{
 				id:'${question.id }',
 				wxUserQuestionType:'${question.wxUserQuestionType}',
 				wxUserId:'${question.wxUserId}',
-				replyQuestionHuman:'${sessionScope.user.id }',
+				replyQuestionHuman:'${sessionInfo.user.id }',
 				status:1,
 				wxUserQuestionContent:'${question.wxUserQuestionContent}',
 				wxUserQuestionTitle:'${question.wxUserQuestionTitle}',
@@ -64,7 +64,7 @@
 				if(data.code && data.code==1) {
 					 $.messager.alert("提示信息",data.message,"info");
 					   setTimeout(function(){
-						   window.location.href = "<%=path %>/jsp/question/user_question_list.jsp";
+						   window.location.href = "redirect/question/user_question_list";
 					   }, 1000);
 				} else {
 					$("#reply").text('提交');
@@ -76,14 +76,14 @@
 		
 		//返回
 		$("#back").click(function(){
-			window.location.href = "<%=path %>/jsp/question/user_question_list.jsp";
+			window.location.href = "redirect/question/user_question_list";
 		});
 		
 		//转交其它部门
 		$("#changeOther").click( function () {
 			$.ajax({
 			   type: "POST",
-			   url: "<%=path %>/question/changeOther.do",
+			   url: "question/changeOther",
 			   data: {
 				   questionId:'${question.id }',
 				   stauts:'3'
@@ -91,7 +91,7 @@
 			   success: function(data){
 				   $.messager.alert("提示信息",data.message,"info");
 				   setTimeout(function(){
-					   window.location.href = "<%=path %>/jsp/question/user_question_list.jsp";
+					   window.location.href = "redirect/question/user_question_list";
 				   }, 1000);
 			   },
 			   error:function(){
@@ -105,7 +105,7 @@
 <body class="easyui-layout" data-options="fit:true">
 	<div data-options="region:'center',title:'问题详情',split:true" style="height:150px;">
 		<div style="margin-top: 15px;margin-left: 190px;">
-			提出时间:<input type="text" disabled="disabled" value="${question.createtime}" />
+			提出时间:<input type="text" disabled="disabled" value="${question.createTime}" />
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			问题类型:<input type="text" disabled="disabled" name="wxUserQuestionType"  value="${question.wxUserQuestionType}"/>
 		</div>

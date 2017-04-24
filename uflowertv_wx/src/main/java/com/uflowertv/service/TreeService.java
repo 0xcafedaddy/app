@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("treeService")
+@Service
 public class TreeService extends BaseServiceImpl<TreeMapper,Tree> {
 
 

@@ -22,7 +22,7 @@
    	<script type="text/javascript">
    
    	$(function() {
-   		initGride('question/userQuestionList?type=0');
+   		initGride('question/userQuestionList?status=0');
 	});
    	
   	//显示详情
@@ -86,7 +86,7 @@
 					return "<span class=cc><nobr><a title=\""+value+"\">"+value+"</a></nobr></span>";
 				}
 			}, {
-				field : 'createtime',
+				field : 'createTime',
 				title : '时间',
 				width : 150,
 				align : 'center'
@@ -133,8 +133,8 @@
    	/**
 	 * 查询选项
 	 */
-	function choose(type){
-		var url = "question/userQuestionList?type="+type;
+	function choose(status){
+		var url = "question/userQuestionList?status="+status;
 		initGride(url);
 	}
    	</script>

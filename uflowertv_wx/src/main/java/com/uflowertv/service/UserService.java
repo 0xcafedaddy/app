@@ -1,6 +1,7 @@
 package com.uflowertv.service;
 
 import com.baomidou.framework.annotations.Log;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.uflowertv.dao.UserMapper;
 import com.uflowertv.model.ValidationData;
 import com.uflowertv.model.po.User;
@@ -27,16 +28,11 @@ import java.util.Map;
  * 修改备注：   
  * @version   V1.0
  */
-@Service("userService")
+@Service
 public class UserService extends BaseServiceImpl<UserMapper,User> {
 
-    @Log("用户登录")
-    public User findLogin(User user) {
-        return baseMapper.login(user);
-    }
-
     @Log("通过邮件查找用户")
-    public User findByEmail(String email){return baseMapper.findByEmail(email);}
+    public User findByEmail(String email){return selectOne(new EntityWrapper<User>().where("email={0}",email));}
 
     @Log("注册")
     public Map<String,Object> register(User user,String passwd){

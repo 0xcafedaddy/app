@@ -8,8 +8,8 @@
 <head>
 <base href="<%=basePath%>">
 <title>问题详情</title>
-<jsp:include page="../../inc.jsp"></jsp:include>
-<script type="text/javascript" src="<%=path %>/js/clipboard.min.js"></script>
+<jsp:include page="../inc.jsp"></jsp:include>
+<script type="text/javascript" src="static/js/clipboard.min.js"></script>
 <script type="text/javascript">
 	var clipboard = new Clipboard('.btn');
 	clipboard.on('success', function(e) {
@@ -37,7 +37,7 @@
 						提出时间:
 					</td>
 					<td>
-						<input type="text" disabled="disabled" value="${question.createtime}" />
+						<input type="text" disabled="disabled" value="${question.createTime}" />
 					</td>
 				</tr>	
 				<tr>

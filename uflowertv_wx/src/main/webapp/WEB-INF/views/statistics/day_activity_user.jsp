@@ -12,7 +12,7 @@
    	<jsp:include page="../inc.jsp"></jsp:include>
    	<script type="text/javascript">
    	$(function() {
-   		initGride('<%=path %>/start/list.do');
+   		initGride('start/list');
 		/**
 		 * 查询
 		 */
@@ -24,7 +24,7 @@
 			}); 
 			var start = $('#start').datebox('getValue');  
 			var end = $('#end').datebox('getValue');  
-			initGride('<%=path %>/start/list.do?start='+start+'&end='+end);
+			initGride('start/list?start='+start+'&end='+end);
 		});
 		
 		/**
@@ -37,14 +37,14 @@
 				text:"正在清空。。。",
 				interval:1000
 			}); 
-			initGride('start/list.do');
+			initGride('start/list');
 		});
 		
 		/**
 		 * 饼状图
 		 */
 		$('#charts').click(function(){
-			window.location.href="<%=path %>/jsp/statistics/day_activity_charts.jsp";
+			window.location.href="redirect/statistics/day_activity_charts";
 		});
 	});
    	

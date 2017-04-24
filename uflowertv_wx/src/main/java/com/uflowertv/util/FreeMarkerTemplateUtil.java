@@ -1,26 +1,15 @@
 package com.uflowertv.util;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
+import freemarker.core.ParseException;
+import freemarker.template.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import freemarker.core.ParseException;
-import freemarker.template.Configuration;
-import freemarker.template.DefaultObjectWrapper;
-import freemarker.template.MalformedTemplateNameException;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.Version;
+import javax.servlet.http.HttpServletRequest;
+import java.io.*;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * 
@@ -63,17 +52,12 @@ public class FreeMarkerTemplateUtil {
 
 	/**
 	 * 生成静态文件.(测试环境下使用)
-	 * 
-	 * @param templateFileName
-	 *            模板文件名,相对htmlskin路径,例如"/tpxw/view.ftl"
+	 * @param req
 	 * @param propMap
-	 *            用于处理模板的属性Object映射
-	 * @param htmlFilePath
-	 *            要生成的静态文件的路径,相对设置中的根路径,例如 "/tpxw/1/2005/4/"
-	 * @param htmlFileName
-	 *            要生成的文件名,例如 "1.htm"
+	 * @param htmlFileFtl
+	 * @return
 	 */
-/*	public static String geneHtmlFile(HttpServletRequest req,Map<String, Object> propMap, String htmlFileFtl) {
+	/*public static String geneHtmlFileTest(HttpServletRequest req,Map<String, Object> propMap, String htmlFileFtl) {
 		// @todo 从配置中取得要静态文件存放的根路径:需要改为自己的属性类调用
 		Writer out = null;
 		SFTPChannel channel = new SFTPChannel();
@@ -81,7 +65,8 @@ public class FreeMarkerTemplateUtil {
 		try {
 		    String temp = String.valueOf(new Date().getTime());
 		    String htmlFileName = temp+".html";
-			String sRootDir = ConstantHolder.SERVER_ROOT + ConstantHolder.HTML_FLODER + htmlFileName;
+			//String sRootDir = ConstantHolder.FILE_SERVER + ConstantHolder.HTML_FLODER + htmlFileName;
+			String sRootDir = req.getSession().getServletContext().getRealPath("upload")+ ConstantHolder.HTML_FLODER + htmlFileName;
 			Template t = getFreeMarkerCFG(req).getTemplate(htmlFileFtl);
 			File afile = new File(sRootDir);
 		    out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(afile), "UTF-8"));

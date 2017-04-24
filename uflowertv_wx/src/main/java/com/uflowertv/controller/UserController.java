@@ -1,6 +1,7 @@
 package com.uflowertv.controller;
 
 import com.baomidou.framework.controller.SuperController;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Maps;
 import com.uflowertv.model.SessionInfo;
 import com.uflowertv.model.ValidationData;
@@ -59,21 +60,21 @@ public class UserController extends SuperController {
 		ValidationData data = new ValidationData();
 		String email = user.getEmail();
 		String pwd = user.getPwd();
-		user.setPwd(CipherUtil.generator(user.getPwd()));
-		user = userService.findLogin(user);
+        user.setPwd(CipherUtil.generator(pwd));
+        user = userService.selectOne(new EntityWrapper<User>().where("email={0}",email).eq("pwd",user.getPwd()));
         if(user!=null){
             user.setIp(request.getRemoteAddr());//记录IP地址
+            user.setId(user.getId());
             SessionInfo sessionInfo = new SessionInfo();
             sessionInfo.setUser(user);
             session.setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
-            user.setId(user.getId());
             user.setLogintime(new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
             userService.updateById(user);
             map.put("code", 200);
             map.put("message", "登录成功");
             return map;
         }
-        user = userService.findByEmail(email);
+        user =  user = userService.findByEmail(email);
         if(user != null){
             boolean equals = StringUtils.equals(user.getPwd(), pwd);
             if(!equals){

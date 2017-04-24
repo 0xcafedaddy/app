@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.css"/>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			.man{
+				float: left;
+			}
+			.ding{
+				float: left;
+				line-height: 40px;
+				margin-left: 30px;
+			}
+			.ding i{
+				margin-left: 20px;
+			}
+			h1,.title{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<article class="weui_article">
+		    <h1>标题</h1>
+		    <section>
+		        <h2 class="title">2017-04-24 14:17:17</h2>
+		        <section>
+		            <h2>问题描述</h2>
+					<p>阿鲁巴</p>
+		        </section>
+		        <section>
+		            <h2>问题回复</h2>
+		            <p>235</p>
+		        </section>
+		    </section>
+		    <section class="evaluate">
+				<p class="man">您对答案是否满意</p>
+				<!-- <div class="ding">
+					<i class="fa fa-thumbs-o-up fa-lg"></i>
+					<i class="fa fa-thumbs-o-down fa-lg"></i>
+				</div> -->
+				 <!--提交-->
+		    	<div class="ding">
+	    			<a href="javascript:;" class="fa fa-thumbs-o-up fa-lg" onclick="choose(4),'7adaf468855247309c2471697bf3878e'"></a>
+	    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            <a href="javascript:;" class="fa fa-thumbs-o-down fa-lg" onclick="choose(5,'7adaf468855247309c2471697bf3878e')"></a>
+				</div>
+			</section>
+		</article>
+		
+	</body>
+	<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("a").click(function(){
+				$(this).css({color:"#10AEFF"}).siblings('a').css({color:"black"})
+			})
+		})
+		//获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+		var curWwwPath = window.document.location.href;
+		//获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+		var pathName = window.document.location.pathname;
+		var pos = curWwwPath.indexOf(pathName);
+		//获取主机地址，如： http://localhost:8083
+		var localhostPaht = curWwwPath.substring(0, pos);
+		//获取带"/"的项目名，如：/uimcardprj
+		
+		var projectName = pathName.substring(0,pathName.substr(1).indexOf('/') + 1);
+		
+		function choose(status,id){
+			$.ajax({
+			   type: "POST",
+			   url: projectName+"/question/updateStatus.do",
+			   dataType:'json',
+			   data: {
+				   status:status,
+				   id:id
+			   },
+			   success: function(data){
+			     alert(data.message);
+			   }
+			});
+		}
+	</script>
+</html>

@@ -2,7 +2,6 @@ package com.uflowertv.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.uflowertv.model.po.User;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * 
@@ -19,9 +18,5 @@ import org.apache.ibatis.annotations.Param;
  * @version   V1.0
  */
 public interface UserMapper extends BaseMapper<User> {
-
-    User login(User user);
-
-    User findByEmail(@Param("email") String email);
 
 }

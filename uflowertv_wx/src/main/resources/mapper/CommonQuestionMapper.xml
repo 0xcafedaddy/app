@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uflowertv.dao.CommonQuestionMapper" >
+
+    <resultMap id="BaseResultMap" type="com.uflowertv.model.po.CommonQuestion" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <result column="question" property="question" jdbcType="VARCHAR" />
+        <result column="p_question" property="p_question" jdbcType="VARCHAR" />
+        <result column="question_type" property="questionType" jdbcType="VARCHAR" />
+        <result column="createTime" property="createTime" jdbcType="VARCHAR" />
+        <result column="updateTime" property="updateTime" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="INTEGER" />
+    </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, pid, question, p_question, question_type, createTime, updateTime, code
+  </sql>
+
+   <!-- start -->
+    <select id="countByParameter" parameterType="int" resultType="java.lang.Integer" >
+      SELECT COUNT(1) from wx_question_tree t1,wx_question_tree t2 WHERE t1.id = t2.pid AND t1.id = #{id}
+    </select>
+    <select id="selectByString" parameterType="int" resultMap="BaseResultMap" >
+     SELECT t1.* from wx_question_tree t1,wx_question_tree t2 WHERE t1.pid = t2.id AND t2.id = #{id}
+    </select>
+    <update id="batchUpdateCommonQuestion"  parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+              update wx_question_tree
+              <set>
+                 p_question=#{item.p_question}
+              </set>
+              where id = #{item.id}
+       </foreach>
+    </update>
+  <!-- end-->
+</mapper>

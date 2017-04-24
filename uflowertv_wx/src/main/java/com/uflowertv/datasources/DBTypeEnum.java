@@ -2,8 +2,8 @@ package com.uflowertv.datasources;
 
 public enum DBTypeEnum {
 
-    one("dataSource_wx"),
-    two("dataSource_tj");
+    dataSource_wx("dataSource_wx"),
+    dataSource_tj("dataSource_tj");
 
     private String value;
 

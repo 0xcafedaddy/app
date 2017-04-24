@@ -71,12 +71,12 @@ public class Question {
     /**
      * 问题创建时间
      */
-    private String createtime;
+    private String createTime;
 
     /**
      * 问题回复时间
      */
-    private String completetime;
+    private String completeTime;
 
     /**
      * 问题状态

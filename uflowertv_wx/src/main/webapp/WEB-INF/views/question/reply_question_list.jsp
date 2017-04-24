@@ -9,7 +9,7 @@
   <head>
     <base href="<%=basePath%>">
     <title>已处理</title>
-   	<jsp:include page="../../inc.jsp"></jsp:include>
+   	<jsp:include page="../inc.jsp"></jsp:include>
    	 <style type="text/css">
 		.cc {
 		 overflow:hidden;
@@ -21,7 +21,7 @@
     </style>
    	<script type="text/javascript">
    	$(function() {
-   		initGride('<%=path %>/question/userQuestionList.do?type=1');
+   		initGride('question/userQuestionList?status=1');
 		
 		/**
 		 * 查询
@@ -50,7 +50,7 @@
    	
   	//显示详情
 	function questionInfo(id,status){
-		window.location.href="<%=path %>/question/questionInfo.do?id="+id+"&status="+status;
+		window.location.href="question/questionInfo?id="+id+"&status="+status;
 	}
 	/**
 	 * 初始化列表
@@ -79,7 +79,7 @@
 					return "<span class=cc><nobr><a title=\""+value+"\">"+value+"</a></nobr></span>";
 				}
 			}, {
-				field : 'createtime',
+				field : 'createTime',
 				title : '提问时间',
 				width : 150,
 				align : 'center'
@@ -98,7 +98,7 @@
 					}
 				}
 			}, {
-				field : 'completetime',
+				field : 'completeTime',
 				title : '回复时间',
 				width : 150,
 				align : 'center',
@@ -132,8 +132,8 @@
 	/**
 	 * 查询选项
 	 */
-	function choose(type){
-		var url = "<%=path %>/question/userQuestionList.do?type="+type;
+	function choose(status){
+		var url = "question/userQuestionList?status="+status;
 		initGride(url);
 	}
    	</script>

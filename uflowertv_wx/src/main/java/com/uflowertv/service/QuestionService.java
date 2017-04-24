@@ -32,37 +32,39 @@ import java.util.Map;
 @Service
 public class QuestionService extends BaseServiceImpl<QuestionMapper,Question>{
 
-	private EntityWrapper<Question> ew = new EntityWrapper<Question>();
 	/**
 	 * 反馈问题列表
 	 * @Title: list
 	 * @param page
 	 * @param rows
-	 * @param type
+	 * @param status
 	 * @return
+     *
+     * where and or andNew 需要用{}赋值,其它不需要
+     * eq 与 and 类似，只是不需要{}赋值
+     * like("column",val,LIKE.LEFT),不填全部
 	 */
 	@Log("反馈问题列表")
-	public Map<String,Object> list(int page,int rows,int type,Question question){
+	public Map<String,Object> list(int page,int rows,int status,Question question){
+        EntityWrapper<Question> ew = new EntityWrapper<Question>();
 		Map<String,Object> map = Maps.newHashMap();
-		Page p = new Page<Question>(page,rows,"createtime");
-		p.setAsc(false);
-		ew.where("status",type);
+		Page<Question> p = new Page<Question>(page,rows,"createTime");
+		ew.where("status={0}",status);
 		if(StringUtils.isNotBlank(question.getWxUserQuestionType())){
-			ew.like("wxUserQuestionType",question.getWxUserQuestionType());
+			ew.like("wx_user_question_type",question.getWxUserQuestionType());
 		}
 		if(StringUtils.isNotBlank(question.getReplyQuestionHuman())){
-			ew.like("replyQuestionHuman",question.getReplyQuestionHuman());
+			ew.like("reply_question_human",question.getReplyQuestionHuman());
 		}
-		if(StringUtils.isNotBlank(question.getCompletetime())){
-			ew.between("completetime",question.getCompletetime(),question.getCreatetime());
+		if(StringUtils.isNotBlank(question.getCompleteTime())){
+			ew.between("completeTime",question.getCompleteTime(),question.getCreateTime());
 		}
 		if(StringUtils.isNotBlank(question.getWxUserQuestionContent())){
-			ew.eq("wxUserQuestionContent",question.getWxUserQuestionContent());
+			ew.like("wx_user_question_content",question.getWxUserQuestionContent());
 		}
 		if(StringUtils.isNotBlank(question.getReplyQuestionContent())){
-			ew.eq("replyQuestionContent",question.getReplyQuestionContent());
+			ew.like("reply_question_content",question.getReplyQuestionContent());
 		}
-
 		p = selectPage(p, ew);
 		List<Question> list = p.getRecords();
 		List<Question> newList = Lists.newArrayList();
