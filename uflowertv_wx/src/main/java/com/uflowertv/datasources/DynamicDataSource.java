@@ -1,14 +1,14 @@
 package com.uflowertv.datasources;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
-
 /**
- * 获得数据源
+ * 取得当前使用哪个数据源
+ * @return
  */
-public class MultipleDataSource extends AbstractRoutingDataSource{
+public class DynamicDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-         return DynamicDataSourceHolder.getRouteKey();
+        return DynamicDataSourceHolder.getRouteKey();
     }
 }

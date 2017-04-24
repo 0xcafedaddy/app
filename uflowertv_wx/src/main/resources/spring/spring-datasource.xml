@@ -71,7 +71,7 @@
         <property name="logAbandoned" value="true" />
     </bean>
     <!--动态配置数据源-->
-    <bean id="dataSource" class="com.uflowertv.datasources.MultipleDataSource">
+    <bean id="dataSource" class="com.uflowertv.datasources.DynamicDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 <entry key="dataSource_wx" value-ref="dataSource_wx" />

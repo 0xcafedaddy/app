@@ -15,6 +15,9 @@
     SELECT id,platformID, DATE_FORMAT(dt,'%Y-%m-%d') datetime ,COUNT(1) total FROM start_2017 
     WHERE DATE(dt) BETWEEN #{start} AND #{end}
     GROUP BY datetime
+     <![CDATA[
+	   limit ${pageSize} offset ${recordIndex}
+	]]>
   </select>
   <select id="getTimeUserActiveCount" resultType="int">
      SELECT COUNT(1) FROM (

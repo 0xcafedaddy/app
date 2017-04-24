@@ -10,6 +10,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.applet.Main;
 
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,8 @@ public class StartService {
 	 */
 	public Map<String,Object> getMonthActiveUser(String start, String end, int currentPage, int pageSize){
 		Map<String, Object> map = Maps.newHashMap();
-		DynamicDataSourceHolder.setRouteKey("dataSource_tj");
+		DynamicDataSourceHolder.removeRouteKey();
+		DynamicDataSourceHolder.setRouteKey(DBTypeEnum.dataSource_tj.getValue());
 		/*PageHelper.startPage(currentPage, pageSize);
 		DateTime startTime = null;
 		DateTime endTime = null;
@@ -54,5 +56,13 @@ public class StartService {
 		map.put("total", timeUserActiveCount);
 		map.put("rows", timeUserActiveList);
 		return map;
+	}
+
+	public static void main(String[] args) {
+		String name = DBTypeEnum.dataSource_tj.name();
+		String value = DBTypeEnum.dataSource_tj.getValue();
+
+		System.out.println(name);
+		System.out.println(value);
 	}
 }
