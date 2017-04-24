@@ -2,3 +2,4 @@
 *.iml
 *target
 jdbc.properties
+/uflowertv_wx/logs
