@@ -41,7 +41,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("user")
-public class UserController extends SuperController {
+public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;

@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </dl>
         </div>
         <div id="bottom">
-          <a href="login.jsp">返回登录</a>
+          <a href="redirect/login">返回登录</a>
           <input type="submit" class="btn" value="提交">
         </div>
       </div>
