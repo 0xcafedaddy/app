@@ -7,7 +7,7 @@ import io.github.elkan1788.mpsdk4j.vo.api.Template;
 
 import java.util.List;
 
-import com.uflowertv.model.News;
+import com.uflowertv.bean.dto.News;
 
 /**
  * 微信高级消息接口

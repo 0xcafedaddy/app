@@ -33,10 +33,10 @@ import org.nutz.lang.util.NutMap;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
-import com.uflowertv.model.Follower;
-import com.uflowertv.model.News;
-import com.uflowertv.model.NewsMessage;
-import com.uflowertv.model.TextMessage;
+import com.uflowertv.bean.dto.Follower;
+import com.uflowertv.bean.dto.News;
+import com.uflowertv.bean.dto.NewsMessage;
+import com.uflowertv.bean.dto.TextMessage;
 import com.uflowertv.util.JsonUtils;
 
 /**

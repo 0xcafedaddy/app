@@ -21,7 +21,7 @@
     </style>
    	<script type="text/javascript">
    	$(function() {
-   		initGride('question/userQuestionList?status=1');
+   		initGride('wechat/question/userQuestionList?status=1');
 		
 		/**
 		 * 查询
@@ -50,7 +50,7 @@
    	
   	//显示详情
 	function questionInfo(id,status){
-		window.location.href="question/questionInfo?id="+id+"&status="+status;
+		window.location.href="wechat/question/questionInfo?id="+id+"&status="+status;
 	}
 	/**
 	 * 初始化列表
@@ -133,7 +133,7 @@
 	 * 查询选项
 	 */
 	function choose(status){
-		var url = "question/userQuestionList?status="+status;
+		var url = "wechat/question/userQuestionList?status="+status;
 		initGride(url);
 	}
    	</script>
@@ -145,8 +145,8 @@
 				<div style="margin-top: 10px; margin-left: 92px;">
 					问题类型:<input name="wxUserQuestionType" type="text" />
 					回复人:<input name="replyQuestionHuman" type="text" />
-					回复时间:<input style="width:155px"  class= "easyui-datetimebox" name="completetime" editable="false" type="text"/>至
-						 <input style="width:155px"  class= "easyui-datetimebox" name="createtime" editable="false" type="text"/>
+					回复时间:<input style="width:155px"  class= "easyui-datebox" name="completeTime" editable="false" type="text"/>至
+						 <input style="width:155px"  class= "easyui-datebox" name="createTime" editable="false" type="text"/>
 				</div>
 				<div style="margin-top: 10px; margin-left: 80px;">
 					提问关键字:<input name="wxUserQuestionContent" type="text" size="120px;"/>

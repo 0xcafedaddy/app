@@ -123,8 +123,8 @@
 		<center>
 			<form id="startDataGrid_form">
 				<div style="margin-top: 10px;">
-					时间段:<input style="width:155px"  class="easyui-datetimebox" name="start" id="start" editable="false" type="text"/>至
-						 <input style="width:155px"  class="easyui-datetimebox" name="end" id="end" editable="false" type="text"/>
+					时间段:<input style="width:155px"  class="easyui-datebox" name="start" id="start" editable="false" type="text"/>至
+						 <input style="width:155px"  class="easyui-datebox" name="end" id="end" editable="false" type="text"/>
 						 <a id="searchbtn" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a id="clearbtn" data-options="iconCls:'icon-clear'" class="easyui-linkbutton">清空</a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a id="charts" data-options="iconCls:'icon-large-chart'" class="easyui-linkbutton">统计图</a>

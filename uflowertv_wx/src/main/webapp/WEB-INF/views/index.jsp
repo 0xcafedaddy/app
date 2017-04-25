@@ -1,4 +1,4 @@
-<%@page import="com.uflowertv.model.SessionInfo"%>
+<%@page import="com.uflowertv.bean.dto.SessionInfo"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();

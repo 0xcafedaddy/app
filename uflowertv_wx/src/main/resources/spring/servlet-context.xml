@@ -16,6 +16,7 @@
     </context:component-scan>
     <!-- 所有Controller请求，必须通过此拦截器解析 -->
     <mvc:annotation-driven></mvc:annotation-driven>
+
     <!-- 除Controller以外的请求，通过此拦截器解析。比如：访问静态资源 -->
     <mvc:default-servlet-handler/>
 
@@ -32,9 +33,6 @@
 
     <!-- 配置静态资源，直接映射到对应的文件夹，DispatcherServlet 不处理 -->
     <!--<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />-->
-
-    <!-- 获取ApplicationContext上下文 -->
-    <bean id="springContextHolder" class="com.baomidou.framework.spring.SpringContextHolder" />
 
     <!-- default index -->
     <mvc:view-controller path="/redirect/login" view-name="login"/>
@@ -67,14 +65,10 @@
                 <!-- 上传文件大于最大尺寸后转向出错页面 -->
                 <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">exception/error</prop>
                 <prop key="java.lang.Exception">exception/error</prop>
-                <prop key="com.uflowertv.exception.DaoException">exception/error</prop>
-                <prop key="com.uflowertv.exception.ServiceException">exception/error-business</prop>
-                <prop key="com.uflowertv.exception.BusinessException">exception/error-business</prop>
-                <prop key="com.uflowertv.exception.ParameterException">exception/error-parameter</prop>
             </props>
         </property>
         <!-- 定义默认的异常处理页面，当该异常类型的注册时使用 -->
-        <property name="defaultErrorView" value="error"></property>
+        <property name="defaultErrorView" value="exception/error"></property>
         <!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
         <property name="exceptionAttribute" value="ex"></property>
         <!-- 相关状态码对应的错误页面 -->

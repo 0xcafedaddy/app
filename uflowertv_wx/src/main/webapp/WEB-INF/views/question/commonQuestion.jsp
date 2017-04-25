@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});   */
 		$(function() {
 			//初始化
-			initGride('question/getCommonQuestionList');
+			initGride('wechat/question/getCommonQuestionList');
 	   		/**
 			 * 提交表单
 			 */
@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					if($('#myform').form('validate')){
 						$.ajax({
 							type: 'post' ,
-							url: flag=='add'?'question/saveCommonQuestion':'question/updateCommonQuestion',
+							url: flag=='add'?'wechat/question/saveCommonQuestion':'wechat/question/updateCommonQuestion',
 							data: $('#myform').serialize(),
 							dataType:'json' ,
 							success:function(result){
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					if($('#rootForm').form('validate')){
 						$.ajax({
 							type: 'post' ,
-							url: 'question/saveCommonQuestion',
+							url: 'wechat/question/saveCommonQuestion',
 							data: $('#rootForm').serialize(),
 							dataType:'json' ,
 							success:function(result){
@@ -207,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						if(r){
 							$.ajax({
 								type: 'post' ,
-								url: 'question/delCommonQuestion',
+								url: 'wechat/question/delCommonQuestion',
 								data:{id:row.id} ,
 								dataType:'json' ,
 								success:function(result){

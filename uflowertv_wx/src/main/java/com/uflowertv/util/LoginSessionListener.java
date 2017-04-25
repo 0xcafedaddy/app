@@ -1,6 +1,6 @@
 package com.uflowertv.util;
 
-import com.uflowertv.model.SessionInfo;
+import com.uflowertv.bean.dto.SessionInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

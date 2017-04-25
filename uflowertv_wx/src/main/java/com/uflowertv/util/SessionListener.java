@@ -1,12 +1,7 @@
 package com.uflowertv.util;
 
+import javax.servlet.http.*;
 import java.util.Date;
-
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
 /**
  * 
  * 版权所有：2017年2月23日-油菜花
@@ -89,5 +84,4 @@ public class SessionListener implements HttpSessionListener,
 			}
 		}
 	}
-
 }

@@ -6,7 +6,7 @@ import io.github.elkan1788.mpsdk4j.vo.api.Follower2;
 import java.util.Collection;
 import java.util.List;
 
-import com.uflowertv.model.Follower;
+import com.uflowertv.bean.dto.Follower;
 
 /**
  * 微信用户信息接口

@@ -11,7 +11,7 @@ import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
 import com.uflowertv.bean.OauthAccessToken;
-import com.uflowertv.model.Follower;
+import com.uflowertv.bean.dto.Follower;
 import com.uflowertv.util.ConstantHolder;
 import com.uflowertv.util.HttpClientUtils;
 import com.uflowertv.util.JsonUtils;

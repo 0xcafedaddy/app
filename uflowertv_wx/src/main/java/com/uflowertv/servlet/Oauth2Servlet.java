@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import com.uflowertv.base.WxWebOauth;
-import com.uflowertv.model.Follower;
+import com.uflowertv.bean.dto.Follower;
 import com.uflowertv.util.ConstantHolder;
 
 /**

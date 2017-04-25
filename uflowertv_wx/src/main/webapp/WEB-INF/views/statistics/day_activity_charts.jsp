@@ -95,8 +95,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body class="easyui-layout">
   	<form action="" id="from">
 	  	<div style="margin-top: 10px; margin-left: 220px;">
-			时间段:<input style="width:155px"  class= "easyui-datetimebox" name="start" id="start" editable="false" type="text"/>至
-				 <input style="width:155px"  class= "easyui-datetimebox" name="end" id="end" editable="false" type="text"/>
+			时间段:<input style="width:155px"  class= "easyui-datebox" name="start" id="start" editable="false" type="text"/>至
+				 <input style="width:155px"  class= "easyui-datebox" name="end" id="end" editable="false" type="text"/>
 				 &nbsp;&nbsp;&nbsp;&nbsp;
 				 <a id="searchbtn" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>&nbsp;&nbsp;
 				 <a id="clearbtn" data-options="iconCls:'icon-clear'" class="easyui-linkbutton">清空</a>&nbsp;&nbsp;&nbsp;&nbsp;

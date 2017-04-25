@@ -49,15 +49,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    showAllError:true,
 	    ajaxPost:true,
 	    callback:function(data){
-	      if(data.code==200){
+	      if(data.success){
 	        window.location.href="redirect/index";
 	      }else{
-	        var datas = data.data;
-	        if (datas.emialMsg) {
-	          $('input[name="email"]').next().removeClass('Validform_right').addClass('Validform_wrong').html(datas.emialMsg);
+	        if (data.msg == "该邮箱还没有被注册") {
+	          $('input[name="email"]').next().removeClass('Validform_right').addClass('Validform_wrong').html(data.msg);
 	        };
-	        if (datas.pwdMsg) {
-	          $('input[name="pwd"]').next().removeClass('Validform_right').addClass('Validform_wrong').html(datas.pwdMsg);
+	        if (data.msg == "密码错误") {
+	          $('input[name="pwd"]').next().removeClass('Validform_right').addClass('Validform_wrong').html(data.msg);
 	        };
 	      }
 	    }

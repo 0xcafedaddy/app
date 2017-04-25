@@ -11,9 +11,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.uflowertv.bean.ResponseError;
-import com.uflowertv.model.AccessToken;
-import com.uflowertv.model.TransParmeter;
-import com.uflowertv.model.TransResult;
+import com.uflowertv.bean.dto.AccessToken;
+import com.uflowertv.bean.dto.TransParmeter;
+import com.uflowertv.bean.dto.TransResult;
 import com.uflowertv.util.ConstantHolder;
 import com.uflowertv.util.HttpClientUtils;
 import com.uflowertv.util.JsonUtils;

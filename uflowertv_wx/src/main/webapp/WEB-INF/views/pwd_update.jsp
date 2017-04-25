@@ -48,13 +48,10 @@
     showAllError:true,
     ajaxPost:true,
     callback:function(data){
-      if(data.code==200){
-        window.location.href="redirect/redirect/"+data.message;
+      if(data.success){
+        window.location.href="redirect/redirect/"+data.msg;
       }else{
-        var datas = data.data;
-        if (datas.pwdMsg) {
-	         $('input[name="passwd"]').next().removeClass('Validform_right').addClass('Validform_wrong').html(datas.pwdMsg);
-	     };
+          $('input[name="passwd"]').next().removeClass('Validform_right').addClass('Validform_wrong').html(data.msg);
       }
     }
   });

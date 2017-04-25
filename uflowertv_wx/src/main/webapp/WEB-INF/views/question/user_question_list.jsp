@@ -22,12 +22,12 @@
    	<script type="text/javascript">
    
    	$(function() {
-   		initGride('question/userQuestionList?status=0');
+   		initGride('wechat/question/userQuestionList?status=0');
 	});
    	
   	//显示详情
 	function questionInfo(id,status){
-		window.location.href="question/questionInfo?id="+id+"&status="+status;
+		window.location.href="wechat/question/questionInfo?id="+id+"&status="+status;
 	}
 	/**
 	 * 图片显示
@@ -35,7 +35,7 @@
 	function picture_Show(value){
 		$('#mydialog').dialog({
 			onOpen:function(){
-				$.post('question/getImgNameList' , {id:value},function(result){
+				$.post('wechat/question/getImgNameList' , {id:value},function(result){
 					$('#imgName1').attr('src', result[0]);
 					$('#imgName2').attr('src', result[1]);
 					$('#imgName3').attr('src', result[2]);
@@ -134,7 +134,7 @@
 	 * 查询选项
 	 */
 	function choose(status){
-		var url = "question/userQuestionList?status="+status;
+		var url = "wechat/question/userQuestionList?status="+status;
 		initGride(url);
 	}
    	</script>

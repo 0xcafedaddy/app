@@ -1,9 +1,7 @@
-<%@page import="com.uflowertv.model.SessionInfo"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+ path + "/";
-	SessionInfo sessionInfo = (SessionInfo) session.getAttribute("sessionInfo");
 %>
 <html>
 <head>
@@ -126,19 +124,17 @@
 				type:'post',
 				data:$("#adminDiv form").serialize(),
 				success:function(result){
-					if(result.code == 200){
-						$.messager.alert('我的消息',result.message,'info');
-						$.post('<%=path %>/user/logout', function(result) {
-							if(result.flag){
+					if(result.success){
+						$.messager.alert('我的消息',result.msg,'info');
+						$.post('user/logout', function(result) {
+							if(result.success){
 								setTimeout(function(){
 									location.replace('redirect/login');
 								}, 1000);
 							}
 						}, 'json');
-						
 					}else{
-						$.messager.alert('我的消息',result.message,'info');
-						return false;
+						$.messager.alert('我的消息',result.msg,'info');
 					}
 				}
 			});
@@ -156,11 +152,11 @@
 				type:'post',
 				data:$('#loginDiv form').serialize(),
 				success:function(result){
-					if(result.code == 200){
+					if(result.success){
 						$("#loginDiv").window('close');
-					}else{
-						$.messager.alert('提示', result.data.pwdMsg, 'error');
-					}
+					}else {
+					   $.messager.alert("我的消息",result.msg,"info");
+                    }
 				}
 			});
 		}
@@ -169,7 +165,7 @@
 	//锁定密码
 	var lockWindowFun = function() {
 		$.post('user/logout', function(result) {
-			if(result.flag){
+			if(result.success){
 				$('#loginDiv').window('open');
 			}
 		}, 'json');
@@ -181,8 +177,8 @@
 	function logoutFun(){
 		$.messager.confirm('确认对话框', '确定退出?', function(r){
 			if (r){
-				$.post('user/logout.do', function(result) {
-					if(result.flag){
+				$.post('user/logout', function(result) {
+					if(result.success){
 						/* setTimeout(function(){
 							location.replace('login.jsp');
 						}, 1000); */
@@ -231,7 +227,7 @@
 		<div fit="true" class="easyui-tabs" style="width:400px;height:270px;">
 		    <div title="修改密码" style="overflow:auto;padding:20px;">
 	        	<form id="adminForm" method="post">
-	        		<input type="hidden" name="uId" value="<%=sessionInfo.getUser().getId()%>">
+	        		<input type="hidden" name="uId" value="${sessionInfo.user.id}">
 		        	<table align="center" cellpadding="0" cellspacing="10">
 		        		<tr>
 		        			<td align="right">新密码：</td>
@@ -257,7 +253,7 @@
 					<table align="center" cellpadding="0" cellspacing="10">
 						<tr>
 							<td align="right">邮箱:</td>
-							<td><input name="email" type="text" readonly="readonly" value="<%=sessionInfo.getUser().getEmail() %>" /></td>
+							<td><input name="email" type="text" readonly="readonly" value="${sessionInfo.user.email}" /></td>
 						</tr>
 						<tr>
 							<td align="right">密码:</td>

@@ -1,9 +1,6 @@
-<%@page import="com.uflowertv.model.SessionInfo"%>
-<%@page import="com.uflowertv.util.StringUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
-	SessionInfo sessionInfo = (SessionInfo) session.getAttribute("sessionInfo");
 %>
 <script type="text/javascript" charset="utf-8">
 	var showMyInfoFun = function() {
@@ -70,13 +67,7 @@
 		<img src="static/images/logo.gif" class="logo" />
 	</div>
 </div>
-<div id="sessionInfoDiv" style="position: absolute; right: 10px; top: 5px;">
-	<%
-		if (sessionInfo != null) {
-			out.print(StringUtil.formateString("欢迎{0}", sessionInfo.getUser().getUname()));
-		}
-	%>
-</div>
+<div id="sessionInfoDiv" style="position: absolute; right: 10px; top: 5px;">欢迎:${sessionInfo.user.uname}</div>
 <div style="position: absolute; right: 0px; bottom: 0px;">
 	<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'ext-icon-rainbow'">更换皮肤</a> 
 	<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'ext-icon-cog'">控制面板</a> 

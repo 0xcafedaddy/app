@@ -1,23 +1,256 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.uflowertv.dao.StartMapper" >
-  <sql id="Base_Column_List" >
-    id, dt, platformID, zoneID, deviceID, entryID
+<mapper namespace="com.uflowertv.statistics.mapper.StartMapper" >
+  <resultMap id="BaseResultMap" type="com.uflowertv.statistics.model.Start" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dt" property="dt" jdbcType="TIMESTAMP" />
+    <result column="platformID" property="platformid" jdbcType="INTEGER" />
+    <result column="zoneID" property="zoneid" jdbcType="VARCHAR" />
+    <result column="deviceID" property="deviceid" jdbcType="VARCHAR" />
+    <result column="entryID" property="entryid" jdbcType="SMALLINT" />
+    <result column="params" property="params" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
   </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, dt, platformID, zoneID, deviceID, entryID, params
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.uflowertv.statistics.model.StartExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from start_2017
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from start_2017
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from start_2017
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.uflowertv.statistics.model.StartExample" >
+    delete from start_2017
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.uflowertv.statistics.model.Start" >
+    insert into start_2017 (id, dt, platformID, 
+      zoneID, deviceID, entryID, 
+      params)
+    values (#{id,jdbcType=INTEGER}, #{dt,jdbcType=TIMESTAMP}, #{platformid,jdbcType=INTEGER}, 
+      #{zoneid,jdbcType=VARCHAR}, #{deviceid,jdbcType=VARCHAR}, #{entryid,jdbcType=SMALLINT}, 
+      #{params,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.uflowertv.statistics.model.Start" >
+    insert into start_2017
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dt != null" >
+        dt,
+      </if>
+      <if test="platformid != null" >
+        platformID,
+      </if>
+      <if test="zoneid != null" >
+        zoneID,
+      </if>
+      <if test="deviceid != null" >
+        deviceID,
+      </if>
+      <if test="entryid != null" >
+        entryID,
+      </if>
+      <if test="params != null" >
+        params,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dt != null" >
+        #{dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformid != null" >
+        #{platformid,jdbcType=INTEGER},
+      </if>
+      <if test="zoneid != null" >
+        #{zoneid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="entryid != null" >
+        #{entryid,jdbcType=SMALLINT},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.uflowertv.statistics.model.StartExample" resultType="java.lang.Integer" >
+    select count(*) from start_2017
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update start_2017
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.dt != null" >
+        dt = #{record.dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformid != null" >
+        platformID = #{record.platformid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zoneid != null" >
+        zoneID = #{record.zoneid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceid != null" >
+        deviceID = #{record.deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entryid != null" >
+        entryID = #{record.entryid,jdbcType=SMALLINT},
+      </if>
+      <if test="record.params != null" >
+        params = #{record.params,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update start_2017
+    set id = #{record.id,jdbcType=INTEGER},
+      dt = #{record.dt,jdbcType=TIMESTAMP},
+      platformID = #{record.platformid,jdbcType=INTEGER},
+      zoneID = #{record.zoneid,jdbcType=VARCHAR},
+      deviceID = #{record.deviceid,jdbcType=VARCHAR},
+      entryID = #{record.entryid,jdbcType=SMALLINT},
+      params = #{record.params,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.uflowertv.statistics.model.Start" >
+    update start_2017
+    <set >
+      <if test="dt != null" >
+        dt = #{dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformid != null" >
+        platformID = #{platformid,jdbcType=INTEGER},
+      </if>
+      <if test="zoneid != null" >
+        zoneID = #{zoneid,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        deviceID = #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="entryid != null" >
+        entryID = #{entryid,jdbcType=SMALLINT},
+      </if>
+      <if test="params != null" >
+        params = #{params,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.uflowertv.statistics.model.Start" >
+    update start_2017
+    set dt = #{dt,jdbcType=TIMESTAMP},
+      platformID = #{platformid,jdbcType=INTEGER},
+      zoneID = #{zoneid,jdbcType=VARCHAR},
+      deviceID = #{deviceid,jdbcType=VARCHAR},
+      entryID = #{entryid,jdbcType=SMALLINT},
+      params = #{params,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   <!-- 统计 -->
-  <resultMap id="BaseResultMap" type="com.uflowertv.model.dto.DayActiveCount" >
+  <resultMap id="newResultMap" type="com.uflowertv.statistics.model.DayActiveCount" >
 	    <result column="datetime" property="dateTime" jdbcType="DATE" />
 	    <result column="total" property="total" jdbcType="INTEGER" />
 	    <result column="platformID" property="platformID" jdbcType="INTEGER"/>
   </resultMap>
   <!-- 指定时间段的用户活跃数,默认为30天 -->
-  <select id="getTimeUserActiveList" resultMap="BaseResultMap">
+  <select id="getTimeUserActiveList" resultMap="newResultMap">
     SELECT id,platformID, DATE_FORMAT(dt,'%Y-%m-%d') datetime ,COUNT(1) total FROM start_2017 
     WHERE DATE(dt) BETWEEN #{start} AND #{end}
     GROUP BY datetime
-     <![CDATA[
-	   limit ${pageSize} offset ${recordIndex}
-	]]>
   </select>
   <select id="getTimeUserActiveCount" resultType="int">
      SELECT COUNT(1) FROM (
