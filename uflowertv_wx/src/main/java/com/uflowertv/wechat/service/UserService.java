@@ -1,10 +1,11 @@
 package com.uflowertv.wechat.service;
 
-import com.baomidou.framework.annotations.Log;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.uflowertv.wechat.mapper.UserMapper;
 import com.uflowertv.wechat.model.User;
 import com.uflowertv.wechat.service.support.BaseServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,8 +24,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService extends BaseServiceImpl<UserMapper,User> {
-
-    @Log("通过邮件查找用户")
-    public User findByEmail(String email){return selectOne(new EntityWrapper<User>().where("email={0}",email));}
+    private Logger log = LoggerFactory.getLogger(getClass());
+    public User findByEmail(String email){
+        log.info("通过邮件查找用户");
+        return selectOne(new EntityWrapper<User>().where("email={0}",email));}
 
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xmlns:jaxws="http://cxf.apache.org/jaxws"
+ 		 xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://cxf.apache.org/jaxws 
+							http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<!-- 引入CXF Bean定义如下,早期的版本中使用3.0以后不再使用 -->
+	<!-- <import resource="classpath:META-INF/cxf/cxf.xml" /> -->
+	<!-- <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" /> -->
+	<!-- <import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
+	
+	<bean id="logFeatures" class="org.apache.cxf.feature.LoggingFeature"></bean>
+	<jaxws:client id="ectChannelService" serviceClass="com.crunii.ccn.ectchannel.server.webservice.impl.EctChannelService" address="http://10.10.2.30:9000/intf-server/webservice/ectChannel">
+		<jaxws:features>
+			<ref bean="logFeatures" />
+		</jaxws:features>
+	</jaxws:client>
+</beans>  

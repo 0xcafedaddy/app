@@ -1,6 +1,5 @@
 package com.uflowertv.wechat.service;
 
-import com.baomidou.framework.annotations.Log;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.google.common.collect.Maps;
@@ -8,6 +7,8 @@ import com.uflowertv.wechat.mapper.CommonQuestionMapper;
 import com.uflowertv.wechat.model.CommonQuestion;
 import com.uflowertv.wechat.service.support.BaseServiceImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.Map;
  */
 @Service
 public class CommonQuestionService extends BaseServiceImpl<CommonQuestionMapper,CommonQuestion> {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	/**
 	 * 常见问题列表
 	 * @Title: list
@@ -36,8 +38,8 @@ public class CommonQuestionService extends BaseServiceImpl<CommonQuestionMapper,
 	 * @param rows
 	 * @return
 	 */
-	@Log("常见问题列表")
 	public Map<String,Object> list(int page,int rows,CommonQuestion commonQuestion){
+		log.info("常见问题列表");
 		Map<String,Object> map = Maps.newHashMap();
 		EntityWrapper<CommonQuestion> ew = new EntityWrapper<CommonQuestion>();
 		Page<CommonQuestion> p = new Page<CommonQuestion>(page,rows,"pid");
@@ -59,8 +61,8 @@ public class CommonQuestionService extends BaseServiceImpl<CommonQuestionMapper,
 	 * @param id
 	 * @return
 	 */
-	@Log("查询是否存在下级目录")
 	public int countByParameter(int id) {
+		log.info("查询是否存在下级目录");
 		return baseMapper.countByParameter(id);
 	}
 
@@ -71,8 +73,8 @@ public class CommonQuestionService extends BaseServiceImpl<CommonQuestionMapper,
 	 * @param id
 	 * @return
 	 */
-	@Log("查询子级问题集")
 	public List<CommonQuestion> selectByString(int id){
+		log.info("查询子级问题集");
 		return baseMapper.selectByString(id);
 	}
 
@@ -84,8 +86,8 @@ public class CommonQuestionService extends BaseServiceImpl<CommonQuestionMapper,
 	 * @param record
 	 * @return
 	 */
-	@Log("批量更新子级问题")
 	public int updateBatchCommonQuestion(List<CommonQuestion> record){
+		log.info("批量更新子级问题");
 		return baseMapper.batchUpdateCommonQuestion(record);
 	}
 }

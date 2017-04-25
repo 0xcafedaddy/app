@@ -1,12 +1,13 @@
 package com.uflowertv.wechat.service;
 
-import com.baomidou.framework.annotations.Log;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.uflowertv.wechat.mapper.TreeMapper;
-import com.uflowertv.wechat.model.Tree;
 import com.uflowertv.bean.dto.TreeAttributes;
 import com.uflowertv.bean.dto.TreeData;
+import com.uflowertv.wechat.mapper.TreeMapper;
+import com.uflowertv.wechat.model.Tree;
 import com.uflowertv.wechat.service.support.BaseServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,9 +16,9 @@ import java.util.List;
 @Service
 public class TreeService extends BaseServiceImpl<TreeMapper,Tree> {
 
-
-	@Log("获取菜单树")
+	private Logger log = LoggerFactory.getLogger(getClass());
 	public List<TreeData> getTreeList(String id){
+		log.info("获取菜单树");
         List<TreeData> list = new ArrayList<TreeData>();
         EntityWrapper<Tree> ew = new EntityWrapper<Tree>();
         ew.where("pid="+id);

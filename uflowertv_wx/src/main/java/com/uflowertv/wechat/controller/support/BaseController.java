@@ -1,8 +1,5 @@
 package com.uflowertv.wechat.controller.support;
 
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.framework.controller.SuperController;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -13,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author hubin
  * @Date 2016-04-13
  */
-public class BaseController extends SuperController {
+public class BaseController  {
 
 
 	/**
@@ -35,35 +32,6 @@ public class BaseController extends SuperController {
 			}
 		}
 		return legal;
-	}
-
-	/**
-	 * <p>
-	 * 转换为 bootstrap-table 需要的分页格式 JSON
-	 * </p>
-	 *
-	 * @param page
-	 *            分页对象
-	 * @return
-	 */
-	protected String jsonPage(Page<?> page) {
-		JSONObject jo = new JSONObject();
-		jo.put("total", page.getTotal());
-		jo.put("rows", page.getRecords());
-		return toJson(jo);
-	}
-
-	@Override
-	protected <T> Page<T> getPage(int size) {
-		int _size = size, _index = 1;
-		if (request.getParameter("_size") != null) {
-			_size = Integer.parseInt(request.getParameter("_size"));
-		}
-		if (request.getParameter("_index") != null) {
-			int _offset = Integer.parseInt(request.getParameter("_index"));
-			_index = _offset / _size + 1;
-		}
-		return new Page<T>(_index, _size);
 	}
 
 	protected String booleanToString(boolean rlt) {

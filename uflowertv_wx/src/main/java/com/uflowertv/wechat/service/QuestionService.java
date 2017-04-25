@@ -1,6 +1,5 @@
 package com.uflowertv.wechat.service;
 
-import com.baomidou.framework.annotations.Log;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.google.common.collect.Lists;
@@ -9,6 +8,8 @@ import com.uflowertv.wechat.mapper.QuestionMapper;
 import com.uflowertv.wechat.model.Question;
 import com.uflowertv.wechat.service.support.BaseServiceImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.Map;
  */
 @Service
 public class QuestionService extends BaseServiceImpl<QuestionMapper,Question> {
-
+	private Logger log = LoggerFactory.getLogger(getClass());
 	/**
 	 * 反馈问题列表
 	 * @Title: list
@@ -44,8 +45,8 @@ public class QuestionService extends BaseServiceImpl<QuestionMapper,Question> {
      * eq 与 and 类似，只是不需要{}赋值
      * like("column",val,LIKE.LEFT),不填全部
 	 */
-	@Log("反馈问题列表")
 	public Map<String,Object> list(int page,int rows,int status,Question question){
+		log.info("反馈问题列表");
         EntityWrapper<Question> ew = new EntityWrapper<Question>();
 		Map<String,Object> map = Maps.newHashMap();
 		Page<Question> p = new Page<Question>(page,rows,"createTime");
