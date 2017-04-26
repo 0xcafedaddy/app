@@ -3,7 +3,7 @@
 <head><title>Exception!</title></head>
 <body>
 <% Exception e = (Exception)request.getAttribute("ex"); %>
-<H2>未知错误: <%= e.getClass().getSimpleName()%></H2>
+<H2>异常名称: <%= e.getClass().getSimpleName()%></H2>
 <hr />
 <P>错误描述：</P>
 <%= e.getMessage()%>
