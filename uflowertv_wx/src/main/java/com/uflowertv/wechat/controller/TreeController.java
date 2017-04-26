@@ -27,7 +27,7 @@ public class TreeController extends BaseController{
 	private TreeService treeService;
 
 	
-	@RequestMapping("/getTreeList")
+	@RequestMapping(value = "/getTreeList")
 	public void getTreeList(String id,HttpSession session,HttpServletResponse response) throws IOException{
 		SessionInfo sessionInfo = (SessionInfo) session.getAttribute("sessionInfo");
 		if(sessionInfo != null){

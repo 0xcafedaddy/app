@@ -14,6 +14,7 @@ import com.uflowertv.wechat.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,7 +54,7 @@ public class UserController extends BaseController {
      * @param request
      * @return
      */
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public JsonResult login(User user, HttpSession session, HttpServletRequest request) {
         String email = user.getEmail();
@@ -87,7 +88,7 @@ public class UserController extends BaseController {
      * @param session
      * @return
      */
-    @RequestMapping("/logout")
+    @RequestMapping(value = "/logout",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public JsonResult logout(HttpSession session) {
         session.invalidate();
@@ -101,7 +102,7 @@ public class UserController extends BaseController {
      * @param passwd
      * @return
      */
-    @RequestMapping("/reg")
+    @RequestMapping(value = "/reg",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public JsonResult reg(User user, String passwd) {
         User u = userService.findByEmail(user.getEmail());
@@ -125,7 +126,7 @@ public class UserController extends BaseController {
 	 * @param uPwd
 	 * @return
 	 */
-	@RequestMapping("/aftUpdatePwd")
+	@RequestMapping(value = "/aftUpdatePwd",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public JsonResult update(String uId, String uPwd) {
         User u = userService.selectById(uId);
@@ -148,7 +149,7 @@ public class UserController extends BaseController {
 	 * @param email
 	 * @return
 	 */
-	@RequestMapping("/forget_password")
+	@RequestMapping(value = "/forget_password",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public JsonResult befPwd(HttpServletRequest request,String email){
         Map<String,Object> map = Maps.newHashMap();
@@ -184,7 +185,7 @@ public class UserController extends BaseController {
      * @param email
      * @return
      */
-	@RequestMapping("/reset_password")
+	@RequestMapping(value = "/reset_password",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ModelAndView checkResetLink(String sid,String email){
 		ModelAndView model = new ModelAndView("mailException");
         String msg = "";
@@ -227,7 +228,7 @@ public class UserController extends BaseController {
 	 * @param email
 	 * @return
 	 */
-	@RequestMapping("/befUpdatePwd")
+	@RequestMapping(value = "/befUpdatePwd",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public JsonResult updatePwd(String passwd,String email){
 		User user = userService.findByEmail(email);

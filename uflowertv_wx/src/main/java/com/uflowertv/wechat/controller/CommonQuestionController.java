@@ -6,6 +6,7 @@ import com.uflowertv.wechat.controller.support.BaseController;
 import com.uflowertv.wechat.model.CommonQuestion;
 import com.uflowertv.wechat.service.CommonQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,7 +43,7 @@ public class CommonQuestionController extends BaseController{
 	 * @param rows
 	 * @return
 	 */
-	@RequestMapping("/getCommonQuestionList")
+	@RequestMapping(value = "/getCommonQuestionList",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> getCommonQuestionList(int page,int rows,CommonQuestion commonQuestion){
 		return commonQuestionService.list(page, rows,commonQuestion);
@@ -54,7 +55,7 @@ public class CommonQuestionController extends BaseController{
 	 * @Description: TODO(这里用一句话描述这个方法的作用)
 	 * @return
 	 */
-	@RequestMapping("/getQuestionType")
+	@RequestMapping(value = "/getQuestionType",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public List<CommonQuestion> getQuestionType(){
 		return commonQuestionService.selectList(new EntityWrapper<CommonQuestion>());
@@ -67,7 +68,7 @@ public class CommonQuestionController extends BaseController{
 	 * @param commonQuestion
 	 * @return
 	 */
-	@RequestMapping("/saveCommonQuestion")
+	@RequestMapping(value = "/saveCommonQuestion",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> saveCommonQuestion(CommonQuestion commonQuestion){
 		commonQuestion.setId(null);
@@ -96,7 +97,7 @@ public class CommonQuestionController extends BaseController{
 	 * @param commonQuestion
 	 * @return
 	 */
-	@RequestMapping("/updateCommonQuestion")
+	@RequestMapping(value = "/updateCommonQuestion",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> updateCommonQuestion(CommonQuestion commonQuestion){
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -123,7 +124,7 @@ public class CommonQuestionController extends BaseController{
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/delCommonQuestion")
+	@RequestMapping(value = "/delCommonQuestion",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> delCommonQuestion(int id){
 		Map<String,Object> map = new HashMap<String, Object>();

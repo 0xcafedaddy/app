@@ -4,15 +4,14 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.uflowertv.wechat.controller.support.BaseController;
 import com.uflowertv.wechat.model.CommonQuestion;
 import com.uflowertv.wechat.service.CommonQuestionService;
-import com.uflowertv.util.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 /**
  * 
@@ -34,25 +33,21 @@ public class ChatController extends BaseController{
 	
 	@Autowired
 	private CommonQuestionService commonQuestionService;
-	/**
-	 * @Title: auto_reply
-	 * @Description: TODO(这里用一句话描述这个方法的作用)
-	 * @param request
-	 * @param response
-	 * @throws IOException
-	 */
-	@RequestMapping("auto_reply")
-	public void auto_reply(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		String id = request.getParameter("id");
-		List<CommonQuestion> list = null;
+
+    /**
+     * 自动回复
+     * @param request
+     * @return
+     */
+	@RequestMapping(value = "/auto_reply",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public List<CommonQuestion> auto_reply(HttpServletRequest request) {
+	    String id = request.getParameter("id");
 		if (StringUtils.isBlank(id)) {
 		    int pid = 0;
-            list = commonQuestionService.selectList(new EntityWrapper<CommonQuestion>().where("pid={0}",pid));
-		}else{
-			list = commonQuestionService.selectByString(Integer.valueOf(id));
+            return commonQuestionService.selectList(new EntityWrapper<CommonQuestion>().where("pid={0}",pid));
 		}
-		response.getWriter().print(JsonUtils.bean2Json(list));
-		
+        return commonQuestionService.selectByString(Integer.valueOf(id));
 		/*String jsoncallback=request.getParameter("callback");
 		String id = request.getParameter("id");
 		List<CommonQuestion> list = null;

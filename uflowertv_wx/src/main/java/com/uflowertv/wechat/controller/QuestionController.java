@@ -20,6 +20,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -116,7 +117,7 @@ public class QuestionController extends WechatWebSupport{
      * @param question
      * @return
      */
-	@RequestMapping("/saveQuestion")
+	@RequestMapping(value = "/saveQuestion",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> save(HttpServletRequest request,Question question){
 		String param = request.getParameter("base64Img");
@@ -169,7 +170,7 @@ public class QuestionController extends WechatWebSupport{
      * @param question
      * @return
      */
-	@RequestMapping("/replyQuestion")
+	@RequestMapping(value = "/replyQuestion",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> replyQuestion(HttpServletRequest request,Question question){
         Map<String,Object> map = Maps.newHashMap();
@@ -212,7 +213,7 @@ public class QuestionController extends WechatWebSupport{
      * @param question
      * @return
      */
-	@RequestMapping("/userQuestionList")
+	@RequestMapping(value = "/userQuestionList",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> userQuestionList(int page,int rows,String status,Question question){
 		return questionService.list(page, rows, Integer.valueOf(status),question);
@@ -224,7 +225,7 @@ public class QuestionController extends WechatWebSupport{
      * @param status
      * @return
      */
-	@RequestMapping("/questionInfo")
+	@RequestMapping(value = "/questionInfo")
 	public ModelAndView questionInfo(String id,String status){
 		ModelAndView mv = new ModelAndView("exception");
 		Question question = questionService.selectById(id);
@@ -250,7 +251,7 @@ public class QuestionController extends WechatWebSupport{
      * @param stauts
      * @return
      */
-	@RequestMapping("/changeOther")
+	@RequestMapping(value = "/changeOther",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String,Object> changeOther(String questionId,String stauts){
 		Question question = new Question();
@@ -272,7 +273,7 @@ public class QuestionController extends WechatWebSupport{
      * @param request
      * @return
      */
-	@RequestMapping("/getImgNameList")
+	@RequestMapping(value = "/getImgNameList",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public List<String> getImgNameList(String id,HttpServletRequest request){
         Question question = questionService.selectById(id);
@@ -295,7 +296,7 @@ public class QuestionController extends WechatWebSupport{
      * @param id
      * @return
      */
-	@RequestMapping("/updateStatus")
+	@RequestMapping(value = "/updateStatus",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public Map<String, Object> updateStatus(int status,String id){
 		Map<String, Object> map = Maps.newHashMap();
