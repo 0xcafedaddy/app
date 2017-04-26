@@ -1,5 +1,6 @@
 *.idea
 *.iml
 *target
-*/jdbc.properties
-*/logs/*
+*jdbc.properties
+*/logs
+
