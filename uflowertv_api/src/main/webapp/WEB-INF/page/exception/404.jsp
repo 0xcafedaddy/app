@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="static/css/main.css" media="screen, projection"> <!-- main stylesheet -->
-<link rel="stylesheet" type="text/css" href="static/css/tipsy.css" media="all"> <!-- Tipsy implementation -->
-<script type="text/javascript" src="static/js/jquery-1.7.2.min.js"></script> <!-- uiToTop implementation -->
-<script type="text/javascript" src="static/js/custom-scripts.js"></script>
-<script type="text/javascript" src="static/js/jquery.tipsy.js"></script> <!-- Tipsy -->
+<link rel="stylesheet" type="text/css" href="<%=path%>/static/css/main.css" media="screen, projection"> <!-- main stylesheet -->
+<link rel="stylesheet" type="text/css" href="<%=path%>/static/css/tipsy.css" media="all"> <!-- Tipsy implementation -->
+<script type="text/javascript" src="<%=path%>/static/js/jquery-1.7.2.min.js"></script> <!-- uiToTop implementation -->
+<script type="text/javascript" src="<%=path%>/static/js/custom-scripts.js"></script>
+<script type="text/javascript" src="<%=path%>/static/js/jquery.tipsy.js"></script> <!-- Tipsy -->
 <script type="text/javascript">
 $(document).ready(function(){
 	universalPreloader();
@@ -60,7 +60,7 @@ $(window).load(function(){
 			        	Don't worry! I'm on it!
 			        </p>
 			        <p class="dog-bubble" style="opacity: 1; bottom: 10px;">
-			        	I wish I had a cookie<br><img style="margin-top:8px" src="images/cookie.png" alt="cookie">
+			        	I wish I had a cookie<br><img style="margin-top:8px" src="<%=path%>/static/images/cookie.png" alt="cookie">
 			        </p>
 			        <p class="dog-bubble" style="opacity: 1; bottom: 10px;">
 			        	<br>
@@ -78,7 +78,7 @@ $(window).load(function(){
 			            OK, I'm officially lost now...
 			        </p>
 			        <p class="dog-bubble" style="opacity: 1; bottom: 10px;">
-			        	I think I saw a <br><img style="margin-top:8px" src="images/cat.png" alt="cat">
+			        	I think I saw a <br><img style="margin-top:8px" src="<%=path%>/static/images/cat.png" alt="cat">
 			        </p>
 			        <p class="dog-bubble" style="opacity: 1; bottom: 10px;">
 			        	What are we supposed to be looking for, anyway? @_@
