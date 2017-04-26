@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="false" scan="true" scanPeriod="1000 seconds">
-	<property name="APP_Name" value="uflowertv_api"></property>   
-	<property name="logs.filename" value="logs/uflowertv_api"></property>
+<configuration debug="true">
+	<!--应用名称-->
+	<property name="APP_Name" value="uflowertv_api"></property>
+	<!--日志文件的保存路径-->
+	<property name="LOG_HOME" value="logs/${APP_Name}"></property>
 	<!-- 日志输出格式 -->
 	<property name="ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %level %c:%L - %msg%n" />
-    <contextName>${APP_Name}</contextName>  
+    <contextName>${APP_Name}</contextName>
+
 	<!-- Output to Console -->
-	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>${ENCODER_PATTERN}</pattern>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>${ENCODER_PATTERN}</Pattern>
 		</encoder>
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>INFO</level>
-		</filter>
 	</appender>
+
 	<appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${catalina.base}/${logs.filename}/info.log</File>
+		<File>${catalina.base}/${LOG_HOME}/info.log</File>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${ENCODER_PATTERN}</pattern>
 		</encoder>
@@ -25,14 +26,14 @@
 	      <onMismatch>DENY</onMismatch>  
 	    </filter>  
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${catalina.base}/${logs.filename}/info.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<FileNamePattern>${catalina.base}/${LOG_HOME}/info.%d{yyyy-MM-dd}.log</FileNamePattern>
 			 <!-- keep 30 days' worth of history -->  
             <maxHistory>30</maxHistory>  
 		</rollingPolicy>
 	</appender>
 	<!-- 错误日志：用于将错误日志输出到独立文件 -->
 	<appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>${catalina.base}/${logs.filename}/error.log</File>
+		<File>${catalina.base}/${LOG_HOME}/error.log</File>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${ENCODER_PATTERN}</pattern>
 		</encoder>
@@ -42,7 +43,7 @@
 	      <onMismatch>DENY</onMismatch>  
 	    </filter>  
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${catalina.base}/${logs.filename}/error.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<FileNamePattern>${catalina.base}/${LOG_HOME}/error.%d{yyyy-MM-dd}.log</FileNamePattern>
 			 <!-- keep 30 days' worth of history -->  
             <maxHistory>30</maxHistory>  
 		</rollingPolicy>
@@ -60,7 +61,8 @@
 	<logger name="java.sql.PreparedStatement" level="DEBUG"/> -->
     <!-- 日志输出级别 -->
 	<!-- 打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和  OFF 默认是DEBUG -->
-	<root level="INFO">
+	<root>
+		<level value="DEBUG" />
         <appender-ref ref="Console" />
 		<appender-ref ref="info" />
 		<appender-ref ref="error" />
