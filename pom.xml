@@ -9,7 +9,6 @@
         <module>uflowertv_wx</module>
         <module>uflowertv_api</module>
         <module>shiro</module>
-        <module>spring_data_jpa</module>
     </modules>
     <name>app Maven Webapp</name>
   <url>http://maven.apache.org</url>
