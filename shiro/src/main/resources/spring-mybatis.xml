@@ -5,22 +5,22 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
-    		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
-			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+    		http://www.springframework.org/schema/beans
+    		http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd"
 			>
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="com.sojson.*.service;com.sojson.*.*.service"/>
 	<context:component-scan base-package="com.sojson.common.timer"/>
 	
-	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
-    	<property name="resultSetLogEnabled" value="true" />
-	</bean>
 	<!-- 配置数据源 -->
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-<!--		<property name="driverClassName" value="${jdbc.driverClassName}" /> -->
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" /> 
 		<property name="username" value="${jdbc.username}" /> 
 		<property name="password" value="${jdbc.password}" /> 
@@ -95,7 +95,7 @@
  	<!-- AOP配置--> 
 	<aop:config>
 		<aop:pointcut id="myPointcut"
-			expression="execution(public * com.sojson.*.service.impl.*.*(..))" />
+			expression="execution(public * com.*.service.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
 	</aop:config>
 <!--	<aop:config>-->

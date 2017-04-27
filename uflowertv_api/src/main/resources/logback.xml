@@ -13,14 +13,12 @@
 
 	<!-- Output to STDOUT -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<Encoding>UTF-8</Encoding>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>${ENCODER_PATTERN}</Pattern>
 		</encoder>
 	</appender>
 
 	<appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<Encoding>UTF-8</Encoding>
 		<File>${LOG_HOME}/info.log</File>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${ENCODER_PATTERN}</pattern>
@@ -38,7 +36,6 @@
 	</appender>
 	<!-- 错误日志：用于将错误日志输出到独立文件 -->
 	<appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<Encoding>UTF-8</Encoding>
 		<File>${LOG_HOME}/error.log</File>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${ENCODER_PATTERN}</pattern>

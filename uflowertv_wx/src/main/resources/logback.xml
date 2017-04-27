@@ -13,7 +13,6 @@
 
 	<!-- 控制台日志：输出全部日志到控制台 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <Encoding>UTF-8</Encoding>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>${ENCODER_PATTERN}</Pattern>
 		</encoder>
@@ -21,7 +20,6 @@
 
 	<!-- 文件日志：输出全部日志到文件 -->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <Encoding>UTF-8</Encoding>
         <File>${LOG_HOME}/info.log</File>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${ENCODER_PATTERN}</pattern>
@@ -40,7 +38,6 @@
 
 	<!-- 错误日志：用于将错误日志输出到独立文件 -->
 	<appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <Encoding>UTF-8</Encoding>
 		<File>${LOG_HOME}/error.log</File>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${ENCODER_PATTERN}</pattern>
