@@ -36,7 +36,7 @@ import com.uflowertv.service.XxjProductionServiceI;
  * @version   V1.0
  */
 @Controller
-@RequestMapping("/redirect")
+@RequestMapping("redirect")
 public class RedirectController {
 
 	@Autowired
@@ -109,59 +109,13 @@ public class RedirectController {
 			@Override
 			public void run() {
 				preHeatService.getXuedRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getPointRealtion();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getVideoRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getVideoUrlRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getHomeRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getProductRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
-				preHeatService.getContentRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getFreeVideoRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getTeacherRelation();
-			}
-		});
-		executorService.execute(new Runnable() {
-			@Override
-			public void run() {
 				preHeatService.getTeacherSubjectInfoRelation();
 			}
 		});
