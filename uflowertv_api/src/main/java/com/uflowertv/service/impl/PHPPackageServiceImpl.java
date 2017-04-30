@@ -1,28 +1,16 @@
 package com.uflowertv.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.uflowertv.util.ConstantHolder.CONTENT_JSON;
-import static com.uflowertv.util.ConstantHolder.FREE_VIDEO_LIST;
-import static com.uflowertv.util.ConstantHolder.GRADE_OBJ;
-import static com.uflowertv.util.ConstantHolder.GRADE_SUBJECT_LIST;
-import static com.uflowertv.util.ConstantHolder.PLATFORM_ID;
-import static com.uflowertv.util.ConstantHolder.PRODUCT_ALL;
-import static com.uflowertv.util.ConstantHolder.PRODUCT_SPECIAL;
-import static com.uflowertv.util.ConstantHolder.SPECIAL_JSON;
-import static com.uflowertv.util.ConstantHolder.SPECIAL_OBJ;
-import static com.uflowertv.util.ConstantHolder.SUBJECT_JSON;
-import static com.uflowertv.util.ConstantHolder.TEACHER_OBJ;
-import static com.uflowertv.util.ConstantHolder.VIDEO_ENABLE;
-import static com.uflowertv.util.ConstantHolder.VIDEO_FREE;
-import static com.uflowertv.util.redis.URLRedisCache.getSort;
-import static com.uflowertv.util.redis.URLRedisCache.putString;
-
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.uflowertv.dao.*;
+import com.uflowertv.model.RedisEntity;
+import com.uflowertv.model.po.XxjContent;
+import com.uflowertv.model.po.XxjGrade;
+import com.uflowertv.model.po.XxjProduct;
+import com.uflowertv.model.vo.CommonsEntityJson;
+import com.uflowertv.service.PHPPackageServiceI;
+import com.util.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,21 +18,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.uflowertv.dao.XxjContentDaoI;
-import com.uflowertv.dao.XxjGradeDaoI;
-import com.uflowertv.dao.XxjProductDaoI;
-import com.uflowertv.dao.XxjSpecialListDaoI;
-import com.uflowertv.dao.XxjVideoDaoI;
-import com.uflowertv.model.RedisEntity;
-import com.uflowertv.model.po.XxjContent;
-import com.uflowertv.model.po.XxjGrade;
-import com.uflowertv.model.po.XxjProduct;
-import com.uflowertv.model.vo.CommonsEntityJson;
-import com.uflowertv.service.PHPPackageServiceI;
-import com.uflowertv.util.JsonUtils;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.util.commons.ConstantHolder.*;
+import static com.util.redis.URLRedisCache.getSort;
+import static com.util.redis.URLRedisCache.putString;
 
 /**
  * 

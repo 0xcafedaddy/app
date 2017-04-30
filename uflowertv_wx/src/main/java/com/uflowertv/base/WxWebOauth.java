@@ -1,20 +1,18 @@
 package com.uflowertv.base;
 
+import com.uflowertv.bean.OauthAccessToken;
+import com.uflowertv.bean.dto.Follower;
+import com.util.commons.ConstantHolder;
+import com.util.connection.HttpClientUtils;
+import com.util.json.JsonUtils;
 import io.github.elkan1788.mpsdk4j.api.OauthAPI;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Date;
-
-import org.nutz.log.Log;
-import org.nutz.log.Logs;
-
-import com.uflowertv.bean.OauthAccessToken;
-import com.uflowertv.bean.dto.Follower;
-import com.uflowertv.util.ConstantHolder;
-import com.uflowertv.util.HttpClientUtils;
-import com.uflowertv.util.JsonUtils;
 
 /**
  * 微信网页授权
@@ -64,7 +62,7 @@ public class WxWebOauth {
 		log.infof("授权回调信息: %s",json);
 		oauthAccessToken = new OauthAccessToken();
 		if(json!=null){
-			oauthAccessToken.setAccess_token((String)JsonUtils.json2Map(json).get("access_token"));
+			oauthAccessToken.setAccess_token((String) JsonUtils.json2Map(json).get("access_token"));
 			oauthAccessToken.setExpires_in(String.valueOf(new Date().getTime()));
 		}
 		return oauthAccessToken;
@@ -95,7 +93,7 @@ public class WxWebOauth {
 	public static String authAddress(String redirect_url){  
 		log.info("发送网页授权请求地址");
 	    try {
-			String url = String.format(OauthAPI.OAUTH_ADDR,ConstantHolder.APPID,URLEncoder.encode(redirect_url, "UTF-8"));
+			String url = String.format(OauthAPI.OAUTH_ADDR, ConstantHolder.APPID,URLEncoder.encode(redirect_url, "UTF-8"));
 			return url;
 		} catch (UnsupportedEncodingException e) {
 			log.infof("编码格式错误：%s", e.getMessage());

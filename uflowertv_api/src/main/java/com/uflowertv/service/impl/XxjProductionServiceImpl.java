@@ -1,35 +1,24 @@
 package com.uflowertv.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.uflowertv.util.ConstantHolder.CONTENT_JSON;
-import static com.uflowertv.util.ConstantHolder.CONTENT_OBJ;
-import static com.uflowertv.util.ConstantHolder.FREE_VIDEO_LIST;
-import static com.uflowertv.util.ConstantHolder.GRADE_SUBJECT_LIST;
-import static com.uflowertv.util.ConstantHolder.HOME_LIST;
-import static com.uflowertv.util.ConstantHolder.HOME_VIDEO_LIST;
-import static com.uflowertv.util.ConstantHolder.NOTICE;
-import static com.uflowertv.util.ConstantHolder.OPER_PRODUCT_STATUS_ENABLE;
-import static com.uflowertv.util.ConstantHolder.ORDER_SUCCESS;
-import static com.uflowertv.util.ConstantHolder.PRODUCT_ALL;
-import static com.uflowertv.util.ConstantHolder.PRODUCT_OBJ;
-import static com.uflowertv.util.ConstantHolder.RATED_NORMAL;
-import static com.uflowertv.util.ConstantHolder.RATED_UNNORMAL;
-import static com.uflowertv.util.ConstantHolder.RECORD_VIDEO_LIST;
-import static com.uflowertv.util.ConstantHolder.SPECIAL_JSON;
-import static com.uflowertv.util.ConstantHolder.SPECIAL_PRODUCT_LIST;
-import static com.uflowertv.util.ConstantHolder.SUBJECT_OBJ;
-import static com.uflowertv.util.ConstantHolder.SYN_PRODUCT_LIST;
-import static com.uflowertv.util.ConstantHolder.VIDEO_OBJ;
-import static com.uflowertv.util.ConstantHolder.VIDEO_URL;
-import static com.uflowertv.util.ConstantHolder.XUED_GRADE_LIST;
-import static com.uflowertv.util.ConstantHolder.XUED_LIST;
-import static com.uflowertv.util.redis.URLRedisCache.getHV;
-import static com.uflowertv.util.redis.URLRedisCache.getSort;
-import static com.uflowertv.util.redis.URLRedisCache.getString;
-import static com.uflowertv.util.redis.URLRedisCache.lrem;
-import static com.uflowertv.util.redis.URLRedisCache.putLpush;
-import static com.uflowertv.util.redis.URLRedisCache.removeRpop;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.util.commons.ConstantHolder;
+import com.uflowertv.dao.*;
+import com.uflowertv.model.RedisEntity;
+import com.uflowertv.model.dto.XxjHomeDTO;
+import com.uflowertv.model.dto.XxjRatedDTO;
+import com.uflowertv.model.po.*;
+import com.uflowertv.model.vo.CommonsEntityJson;
+import com.uflowertv.service.XxjProductionServiceI;
+import com.util.date.DateTimeUtil;
+import com.util.json.JsonUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -38,37 +27,10 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.uflowertv.dao.XxjGradeDaoI;
-import com.uflowertv.dao.XxjOrderDaoI;
-import com.uflowertv.dao.XxjProductDaoI;
-import com.uflowertv.dao.XxjRatedDaoI;
-import com.uflowertv.dao.XxjSpecialDaoI;
-import com.uflowertv.dao.XxjTemplateDaoI;
-import com.uflowertv.dao.XxjUiDaoI;
-import com.uflowertv.model.RedisEntity;
-import com.uflowertv.model.dto.XxjHomeDTO;
-import com.uflowertv.model.dto.XxjRatedDTO;
-import com.uflowertv.model.po.XxjGrade;
-import com.uflowertv.model.po.XxjOrder;
-import com.uflowertv.model.po.XxjProduct;
-import com.uflowertv.model.po.XxjSpecial;
-import com.uflowertv.model.po.XxjTemplate;
-import com.uflowertv.model.po.XxjUi;
-import com.uflowertv.model.vo.CommonsEntityJson;
-import com.uflowertv.service.XxjProductionServiceI;
-import com.uflowertv.util.ConstantHolder;
-import com.uflowertv.util.DateTimeUtil;
-import com.uflowertv.util.JsonUtils;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.util.commons.ConstantHolder.*;
+import static com.util.redis.URLRedisCache.*;
 
 /**
  * 
@@ -421,7 +383,6 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 	
 	/**
 	 * 分类
-	 * @see com.uflowertv.service.XxjProductionServiceI#getSort(int)
 	 */
 	@Override
 	public Map<String, Object> getSortList(int platformId) {
@@ -647,7 +608,6 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 	
 	/**
 	 * 查看用户是否购买专题产品 
-	 * @see com.uflowertv.service.XxjProductionServiceI#isPurchase(int, int)
 	 */
 	private String getSpecialPurchase(int userId,int product_id){
 		log.info("查看用户是否购买专题产品");

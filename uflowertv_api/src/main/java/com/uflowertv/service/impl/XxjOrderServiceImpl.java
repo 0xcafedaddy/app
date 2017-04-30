@@ -1,28 +1,8 @@
 package com.uflowertv.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.CharEncoding;
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.util.commons.ConstantHolder;
 import com.uflowertv.dao.XxjOrderDaoI;
 import com.uflowertv.model.dto.GetUserInfoDTO;
 import com.uflowertv.model.dto.ProductDTO;
@@ -36,14 +16,33 @@ import com.uflowertv.service.XxjOrderServiceI;
 import com.uflowertv.service.XxjProductionServiceI;
 import com.uflowertv.service.XxjRatedServiceI;
 import com.uflowertv.service.XxjUserServiceI;
-import com.uflowertv.util.ConstantHolder;
-import com.uflowertv.util.DataBaseUtil;
-import com.uflowertv.util.DateTimeUtil;
-import com.uflowertv.util.GuavaUtil;
-import com.uflowertv.util.HttpClientUtils;
-import com.uflowertv.util.JsonUtils;
-import com.uflowertv.util.MD5Util;
-import com.uflowertv.util.StringEcodingUtil;
+import com.util.MD5Util;
+import com.util.StringEcodingUtil;
+import com.util.commons.GuavaUtil;
+import com.util.connection.DataBaseUtil;
+import com.util.connection.HttpClientUtils;
+import com.util.date.DateTimeUtil;
+import com.util.json.JsonUtils;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.CharEncoding;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * 
@@ -93,7 +92,6 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 	
 	/**
 	 * 送书二维码
-	 * @see com.uflowertv.service.PurchaseServiceI#getQrcodeUrl(int, int)
 	 */
 	@Override
 	public String getQrcodeUrl(int platformId, int orderId){
@@ -176,8 +174,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 	
 	/**
 	 *  用户已购买产品
-	 * @param queryNo
-	 * @ 
+	 * @
 	 */
 	@Override
 	public void updateUserPurchaseProduction(int userId) {

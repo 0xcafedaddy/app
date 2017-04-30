@@ -1,27 +1,5 @@
 package com.uflowertv.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.uflowertv.util.ConstantHolder.CARD;
-import static com.uflowertv.util.ConstantHolder.RECORD_VIDEO_LIST;
-import static com.uflowertv.util.ConstantHolder.USER;
-import static com.uflowertv.util.redis.URLRedisCache.getLrange;
-import static com.uflowertv.util.redis.URLRedisCache.getString;
-import static com.uflowertv.util.redis.URLRedisCache.putHV;
-import static com.uflowertv.util.redis.URLRedisCache.putString;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -36,8 +14,24 @@ import com.uflowertv.model.po.XxjUser;
 import com.uflowertv.model.vo.CommonsEntityJson;
 import com.uflowertv.service.XxjOrderServiceI;
 import com.uflowertv.service.XxjUserServiceI;
-import com.uflowertv.util.BeanUtilsApache;
-import com.uflowertv.util.DateTimeUtil;
+import com.util.BeanUtilsApache;
+import com.util.date.DateTimeUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.util.commons.ConstantHolder.*;
+import static com.util.redis.URLRedisCache.*;
 
 /**
  * 
@@ -67,7 +61,6 @@ public class XxjUserServiceImpl implements XxjUserServiceI{
 	/**
 	 * 通过CA卡号获取用户ID
 	 * @ 
-	 * @see com.uflowertv.service.XxjUserServiceI#getUserId(int, String)
 	 */
 	@Override
 	public Map<String, Object> saveUser(int platformId,String card) {
@@ -167,7 +160,6 @@ public class XxjUserServiceImpl implements XxjUserServiceI{
 	
 	/**
 	 * 获取观看记录
-	 * @see com.uflowertv.service.XxjUserServiceI#getUserRecord(int, String)
 	 */
 	@Override
 	public Map<String, Object> getUserRecord(int platformId,int userId) {

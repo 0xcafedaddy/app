@@ -1,29 +1,5 @@
 package com.uflowertv.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.uflowertv.util.ConstantHolder.CONTENT_OBJ;
-import static com.uflowertv.util.ConstantHolder.GRADE_OBJ;
-import static com.uflowertv.util.ConstantHolder.PRODUCT_OBJ;
-import static com.uflowertv.util.ConstantHolder.SUBJECT_JSON;
-import static com.uflowertv.util.ConstantHolder.SUBJECT_OBJ;
-import static com.uflowertv.util.ConstantHolder.TEACHER_GRADE_LIST;
-import static com.uflowertv.util.ConstantHolder.TEACHER_OBJ;
-import static com.uflowertv.util.ConstantHolder.TEACHER_SUBJECT_LIST;
-import static com.uflowertv.util.redis.URLRedisCache.getSort;
-import static com.uflowertv.util.redis.URLRedisCache.getString;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
@@ -32,7 +8,23 @@ import com.uflowertv.model.RedisEntity;
 import com.uflowertv.model.vo.CommonsEntityJson;
 import com.uflowertv.service.TeacherServiceI;
 import com.uflowertv.service.XxjProductionServiceI;
-import com.uflowertv.util.JsonUtils;
+import com.util.json.JsonUtils;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.util.commons.ConstantHolder.*;
+import static com.util.redis.URLRedisCache.getSort;
+import static com.util.redis.URLRedisCache.getString;
 
 /**
  * 

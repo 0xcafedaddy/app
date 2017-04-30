@@ -11,6 +11,11 @@
     <name>uflowertv_wx Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>sources</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- spring rest exception handler -->
         <!-- <dependency>
             <groupId>cz.jirutka.spring</groupId>

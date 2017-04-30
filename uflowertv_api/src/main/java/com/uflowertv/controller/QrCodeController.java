@@ -2,7 +2,7 @@ package com.uflowertv.controller;
 
 import com.google.common.collect.Maps;
 import com.uflowertv.service.XxjOrderServiceI;
-import com.uflowertv.util.QRCodeUtil;
+import com.util.image.QRCodeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

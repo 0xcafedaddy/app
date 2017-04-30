@@ -1,79 +1,35 @@
 package com.uflowertv.service.impl;
 
-import static com.uflowertv.util.ConstantHolder.CONTENT_OBJ;
-import static com.uflowertv.util.ConstantHolder.FREE_VIDEO_LIST;
-import static com.uflowertv.util.ConstantHolder.GRADE_OBJ;
-import static com.uflowertv.util.ConstantHolder.GRADE_SUBJECT_LIST;
-import static com.uflowertv.util.ConstantHolder.HOME_LIST;
-import static com.uflowertv.util.ConstantHolder.HOME_OBJ;
-import static com.uflowertv.util.ConstantHolder.NOTICE;
-import static com.uflowertv.util.ConstantHolder.PLATFORM_ID;
-import static com.uflowertv.util.ConstantHolder.POINT_OBJ;
-import static com.uflowertv.util.ConstantHolder.PRODUCT_OBJ;
-import static com.uflowertv.util.ConstantHolder.SPECIAL_OBJ;
-import static com.uflowertv.util.ConstantHolder.SPECIAL_PRODUCT_LIST;
-import static com.uflowertv.util.ConstantHolder.SUBJECT_OBJ;
-import static com.uflowertv.util.ConstantHolder.SYN_PRODUCT_LIST;
-import static com.uflowertv.util.ConstantHolder.TEACHER_GRADE_LIST;
-import static com.uflowertv.util.ConstantHolder.TEACHER_OBJ;
-import static com.uflowertv.util.ConstantHolder.TEACHER_SUBJECT_LIST;
-import static com.uflowertv.util.ConstantHolder.VIDEO_ENABLE;
-import static com.uflowertv.util.ConstantHolder.VIDEO_FREE;
-import static com.uflowertv.util.ConstantHolder.VIDEO_OBJ;
-import static com.uflowertv.util.ConstantHolder.VIDEO_URL;
-import static com.uflowertv.util.ConstantHolder.XUED_GRADE_LIST;
-import static com.uflowertv.util.ConstantHolder.XUED_LIST;
-import static com.uflowertv.util.ConstantHolder.XUED_OBJ;
-
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.uflowertv.dao.*;
+import com.uflowertv.model.RedisEntity;
+import com.uflowertv.model.po.*;
+import com.uflowertv.model.vo.CommonsEntityJson;
+import com.uflowertv.service.PHPPackageServiceI;
+import com.uflowertv.service.PreHeatServiceI;
+import com.util.BeanUtilsApache;
+import com.util.date.DateTimeUtil;
+import com.util.json.JsonUtils;
+import com.util.redis.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.uflowertv.dao.XxjContentDaoI;
-import com.uflowertv.dao.XxjGradeDaoI;
-import com.uflowertv.dao.XxjHomeDaoI;
-import com.uflowertv.dao.XxjPointDaoI;
-import com.uflowertv.dao.XxjProductDaoI;
-import com.uflowertv.dao.XxjSpecialDaoI;
-import com.uflowertv.dao.XxjSubjectDaoI;
-import com.uflowertv.dao.XxjTeacherDaoI;
-import com.uflowertv.dao.XxjVideoDaoI;
-import com.uflowertv.dao.XxjVideoUrlDaoI;
-import com.uflowertv.dao.XxjXuedDaoI;
-import com.uflowertv.model.RedisEntity;
-import com.uflowertv.model.po.XxjContent;
-import com.uflowertv.model.po.XxjGrade;
-import com.uflowertv.model.po.XxjPoint;
-import com.uflowertv.model.po.XxjProduct;
-import com.uflowertv.model.po.XxjSpecial;
-import com.uflowertv.model.po.XxjSubject;
-import com.uflowertv.model.po.XxjTeacher;
-import com.uflowertv.model.po.XxjVideo;
-import com.uflowertv.model.po.XxjVideoUrl;
-import com.uflowertv.model.po.XxjXued;
-import com.uflowertv.model.vo.CommonsEntityJson;
-import com.uflowertv.service.PHPPackageServiceI;
-import com.uflowertv.service.PreHeatServiceI;
-import com.uflowertv.util.BeanUtilsApache;
-import com.uflowertv.util.DateTimeUtil;
-import com.uflowertv.util.JsonUtils;
-import com.uflowertv.util.redis.RedisUtil;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;
 import redis.clients.jedis.Response;
 import redis.clients.jedis.SortingParams;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import static com.util.commons.ConstantHolder.*;
 /**
  * 
  * 版权所有：2017年3月8日-油菜花

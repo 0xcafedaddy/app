@@ -1,12 +1,11 @@
 package com.uflowertv.model;
 
-import java.util.Map;
-
+import com.uflowertv.model.vo.CommonsEntityJson;
+import com.util.BeanUtilsApache;
+import com.util.redis.URLRedisCache;
 import org.springframework.util.CollectionUtils;
 
-import com.uflowertv.model.vo.CommonsEntityJson;
-import com.uflowertv.util.BeanUtilsApache;
-import com.uflowertv.util.redis.URLRedisCache;
+import java.util.Map;
 /**
  * 
  * 版权所有：2017年3月8日-油菜花
