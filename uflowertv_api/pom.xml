@@ -12,6 +12,11 @@
     <name>uflowertv_api Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>sources</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- jersey 1.x版本 -->
         <!-- <dependency>
             <groupId>com.sun.jersey</groupId>

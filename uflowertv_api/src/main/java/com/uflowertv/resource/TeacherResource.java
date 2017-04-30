@@ -6,11 +6,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import com.util.json.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uflowertv.service.TeacherServiceI;
-import com.uflowertv.util.JsonUtils;
 /**
  * 
  * 版权所有：2016-油菜花

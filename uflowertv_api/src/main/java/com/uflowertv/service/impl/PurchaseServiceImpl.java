@@ -16,7 +16,7 @@ import com.google.common.collect.Maps;
 import com.uflowertv.service.BossServiceI;
 import com.uflowertv.service.PurchaseServiceI;
 import com.uflowertv.service.XxjOrderServiceI;
-import com.uflowertv.util.ConstantHolder;
+import com.util.commons.ConstantHolder;
 
 /**
  * 

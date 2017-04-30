@@ -1,11 +1,12 @@
 package com.uflowertv.resource.exception.errorhandling;
 
+import com.util.BeanUtilsApache;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.uflowertv.util.BeanUtilsApache;
 
 
 @XmlRootElement

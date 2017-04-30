@@ -1,12 +1,6 @@
 package com.uflowertv.dao.impl;
 
-import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.uflowertv.dao.BaseDaoI;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -16,7 +10,11 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.uflowertv.dao.BaseDaoI;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 @Repository("xxjBaseDao")
 @SuppressWarnings("all")

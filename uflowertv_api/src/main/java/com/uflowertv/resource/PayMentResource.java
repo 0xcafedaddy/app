@@ -1,16 +1,14 @@
 package com.uflowertv.resource;
 
-import java.util.Map;
+import com.uflowertv.service.XxjOrderServiceI;
+import com.util.json.JsonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.uflowertv.service.XxjOrderServiceI;
-import com.uflowertv.util.JsonUtils;
+import java.util.Map;
 /**
  * 
  * 版权所有：2017年2月6日-油菜花

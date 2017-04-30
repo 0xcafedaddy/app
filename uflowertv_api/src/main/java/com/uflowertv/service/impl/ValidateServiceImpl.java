@@ -1,34 +1,28 @@
 package com.uflowertv.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Map;
-
+import com.crunii.ccn.ectchannel.server.webservice.impl.ComboValidInfo;
+import com.crunii.ccn.ectchannel.server.webservice.impl.ParentLocker;
+import com.google.common.base.Strings;
+import com.google.common.collect.Maps;
+import com.util.commons.ConstantHolder;
+import com.uflowertv.model.dto.GetUserInfoDTO;
+import com.uflowertv.model.po.XxjOrder;
+import com.uflowertv.model.po.XxjRated;
+import com.uflowertv.model.po.XxjUser;
+import com.uflowertv.service.*;
+import com.util.connection.HttpClientUtils;
+import com.util.json.JsonUtils;
+import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.crunii.ccn.ectchannel.server.webservice.impl.ComboValidInfo;
-import com.crunii.ccn.ectchannel.server.webservice.impl.ParentLocker;
-import com.google.common.base.Strings;
-import com.google.common.collect.Maps;
-import com.uflowertv.model.dto.GetUserInfoDTO;
-import com.uflowertv.model.po.XxjOrder;
-import com.uflowertv.model.po.XxjRated;
-import com.uflowertv.model.po.XxjUser;
-import com.uflowertv.service.BossServiceI;
-import com.uflowertv.service.ValidateServiceI;
-import com.uflowertv.service.XxjOrderServiceI;
-import com.uflowertv.service.XxjRatedServiceI;
-import com.uflowertv.service.XxjUserServiceI;
-import com.uflowertv.util.ConstantHolder;
-import com.uflowertv.util.HttpClientUtils;
-import com.uflowertv.util.JsonUtils;
+import java.util.Map;
 
-import lombok.Data;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * 

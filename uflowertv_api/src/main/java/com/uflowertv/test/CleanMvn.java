@@ -17,7 +17,7 @@ import java.io.File;
 public class CleanMvn {
 	
     public static void main(String[] args){
-        findAndDelete(new File("D:/apache-maven-3.2.5/repository"));
+        findAndDelete(new File("D:\\apache-maven-3.5.0\\repository"));
         System.exit(0);
     }
     public static boolean findAndDelete(File file){

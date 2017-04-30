@@ -14,11 +14,7 @@ import java.util.regex.Pattern;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import sun.misc.BASE64Decoder;
-
-
-
-
+import org.apache.commons.codec.binary.Base64;
 
 
 /**
@@ -162,7 +158,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils{
 	 */
     public static String getBASE64(String str,boolean...bf) { 
        if (StringUtils.isBlank(str)) return null; 
-       String base64 = new sun.misc.BASE64Encoder().encode(str.getBytes()) ;
+       String base64 = Base64.encodeBase64String(str.getBytes()) ;
        //去掉 '='
        if(isBlank(bf) && bf[0]){
     	   base64 = base64.replaceAll("=", "");
@@ -173,9 +169,8 @@ public class StringUtils extends org.apache.commons.lang.StringUtils{
     /** 将 BASE64 编码的字符串 s 进行解码**/
     public static String getStrByBASE64(String s) { 
        if (isBlank(s)) return ""; 
-       BASE64Decoder decoder = new BASE64Decoder(); 
-       try { 
-          byte[] b = decoder.decodeBuffer(s); 
+       try {
+          byte[] b = Base64.decodeBase64(s);
           return new String(b); 
        } catch (Exception e) { 
           return ""; 

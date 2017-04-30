@@ -1,16 +1,14 @@
 package com.uflowertv.resource;
 
-import java.util.Map;
+import com.uflowertv.service.XxjProductionServiceI;
+import com.util.json.JsonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.uflowertv.service.XxjProductionServiceI;
-import com.uflowertv.util.JsonUtils;
+import java.util.Map;
 /**
  * 
  * 版权所有：2016-油菜花
@@ -155,8 +153,6 @@ public class ProductionResource {
 	 * @param platformId
 	 * @param userId
 	 * @param video_id
-	 * @param product_id
-	 * @param product_type
 	 * @return
 	 * @
 	 */

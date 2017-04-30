@@ -1,22 +1,21 @@
 package com.uflowertv.base;
 
+import com.uflowertv.bean.ResponseError;
+import com.uflowertv.bean.dto.AccessToken;
+import com.uflowertv.bean.dto.TransParmeter;
+import com.uflowertv.bean.dto.TransResult;
+import com.util.commons.ConstantHolder;
+import com.util.connection.HttpClientUtils;
+import com.util.json.JsonUtils;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.uflowertv.bean.ResponseError;
-import com.uflowertv.bean.dto.AccessToken;
-import com.uflowertv.bean.dto.TransParmeter;
-import com.uflowertv.bean.dto.TransResult;
-import com.uflowertv.util.ConstantHolder;
-import com.uflowertv.util.HttpClientUtils;
-import com.uflowertv.util.JsonUtils;
 
 
 /**
@@ -71,7 +70,7 @@ public class BaseFunction {
 		String json =  HttpClientUtils.get(url);
 		accessToken = new AccessToken();
 		if(json!=null){
-			accessToken.setToken((String)JsonUtils.json2Map(json).get("access_token"));
+			accessToken.setToken((String) JsonUtils.json2Map(json).get("access_token"));
 			accessToken.setExpiresIn(String.valueOf(new Date().getTime()));
 		}
 		log.info("token:"+accessToken.getToken());
