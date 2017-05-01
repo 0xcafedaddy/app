@@ -9,7 +9,7 @@
 	<!--<property name="LOG_HOME" value="${catalina.base}/${APP_NAME}" />-->
 	<!-- 日志输出格式 -->
 	<property name="ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %level %c:%L - %msg%n" />
-    <contextName>${APP_Name}</contextName>
+    <contextName>${APP_NAME}</contextName>
 
 	<!-- Output to STDOUT -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
