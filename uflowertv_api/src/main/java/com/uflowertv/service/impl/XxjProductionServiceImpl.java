@@ -488,37 +488,16 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 		checkArgument(!CollectionUtils.isEmpty(xued_list),"学段列表为空");
 		xued_list.forEach(xued_obj->{
 			CommonsEntityJson xuedEntity = RedisEntity.getEntity(xued_obj);
-			List<String> grade_list = getSort(String.format(XUED_GRADE_LIST,xuedEntity.getXued_id()));
-			grade_list.forEach(grade_obj->{
-				CommonsEntityJson gradeEntity = RedisEntity.getEntity(grade_obj);
-				int grade_id = Integer.valueOf(gradeEntity.getGrade_id());
-				checkArgument(grade_id!=0,"年级ID为空");
-				List<CommonsEntityJson> subjectList = getSubjectList(grade_id);
-				if(CollectionUtils.isEmpty(subjectList)){
-					list.remove(gradeEntity);
-				}else{
-					gradeEntity.setSubjects(subjectList);
-					list.add(gradeEntity);
-				}
-			});
+            executorGradeList(list,Integer.valueOf(xuedEntity.getXued_id()));
 		});
 		checkArgument(!CollectionUtils.isEmpty(list),"无可用数据");
 		map.put("code", 200);
 		map.put("data", list);
 		return map;
 	}
-	
-	/**
-	 * 学段下的年级与科目列表
-	 * @see com.uflowertv.service.XxjProductionServiceI#getGradeSubjectList(int)
-	 */
-	@Override
-	public Map<String, Object> getGradeSubjectList(int xued_id){
-		log.info("学段下的年级与科目列表");
-		Map<String, Object> map = Maps.newHashMap();
-		List<CommonsEntityJson> list = Lists.newArrayList();
-		checkArgument(xued_id!=0,"学段ID为空");
-		List<String> grade_list = getSort(String.format(XUED_GRADE_LIST, xued_id));
+
+	private void executorGradeList(List<CommonsEntityJson> list,int xued_id){
+		List<String> grade_list = getSort(String.format(XUED_GRADE_LIST,xued_id));
 		checkArgument(!CollectionUtils.isEmpty(grade_list),"学段列表为空");
 		grade_list.forEach(grade_obj->{
 			CommonsEntityJson gradeEntity = RedisEntity.getEntity(grade_obj);
@@ -532,6 +511,19 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 				list.add(gradeEntity);
 			}
 		});
+	}
+
+	/**
+	 * 学段下的年级与科目列表
+	 * @see com.uflowertv.service.XxjProductionServiceI#getGradeSubjectList(int)
+	 */
+	@Override
+	public Map<String, Object> getGradeSubjectList(int xued_id){
+		log.info("学段下的年级与科目列表");
+		Map<String, Object> map = Maps.newHashMap();
+		List<CommonsEntityJson> list = Lists.newArrayList();
+		checkArgument(xued_id!=0,"学段ID为空");
+        executorGradeList(list,xued_id);
 		checkArgument(!CollectionUtils.isEmpty(list),"无可用数据");
 		map.put("code", 200);
 		map.put("data", list);
