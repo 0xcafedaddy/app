@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com</groupId>
-            <artifactId>sources</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- spring rest exception handler -->
