@@ -16,7 +16,7 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven/>
 
     <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/demo/**" location="/demo/" />
@@ -24,8 +24,9 @@
     <mvc:resources mapping="/js/**" location="/js/" />
 
 
-    <bean name="api" class="com.sojson.core.tags.APITemplateModel"/>
-    <bean name="springContextUtil" class="com.sojson.common.utils.SpringContextUtil" scope="singleton"/>
+    <bean name="api" class="com.shiro.core.tags.APITemplateModel"/>
+
+    <bean name="springContextUtil" class="com.shiro.common.utils.SpringContextUtil"/>
 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
 		<property name="messageConverters">  
@@ -35,8 +36,7 @@
 	    </property>  
 	</bean>  
 	        
-	<bean id="mappingJacksonHttpMessageConverter"  
-	    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	     <property name = "supportedMediaTypes">  
 			  <list>  
 			    <bean class="org.springframework.http.MediaType">  
@@ -62,59 +62,36 @@
 			  </list>  
 		</property>  
 	</bean>   
-	
-	
 
 	<!--===============通用视图解析器 begin===============-->
-	<bean id="viewResolverCommon"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-<!--			可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑-->
-		<property name="viewClass">
-			<value>org.springframework.web.servlet.view.InternalResourceView
-			</value>
-		</property>
-		<property name="order" value="1" />
-	</bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp"></property>
+        <property name="order" value="1"></property>
+    </bean>
 
 	<!-- 视图解析器 -->
 	<!-- 配置freeMarker视图解析器 -->
-	<bean id="viewResolverFtl"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="viewClass" value="com.sojson.core.freemarker.extend.FreeMarkerViewExtend" />
+	<bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="com.shiro.core.freemarker.extend.FreeMarkerViewExtend" />
 		<!-- 把Freemarker 扩展一下，把相关属性加入进去。。。 -->
 		<property name="contentType" value="text/html; charset=utf-8" />
 		<property name="cache" value="true" />
 		<property name="suffix" value=".ftl" />
 		<property name="order" value="0" />
 	</bean>
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="2"></property>
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp"></property>
-	</bean>
-
-
 
 	<!-- 配置freeMarker 拓展-->
-	<bean id="freemarkerConfig"
-		class="com.sojson.core.freemarker.extend.FreeMarkerConfigExtend">
-		<property name="templateLoaderPath">
-			<value>/WEB-INF/ftl/</value>
-		</property>
+	<bean id="freemarkerConfig" class="com.shiro.core.freemarker.extend.FreeMarkerConfigExtend">
+		<property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
 		<property name="freemarkerVariables">
 			<map>
 				<entry key="xml_escape" value-ref="fmXmlEscape" />
 				<entry key="api" value-ref="api"/>
 			</map>
 		</property>
-		<property name="defaultEncoding">
-			<value>utf-8</value>
-		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="freemarkerSettings">
 			<props><!-- 315360000 -->
 					<prop key="template_update_delay">0</prop>
@@ -138,12 +115,8 @@
 	</bean>
 	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
 	<!--===============通用视图解析器 end===============-->
-	
-	
+
 	<!--  上传文件定义大小 -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-		p:defaultEncoding="utf-8">
-		<property name="maxUploadSize" value="50048000" />	
-	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8" p:maxUploadSize="50048000"/>
 </beans>

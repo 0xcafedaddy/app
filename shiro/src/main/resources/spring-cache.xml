@@ -5,21 +5,20 @@
 						http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="false">
 
 	 <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="100"/><!-- 最大闲置 -->
-        <property name="minIdle" value="10"/><!-- 最小闲置 -->
-        <property name="testOnBorrow" value="true"/><!-- 可以获取 -->
-<!--        <property name="testOnReturn" value="true"/>-->
-    </bean>
+         <!--是否启用后进先出, 默认true-->
+         <property name="lifo" value="false"/>
+         <property name="maxIdle" value="100"/>
+         <property name="maxTotal" value="10000"/>
+     </bean>
 	<!-- redis 配置,也可以把配置挪到properties配置文件中,再读取 -->
 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-		<constructor-arg index="0" ref="jedisPoolConfig" />
-		<!-- 端口，默认6379 -->
-	    <constructor-arg index="2" value="6379"  name="port" type="int"/>
-	    <constructor-arg index="3" value="5000"  name="timeout" type="int"/>
-	    <constructor-arg index="1" value="127.0.0.1" name="host" type="java.lang.String"/>
-	    <!-- 如果你需要配置密码，请打开这里。
-	        <constructor-arg index="4" value="你的密码" name="password" type="java.lang.String"/>
-	    -->
+		<constructor-arg index="0" ref="jedisPoolConfig" type="org.apache.commons.pool2.impl.GenericObjectPoolConfig"/>
+        <constructor-arg index="1" value="192.168.31.188" name="host" type="java.lang.String"/>
+        <!-- 端口，默认6379 -->
+        <constructor-arg index="2" value="6379"  name="port" type="int"/>
+        <constructor-arg index="3" value="20000"  name="timeout" type="int"/>
+        <constructor-arg index="4" value="" name="password" type="java.lang.String"/>
+        <constructor-arg index="5" value="15" name="database" type="int"/>
 	</bean>
 	<!-- 
 		这种 arguments 构造的方式，之前配置有缺点。

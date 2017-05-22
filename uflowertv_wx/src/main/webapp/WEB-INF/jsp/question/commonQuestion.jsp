@@ -104,19 +104,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$('#rootCancel').click(function(){
 					$('#rootDialog').dialog('close');
 				});
-					
+
 				$('#searchbtn').click(function(){
 					$('#CommoQuestionData').datagrid('load' ,serializeForm($('#mysearch')));
 				});
-				
+
 				$('#clearbtn').click(function(){
 					$('#mysearch').form('clear');
 					$('#CommoQuestionData').datagrid('load' ,{});
 				});
-	   		
-		});
-			
-			
+
+        });
+
 		var flag;
 		var toolbar = 
 			[{
@@ -300,13 +299,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body class="easyui-layout">
   		<div id="lay" class="easyui-layout" style="width: 100%;height:100%" >
 	  		<div region="north" title="用户查询" collapsed=true style="height:90px;" >
-				<form id="mysearch" method="post">
-					<div style="margin-top: 20px;">
-						<center>
-							问题类型:<input name="questionType" type="text" />
-							&nbsp;&nbsp;&nbsp;<a id="searchbtn" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a> 
-							&nbsp;&nbsp;&nbsp;<a id="clearbtn" data-options="iconCls:'icon-clear'" class="easyui-linkbutton">清空</a>
-				 		</center>
+				<form id="mysearch">
+					<div style="margin-top: 20px;text-align: center;">
+                        问题类型:<input id="questionType" name="questionType" type="text" />
+                        &nbsp;&nbsp;&nbsp;<a id="searchbtn" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>
+                        &nbsp;&nbsp;&nbsp;<a id="clearbtn" data-options="iconCls:'icon-clear'" class="easyui-linkbutton">清空</a>
 					</div>
 				</form>
 			</div>

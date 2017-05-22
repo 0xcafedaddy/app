@@ -9,7 +9,9 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.session.Configuration;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
 import java.sql.Connection;
@@ -26,6 +28,12 @@ public class BaseMybatisDao<T> extends SqlSessionDaoSupport {
 	private String NAMESPACE;
 	final static  Class<? extends Object> SELF = BaseMybatisDao.class;
 	protected final Log logger = LogFactory.getLog(BaseMybatisDao.class);
+
+	@Autowired
+	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+		super.setSqlSessionTemplate(sqlSessionTemplate);
+	}
+
 	/**默认的查询Sql id*/
 	final static String DEFAULT_SQL_ID = "findAll";
 	/**默认的查询Count sql id**/

@@ -4,19 +4,18 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
-    		http://www.springframework.org/schema/beans
-    		http://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/aop
-			http://www.springframework.org/schema/aop/spring-aop.xsd
-			http://www.springframework.org/schema/context
-			http://www.springframework.org/schema/context/spring-context.xsd
-			http://www.springframework.org/schema/tx
-			http://www.springframework.org/schema/tx/spring-tx.xsd"
-			>
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+
 	<!-- 自动扫描(自动注入) -->
-	<context:component-scan base-package="com.sojson.*.service;com.sojson.*.*.service"/>
-	<context:component-scan base-package="com.sojson.common.timer"/>
+	<context:component-scan base-package="com.shiro.*.service;com.shiro.*.*.service"/>
+	<context:component-scan base-package="com.shiro.common.timer"/>
 	
 	<!-- 配置数据源 -->
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -42,7 +41,7 @@
 		<property name="logAbandoned" value="true" />
 		<property name="proxyFilters">
 	        <list>
-	            <ref bean="log-filter"/>
+	            <!--<ref bean="log-filter"/>-->
 	        </list>
 	    </property>
 
@@ -54,23 +53,21 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-		<property name="mapperLocations"  >
-			<list>
-				<value>classpath:com/sojson/common/mapper/*.xml</value>
-			</list>
-		</property>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 	</bean>
 
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-	<bean id="baseMybatisDao" class="com.sojson.core.mybatis.BaseMybatisDao" >
+	<bean id="baseMybatisDao" class="com.shiro.core.mybatis.BaseMybatisDao" >
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>	
+	</bean>
+	<!--mybatis接口注入-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.sojson.common.dao" />
+		<property name="basePackage" value="com.shiro.common.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
+	<!--spring声明式事务-->
 	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	     <property name="dataSource" ref="dataSource" />
 	 </bean>
@@ -86,16 +83,12 @@
 			<tx:method name="load*" />
 			<tx:method name="init*" />
 
-
-
-
 			<tx:method name="*"  read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
  	<!-- AOP配置--> 
 	<aop:config>
-		<aop:pointcut id="myPointcut"
-			expression="execution(public * com.*.service.impl.*.*(..))" />
+		<aop:pointcut id="myPointcut" expression="execution(public * com.*.service.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
 	</aop:config>
 <!--	<aop:config>-->
