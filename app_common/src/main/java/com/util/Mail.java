@@ -26,18 +26,81 @@ import java.util.Properties;
  * @version   V1.0
  */
 public class Mail {
-	
-	private static Logger log = LoggerFactory.getLogger(Mail.class);
+    private static Logger log = LoggerFactory.getLogger(Mail.class);
 
-	
-   private static String to; // 收件人
-   private static String from; // 发件人
-   private static String host; // smtp主机
-   private static String username; // 用户名
-   private static String password; // 密码
-   private static String subject; // 邮件主题
-   private static String content; // 邮件正文
-    // 配置文件路径
+	   private static String to; // 收件人
+	   private static String from; // 发件人
+	   private static String host; // smtp主机
+	   private static String username; // 用户名
+	   private static String password; // 密码
+	   private static String subject; // 邮件主题
+	   private static String content; // 邮件正文
+
+	public static String getTo() {
+		return to;
+	}
+
+	public static void setTo(String to) {
+		Mail.to = to;
+	}
+
+	public static String getFrom() {
+		return from;
+	}
+
+	public static void setFrom(String from) {
+		Mail.from = from;
+	}
+
+	public static String getHost() {
+		return host;
+	}
+
+	public static void setHost(String host) {
+		Mail.host = host;
+	}
+
+	public static String getUsername() {
+		return username;
+	}
+
+	public static void setUsername(String username) {
+		Mail.username = username;
+	}
+
+	public static String getPassword() {
+		return password;
+	}
+
+	public static void setPassword(String password) {
+		Mail.password = password;
+	}
+
+	public static String getSubject() {
+		return subject;
+	}
+
+	public static void setSubject(String subject) {
+		Mail.subject = subject;
+	}
+
+	public static String getContent() {
+		return content;
+	}
+
+	public static void setContent(String content) {
+		Mail.content = content;
+	}
+
+	public static String getMailPath() {
+		return mailPath;
+	}
+
+	public static void setMailPath(String mailPath) {
+		Mail.mailPath = mailPath;
+	}
+
+	// 配置文件路径
     private static String mailPath = "properties/mail.properties";
 	//日志记录对象
 	
@@ -57,9 +120,9 @@ public class Mail {
 			log.error(e.toString(), e);
 		}
 		host = props.getProperty("mail.server");
-		from = new String(Base64.decodeBase64(props.getProperty("mail.sender")));
-		username = new String(Base64.decodeBase64(props.getProperty("mail.username")));
-		password = new String(Base64.decodeBase64(props.getProperty("mail.password")));
+		from = props.getProperty("mail.sender");
+		username = props.getProperty("mail.username");
+		password = props.getProperty("mail.password");
 		subject = props.getProperty("mail.subject");
 		log.debug("load mail setting success,file path:" + mailPath);
 	}
@@ -72,7 +135,7 @@ public class Mail {
      */
     public static String transferChinese(String strText) {
         try {
-        	strText=MimeUtility.encodeText(strText,MimeUtility.mimeCharset("gb2312"),null);
+        	strText= MimeUtility.encodeText(strText,MimeUtility.mimeCharset("gb2312"),null);
           //  strText = MimeUtility.encodeText(new String(strText.getBytes(),
           //          "gb2312"), "gb2312", "B");
         } catch (Exception e) {
@@ -142,60 +205,4 @@ public class Mail {
 		}
         return true;
     }
-
-	public static String getTo() {
-		return to;
-	}
-
-	public static void setTo(String to) {
-		Mail.to = to;
-	}
-
-	public static String getFrom() {
-		return from;
-	}
-
-	public static void setFrom(String from) {
-		Mail.from = from;
-	}
-
-	public static String getHost() {
-		return host;
-	}
-
-	public static void setHost(String host) {
-		Mail.host = host;
-	}
-
-	public static String getUsername() {
-		return username;
-	}
-
-	public static void setUsername(String username) {
-		Mail.username = username;
-	}
-
-	public static String getPassword() {
-		return password;
-	}
-
-	public static void setPassword(String password) {
-		Mail.password = password;
-	}
-
-	public static String getSubject() {
-		return subject;
-	}
-
-	public static void setSubject(String subject) {
-		Mail.subject = subject;
-	}
-
-	public static String getContent() {
-		return content;
-	}
-
-	public static void setContent(String content) {
-		Mail.content = content;
-	}
 }

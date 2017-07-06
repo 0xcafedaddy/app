@@ -6,9 +6,9 @@
   <packaging>pom</packaging>
   <version>1.0</version>
   <modules>
-    <module>app_common</module>
     <module>app_api</module>
     <module>app_wx</module>
+    <module>app_common</module>
   </modules>
   <name>app Maven Webapp</name>
   <url>http://maven.apache.org</url>

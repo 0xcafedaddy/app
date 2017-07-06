@@ -185,7 +185,7 @@ public class UserController extends BaseController {
      * @param email
      * @return
      */
-	@RequestMapping(value = "/reset_password",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/reset_password")
     public ModelAndView checkResetLink(String sid,String email){
 		ModelAndView model = new ModelAndView("mailException");
         String msg = "";
