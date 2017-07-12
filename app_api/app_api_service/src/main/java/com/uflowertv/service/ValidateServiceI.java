@@ -36,5 +36,5 @@ public interface ValidateServiceI {
 	 * @param comboId
 	 * @return
 	 */
-	Map<String, Object> executeComboValid(int platformId, String card, String comboId, int comboType);
+	Map<String, Object> executeComboValid(int platformId, String card, String comboId,int comboType);
 }

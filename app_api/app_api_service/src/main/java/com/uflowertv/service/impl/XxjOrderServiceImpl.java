@@ -20,7 +20,6 @@ import com.uflowertv.service.XxjUserServiceI;
 import com.util.MD5Util;
 import com.util.OrderNo;
 import com.util.StringEcodingUtil;
-import com.util.commons.ConstantHolder;
 import com.util.connection.HttpClientUtils;
 import com.util.date.DateTimeUtil;
 import com.util.json.JsonUtils;
@@ -41,6 +40,7 @@ import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.util.commons.ConstantHolder.*;
 
 /**
  * 
@@ -83,7 +83,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 		checkArgument(userId!=0,"用户ID为空");
 		params.put("platformId", platformId);
 		params.put("user_id", userId);
-		params.put("order_status", ConstantHolder.ORDER_SUCCESS);
+		params.put("order_status", ORDER_SUCCESS);
 		String hql = "from XxjOrder WHERE platformId=:platformId AND user_id =:user_id AND order_status =:order_status AND NOW() BETWEEN effective AND expires";
 		List<XxjOrder> list = find(hql,params);
 		checkArgument(!CollectionUtils.isEmpty(list),"该用户下无产品列表");
@@ -105,7 +105,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
         int buy_type = xxjOrder.getBuy_type();
         String check_code = "1c10ffa8e53b40d34cf94e6d76b4709ddb9f29cee7b06a2461614521dc323f9b";
         String md5 = MD5Util.MD5("p="+platformId+"&c="+product_id+"&t="+buy_type+"&o="+orderId+"&u="+userId+"&k="+check_code);
-    	String url = String.format(ConstantHolder.QRCODE_URL, platformId,product_id,buy_type,orderId,userId,md5);
+    	String url = String.format(QRCODE_URL, platformId,product_id,buy_type,orderId,userId,md5);
     	return url;
 	}
 
@@ -121,7 +121,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
         XxjUser xxjUser =  xxjUserService.getById(user_id);
         String card = xxjUser.getCard();
         String comboId = xxjOrder.getOper_comboId();
-        String channelCode = ConstantHolder.CHANNEL_CODE;
+        String channelCode = CHANNEL_CODE;
         log.info(".....................套餐校验开始.....................");
         ComboValidInfo comboValidInfo = bossService.intfComboValid(card, comboId, channelCode);
         String code = comboValidInfo.getCode();
@@ -177,7 +177,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 		String card = xxjUser.getCard();
 		int platformId = xxjUser.getPlatformId();
 		//获取用户ID
-		String url = String.format(ConstantHolder.USER_INFO_URL, card);
+		String url = String.format(USER_INFO_URL, card);
  		String json = HttpClientUtils.get(url);
 		GetUserInfoDTO getUserInfo = JsonUtils.json2Bean(json, GetUserInfoDTO.class);
 //		GetUserInfoDTO getUserInfo = JsonUtils.json2Bean(json(), GetUserInfoDTO.class);
@@ -230,7 +230,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 					// 1、营业厅订购(添加所有字段,除去支付字段)
 					insertOrder(new XxjOrder(platformId, userId, oper_comboId,offerId, offerName,
 								operProductId, operProductName, operProductStatus, operOrderId,
-								productId, productName, ConstantHolder.ORDER_OTHER,
+								productId, productName, ORDER_OTHER,
 								showPrice,orderStatus,buyType, effective, expires,new Date(),new Date()));
 					log.info("============================营业厅订购完成============================");
 				}else{
@@ -263,7 +263,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 						log.info("产品续订");
 						insertOrder(new XxjOrder(platformId, userId, oper_comboId,offerId, offerName,
 									operProductId, operProductName, operProductStatus, operOrderId,
-									productId, productName, ConstantHolder.ORDER_BOSS,
+									productId, productName, ORDER_BOSS,
 									showPrice,orderStatus,buyType, effective, expires,new Date(),new Date()));
 					}
 				}
@@ -278,7 +278,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 			if(CollectionUtils.isNotEmpty(order_list)){
 				log.info("过期产品");
 				order_list.forEach(order->{
-					order.setOrder_status(ConstantHolder.ORDER_EXPRIES);
+					order.setOrder_status(ORDER_EXPRIES);
 					xxjOrderDao.update(order);
 				});
 			}
@@ -301,13 +301,13 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 				//产品过期(针对Boss系统，不存在即为过期)
 				if(StringUtils.isNotBlank(oper_productId) && !compareable.contains(obj)){
 					log.info("过期产品");
-					obj.setOrder_status(ConstantHolder.ORDER_EXPRIES);
+					obj.setOrder_status(ORDER_EXPRIES);
 					xxjOrderDao.update(obj);
 				}
 				//订单无效即为过期
 				if(StringUtils.isBlank(oper_productId)){
 					log.info("过期产品");
-					obj.setOrder_status(ConstantHolder.ORDER_EXPRIES);
+					obj.setOrder_status(ORDER_EXPRIES);
 					xxjOrderDao.update(obj);
 				}
 			});
@@ -327,7 +327,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
  		//获取订单信息
  		XxjOrder xxjOrder = getById(Integer.valueOf(orderId));
  		//获取用户ID
- 		String url = String.format(ConstantHolder.USER_INFO_URL, card);
+ 		String url = String.format(USER_INFO_URL, card);
  		String json = HttpClientUtils.get(url);
  		GetUserInfoDTO getUserInfo = JsonUtils.json2Bean(json, GetUserInfoDTO.class);
  		//GetUserInfoDTO getUserInfo = JsonUtils.json2Bean(json(), GetUserInfoDTO.class);
@@ -375,7 +375,7 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
 				params.put("oper_orderId", operOrderId);
 				params.put("product_id", productId);
 				params.put("product_name", productName);
-				params.put("order_souces", ConstantHolder.ORDER_BOSS);
+				params.put("order_souces", ORDER_BOSS);
 				params.put("order_price", showPrice);
 				params.put("order_status", orderStatus);
 				params.put("buy_type", buyType);
@@ -422,10 +422,10 @@ public class XxjOrderServiceImpl implements XxjOrderServiceI{
         int orderStatus = 0;
         switch (status) {
             case 0:
-                orderStatus = ConstantHolder.ORDER_SUCCESS;
+                orderStatus = ORDER_SUCCESS;
                 break;
             case 1:
-                orderStatus = ConstantHolder.ORDER_OUT_OF_SERVER;
+                orderStatus = ORDER_OUT_OF_SERVER;
                 break;
             default:
                 break;

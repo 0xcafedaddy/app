@@ -1,14 +1,15 @@
 package com.uflowertv.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.crunii.ccn.ectchannel.server.webservice.impl.ComboOrderInfo;
 import com.crunii.ccn.ectchannel.server.webservice.impl.ComboValidInfo;
 import com.crunii.ccn.ectchannel.server.webservice.impl.EctChannelService;
 import com.crunii.ccn.ectchannel.server.webservice.impl.ParentLocker;
 import com.uflowertv.service.BossServiceI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -33,7 +34,7 @@ public class BossServiceImpl implements BossServiceI{
 	
 	/**
 	 * 套餐校验
-	 * @see com.uflowertv.service.BossServiceI#intfComboValid(String, String, String)
+	 * @see com.uflowertv.service.BossServiceI#intfComboValid(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public ComboValidInfo intfComboValid(String servNo, String comboId,
@@ -46,7 +47,7 @@ public class BossServiceImpl implements BossServiceI{
 	
 	/**
 	 * 家长锁(只提供查询)
-	 * @see com.uflowertv.service.BossServiceI#intfParentLocker(String, String, String, String, String)
+	 * @see com.uflowertv.service.BossServiceI#intfParentLocker(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public ParentLocker intfParentLocker(String channelCode, String custId,
@@ -58,7 +59,7 @@ public class BossServiceImpl implements BossServiceI{
 	
 	/**
 	 * 套餐订购
-	 * @see com.uflowertv.service.BossServiceI#intfComboOrder(String, String, String, String)
+	 * @see com.uflowertv.service.BossServiceI#intfComboOrder(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public ComboOrderInfo intfComboOrder(String servNo, String comboId, String channelCode, String intfSeq){

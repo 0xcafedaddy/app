@@ -23,8 +23,7 @@ import java.util.Map;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.util.commons.ConstantHolder.*;
-import static com.util.redis.URLRedisCache.getSort;
-import static com.util.redis.URLRedisCache.getString;
+import static com.util.redis.URLRedisCache.*;
 
 /**
  * 

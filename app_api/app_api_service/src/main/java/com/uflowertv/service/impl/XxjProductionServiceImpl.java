@@ -11,7 +11,6 @@ import com.uflowertv.model.po.*;
 import com.uflowertv.model.vo.CommonsEntityJson;
 import com.uflowertv.service.XxjProductionServiceI;
 import com.util.BeanUtilsApache;
-import com.util.commons.ConstantHolder;
 import com.util.date.DateTimeUtil;
 import com.util.json.JsonUtils;
 import com.util.redis.URLRedisCache;
@@ -583,8 +582,8 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 	 */
 	private String getSpecialPurchase(int userId,int product_id){
 		log.info("查看用户是否购买专题产品");
-		List<String> whiteCards = URLRedisCache.getSort(ConstantHolder.WHITE_CARD);
-		Map<String, String> hv = URLRedisCache.getHV(String.format(ConstantHolder.USER, userId));
+		List<String> whiteCards = URLRedisCache.getSort(WHITE_CARD);
+		Map<String, String> hv = URLRedisCache.getHV(String.format(USER, userId));
 		String card = hv.get("card");
 		boolean contains = whiteCards.contains(card);
 		if(contains){
@@ -609,8 +608,8 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 	@Override
 	public String getSynPurchase(int userId,int product_id){
 		log.info("查看用户是否购买同步课产品");
-		List<String> whiteCards = URLRedisCache.getSort(ConstantHolder.WHITE_CARD); 
-		Map<String, String> hv = URLRedisCache.getHV(String.format(ConstantHolder.USER, userId));
+		List<String> whiteCards = URLRedisCache.getSort(WHITE_CARD); 
+		Map<String, String> hv = URLRedisCache.getHV(String.format(USER, userId));
 		String card = hv.get("card");
 		boolean contains = whiteCards.contains(card);
 		if(contains){
