@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Repository;
 
 import com.uflowertv.dao.BaseDaoI;
 
+//@Transactional
 @Repository("xxjBaseDao")
 @SuppressWarnings("all")
 public class XxjBaseDaoImpl<T> implements BaseDaoI<T> {

@@ -1,15 +1,14 @@
 package com.uflowertv.dao.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.stereotype.Repository;
-
 import com.google.common.collect.Maps;
 import com.uflowertv.dao.AreaDaoI;
 import com.uflowertv.model.po.TbProvCityAreaStreet;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 @Repository("areaDao")
-public class AreaDaoImpl extends XxjBaseDaoImpl<TbProvCityAreaStreet> implements AreaDaoI{
+public class AreaDaoImpl extends XxjBaseDaoImpl<TbProvCityAreaStreet> implements AreaDaoI {
 
 	@Override
 	public List<TbProvCityAreaStreet> getProvinces() {

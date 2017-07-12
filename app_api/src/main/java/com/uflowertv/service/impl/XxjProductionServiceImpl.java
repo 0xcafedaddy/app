@@ -11,10 +11,10 @@ import com.uflowertv.model.po.*;
 import com.uflowertv.model.vo.CommonsEntityJson;
 import com.uflowertv.service.XxjProductionServiceI;
 import com.util.BeanUtilsApache;
+import com.util.commons.ConstantHolder;
 import com.util.date.DateTimeUtil;
 import com.util.json.JsonUtils;
 import com.util.redis.URLRedisCache;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +31,8 @@ import java.util.concurrent.Executors;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.util.redis.URLRedisCache.*;
 import static com.util.commons.ConstantHolder.*;
+import static com.util.redis.URLRedisCache.*;
 
 /**
  * 
@@ -583,8 +583,8 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 	 */
 	private String getSpecialPurchase(int userId,int product_id){
 		log.info("查看用户是否购买专题产品");
-		List<String> whiteCards = URLRedisCache.getSort(WHITE_CARD);
-		Map<String, String> hv = URLRedisCache.getHV(String.format(USER, userId));
+		List<String> whiteCards = URLRedisCache.getSort(ConstantHolder.WHITE_CARD);
+		Map<String, String> hv = URLRedisCache.getHV(String.format(ConstantHolder.USER, userId));
 		String card = hv.get("card");
 		boolean contains = whiteCards.contains(card);
 		if(contains){
@@ -593,8 +593,8 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 		Map<String,Object> params = Maps.newHashMap();
 		params.put("user_id", userId);
 		params.put("product_id", product_id);
-		params.put("status", OPER_PRODUCT_STATUS_ENABLE);
-		String hql = "select count(order_id) FROM XxjOrder WHERE oper_productStatus =:status AND product_id =:product_id AND user_id =:user_id AND NOW() BETWEEN effective AND expires";
+		params.put("status", ORDER_SUCCESS);
+		String hql = "select count(order_id) FROM XxjOrder WHERE order_status =:status AND product_id =:product_id AND user_id =:user_id AND NOW() BETWEEN effective AND expires";
 		Long count = xxjOrderDao.count(hql, params);
 		if(count>0){
 			return "true";
@@ -609,8 +609,8 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 	@Override
 	public String getSynPurchase(int userId,int product_id){
 		log.info("查看用户是否购买同步课产品");
-		List<String> whiteCards = URLRedisCache.getSort(WHITE_CARD);
-		Map<String, String> hv = URLRedisCache.getHV(String.format(USER, userId));
+		List<String> whiteCards = URLRedisCache.getSort(ConstantHolder.WHITE_CARD); 
+		Map<String, String> hv = URLRedisCache.getHV(String.format(ConstantHolder.USER, userId));
 		String card = hv.get("card");
 		boolean contains = whiteCards.contains(card);
 		if(contains){
@@ -634,9 +634,9 @@ public class XxjProductionServiceImpl implements XxjProductionServiceI{
 		});
 		params.clear();
 		params.put("user_id", userId);
-		params.put("status", OPER_PRODUCT_STATUS_ENABLE);
+		params.put("status", ORDER_SUCCESS);
 		params.put("ids", ids);
-		hql = "select count(order_id) FROM XxjOrder WHERE oper_productStatus =:status AND product_id IN (:ids) AND user_id =:user_id AND NOW() BETWEEN effective AND expires";
+		hql = "select count(order_id) FROM XxjOrder WHERE order_status =:status AND product_id IN (:ids) AND user_id =:user_id AND NOW() BETWEEN effective AND expires";
 		//String sql = "SELECT p.product_id FROM xxj_product p LEFT JOIN xxj_order o ON p.product_id=o.product_id WHERE p.product_id = :product_id AND NOW() BETWEEN o.effective AND o.expires AND user_id = :user_id";
 		Long count = xxjOrderDao.count(hql, params);
 		if(count>0){

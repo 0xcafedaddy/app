@@ -9,6 +9,7 @@ import com.uflowertv.model.vo.CommonsEntityJson;
 import com.uflowertv.service.PHPPackageServiceI;
 import com.uflowertv.service.PreHeatServiceI;
 import com.util.BeanUtilsApache;
+import com.util.commons.ConstantHolder;
 import com.util.date.DateTimeUtil;
 import com.util.json.JsonUtils;
 import com.util.redis.RedisUtil;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.util.commons.ConstantHolder.*;
+
 /**
  * 
  * 版权所有：2017年3月8日-油菜花
@@ -359,7 +361,7 @@ public class PreHeatServiceImpl implements PreHeatServiceI{
 	
 	/**
 	 * 
-	 * @see PreHeatServiceI#getVideoUrlRelation()
+	 * @see com.uflowertv.service.PreHeatServiceI#getVideoUrlRelation()
 	 */
 	@Override
 	public void getVideoUrlRelation(){
@@ -470,7 +472,7 @@ public class PreHeatServiceImpl implements PreHeatServiceI{
                     CommonsEntityJson gradeEntity = RedisEntity.getEntity(grade_obj);
                     String grade_id = gradeEntity.getGrade_id();
                     gradeEntity.setSubjects(phpPackageService.getSubjectList(Integer.valueOf(grade_id)));
-                    p.set(String.format(FREE_VIDEO_LIST, grade_id), JsonUtils.bean2Json(gradeEntity));
+                    p.set(String.format(ConstantHolder.FREE_VIDEO_LIST, grade_id), JsonUtils.bean2Json(gradeEntity));
                 });
             });
             p.sync();

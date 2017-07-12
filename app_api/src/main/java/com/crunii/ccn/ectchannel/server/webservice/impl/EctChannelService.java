@@ -124,7 +124,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfQueryProductInfoList", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryProductInfoList")
     @ResponseWrapper(localName = "intfQueryProductInfoListResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryProductInfoListResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public AppProductInfoList intfQueryProductInfoList(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.AppProductInfoList intfQueryProductInfoList(
             @WebParam(name = "qryType", targetNamespace = "")
                     String qryType,
             @WebParam(name = "qryId", targetNamespace = "")
@@ -235,7 +235,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfQuerySearchResult", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQuerySearchResult")
     @ResponseWrapper(localName = "intfQuerySearchResultResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQuerySearchResultResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public AppSearchResultInfo intfQuerySearchResult(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.AppSearchResultInfo intfQuerySearchResult(
             @WebParam(name = "keyWord", targetNamespace = "")
                     String keyWord,
             @WebParam(name = "condition", targetNamespace = "")
@@ -276,7 +276,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfEctServiceRel", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfEctServiceRel")
     @ResponseWrapper(localName = "intfEctServiceRelResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfEctServiceRelResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public EctQueryComboData intfEctServiceRel(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.EctQueryComboData intfEctServiceRel(
             @WebParam(name = "serviceId", targetNamespace = "")
                     String serviceId,
             @WebParam(name = "serviceType", targetNamespace = "")
@@ -302,7 +302,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfQueryCommonfaultList", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryCommonfaultList")
     @ResponseWrapper(localName = "intfQueryCommonfaultListResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryCommonfaultListResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public AppCommonFaultList intfQueryCommonfaultList(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.AppCommonFaultList intfQueryCommonfaultList(
             @WebParam(name = "channelCode", targetNamespace = "")
                     String channelCode
     );
@@ -339,7 +339,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfQueryBusiHallInfo", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryBusiHallInfo")
     @ResponseWrapper(localName = "intfQueryBusiHallInfoResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryBusiHallInfoResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public AppBusiHallInfosRt intfQueryBusiHallInfo(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.AppBusiHallInfosRt intfQueryBusiHallInfo(
             @WebParam(name = "areaId", targetNamespace = "")
                     String areaId,
             @WebParam(name = "type", targetNamespace = "")
@@ -407,7 +407,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfQueryVodInfo", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryVodInfo")
     @ResponseWrapper(localName = "intfQueryVodInfoResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryVodInfoResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public VodInfoEctChannel intfQueryVodInfo(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.VodInfoEctChannel intfQueryVodInfo(
             @WebParam(name = "servId", targetNamespace = "")
                     String servId,
             @WebParam(name = "startDate", targetNamespace = "")
@@ -431,7 +431,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfNewProductOrderInfo", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfNewProductOrderInfo")
     @ResponseWrapper(localName = "intfNewProductOrderInfoResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfNewProductOrderInfoResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public NewProductOrderInfoEct intfNewProductOrderInfo(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.NewProductOrderInfoEct intfNewProductOrderInfo(
             @WebParam(name = "prodInstId", targetNamespace = "")
                     String prodInstId,
             @WebParam(name = "channelCode", targetNamespace = "")
@@ -483,7 +483,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfRecharge", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfRecharge")
     @ResponseWrapper(localName = "intfRechargeResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfRechargeResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public PayFeeResultExtend intfRecharge(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.PayFeeResultExtend intfRecharge(
             @WebParam(name = "SoNbr", targetNamespace = "")
                     String soNbr,
             @WebParam(name = "channelCode", targetNamespace = "")
@@ -539,7 +539,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfQueryCardTypeInfo", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryCardTypeInfo")
     @ResponseWrapper(localName = "intfQueryCardTypeInfoResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQueryCardTypeInfoResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public QueryCardTypeResult intfQueryCardTypeInfo(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.QueryCardTypeResult intfQueryCardTypeInfo(
             @WebParam(name = "typePassword", targetNamespace = "")
                     String typePassword,
             @WebParam(name = "channelCode", targetNamespace = "")
@@ -835,7 +835,7 @@ public interface EctChannelService {
     @RequestWrapper(localName = "intfQuertBindMobile", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQuertBindMobile")
     @ResponseWrapper(localName = "intfQuertBindMobileResponse", targetNamespace = "http://impl.webservice.server.ectchannel.ccn.crunii.com/", className = "com.crunii.ccn.ectchannel.server.webservice.impl.IntfQuertBindMobileResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public BindingMobileNumber intfQuertBindMobile(
+    public com.crunii.ccn.ectchannel.server.webservice.impl.BindingMobileNumber intfQuertBindMobile(
             @WebParam(name = "MNAndUN", targetNamespace = "")
                     String mnAndUN,
             @WebParam(name = "channelCode", targetNamespace = "")

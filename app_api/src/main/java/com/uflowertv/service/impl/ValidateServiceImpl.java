@@ -1,21 +1,5 @@
 package com.uflowertv.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import com.util.connection.HttpClientUtils;
-import com.util.json.JsonUtils;
-import com.util.redis.URLRedisCache;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.crunii.ccn.ectchannel.server.webservice.impl.ComboOrderInfo;
 import com.crunii.ccn.ectchannel.server.webservice.impl.ComboValidInfo;
 import com.crunii.ccn.ectchannel.server.webservice.impl.ParentLocker;
@@ -31,9 +15,23 @@ import com.uflowertv.service.BossServiceI;
 import com.uflowertv.service.ValidateServiceI;
 import com.uflowertv.service.XxjOrderServiceI;
 import com.uflowertv.service.XxjUserServiceI;
-import static com.util.commons.ConstantHolder.*;
-
+import com.util.commons.ConstantHolder;
+import com.util.connection.HttpClientUtils;
+import com.util.json.JsonUtils;
+import com.util.redis.URLRedisCache;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * 
@@ -75,9 +73,9 @@ public class ValidateServiceImpl implements ValidateServiceI{
 		log.info("获取家长锁");
 		Map<String, Object> map = Maps.newHashMap();
 		checkArgument(StringUtils.isNotBlank(card),"卡号为空");
-		String channelCode = CHANNEL_CODE;
-		String queryType = QUERY_TYPE;
-		String url = String.format(USER_INFO_URL, card,queryType);
+		String channelCode = ConstantHolder.CHANNEL_CODE;
+		String queryType = ConstantHolder.QUERY_TYPE;
+		String url = String.format(ConstantHolder.USER_INFO_URL, card,queryType);
  		String json = HttpClientUtils.get(url);
  		GetUserInfoDTO getUserInfo = JsonUtils.json2Bean(json, GetUserInfoDTO.class);
  		checkNotNull(getUserInfo,"系统繁忙，请稍候再试！");
@@ -102,9 +100,9 @@ public class ValidateServiceImpl implements ValidateServiceI{
 		checkArgument(platformId!=0,"平台ID为空");
 		checkArgument(StringUtils.isNotBlank(card),"卡号为空");
 		checkArgument(StringUtils.isNotBlank(comboId),"套餐ID为空");
-		String channelCode = CHANNEL_CODE;
+		String channelCode = ConstantHolder.CHANNEL_CODE;
 		//黑名单
-		List<String> blackCards = URLRedisCache.getSort(BLACK_CARD);
+		List<String> blackCards = URLRedisCache.getSort(ConstantHolder.BLACK_CARD);
 		boolean contains = blackCards.contains(card);
 		if(contains){
 		    map.put("code", 500);
@@ -152,7 +150,7 @@ public class ValidateServiceImpl implements ValidateServiceI{
         }
 		
 		//查询用户是否欠费
-  		String url = String.format(USER_INFO_URL, card);
+  		String url = String.format(ConstantHolder.USER_INFO_URL, card);
    		String json = HttpClientUtils.get(url);
   		GetUserInfoDTO getUserInfo = JsonUtils.json2Bean(json, GetUserInfoDTO.class);
   		CustInfoDTO custInfo = getUserInfo.getCustInfo();

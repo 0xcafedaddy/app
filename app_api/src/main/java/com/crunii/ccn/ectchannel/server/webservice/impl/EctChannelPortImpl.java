@@ -314,13 +314,13 @@ public class EctChannelPortImpl implements EctChannelService {
     /* (non-Javadoc)
      * @see com.crunii.ccn.ectchannel.server.webservice.impl.EctChannelService#intfQuerySearchResult(java.lang.String keyWord, java.lang.String condition, java.lang.String channelCode)*
      */
-    public AppSearchResultInfo intfQuerySearchResult(String keyWord, String condition, String channelCode) {
+    public com.crunii.ccn.ectchannel.server.webservice.impl.AppSearchResultInfo intfQuerySearchResult(String keyWord, String condition, String channelCode) {
         LOG.info("Executing operation intfQuerySearchResult");
         System.out.println(keyWord);
         System.out.println(condition);
         System.out.println(channelCode);
         try {
-            AppSearchResultInfo _return = null;
+            com.crunii.ccn.ectchannel.server.webservice.impl.AppSearchResultInfo _return = null;
             return _return;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -559,12 +559,12 @@ public class EctChannelPortImpl implements EctChannelService {
     /* (non-Javadoc)
      * @see com.crunii.ccn.ectchannel.server.webservice.impl.EctChannelService#intfNewProductOrderInfo(java.lang.String prodInstId, java.lang.String channelCode)*
      */
-    public NewProductOrderInfoEct intfNewProductOrderInfo(String prodInstId, String channelCode) {
+    public com.crunii.ccn.ectchannel.server.webservice.impl.NewProductOrderInfoEct intfNewProductOrderInfo(String prodInstId, String channelCode) {
         LOG.info("Executing operation intfNewProductOrderInfo");
         System.out.println(prodInstId);
         System.out.println(channelCode);
         try {
-            NewProductOrderInfoEct _return = null;
+            com.crunii.ccn.ectchannel.server.webservice.impl.NewProductOrderInfoEct _return = null;
             return _return;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -627,7 +627,7 @@ public class EctChannelPortImpl implements EctChannelService {
     /* (non-Javadoc)
      * @see com.crunii.ccn.ectchannel.server.webservice.impl.EctChannelService#intfRecharge(java.lang.String soNbr, java.lang.String channelCode, java.lang.String subChannel, java.lang.String opId, java.lang.String terminalId, java.lang.String payDate, java.lang.String queryType, java.lang.String queryNo, java.util.List<com.crunii.ccn.ectchannel.server.webservice.impl.PayIn> ls)*
      */
-    public PayFeeResultExtend intfRecharge(String soNbr, String channelCode, String subChannel, String opId, String terminalId, String payDate, String queryType, String queryNo, java.util.List<PayIn> ls) {
+    public com.crunii.ccn.ectchannel.server.webservice.impl.PayFeeResultExtend intfRecharge(String soNbr, String channelCode, String subChannel, String opId, String terminalId, String payDate, String queryType, String queryNo, java.util.List<PayIn> ls) {
         LOG.info("Executing operation intfRecharge");
         System.out.println(soNbr);
         System.out.println(channelCode);
@@ -639,7 +639,7 @@ public class EctChannelPortImpl implements EctChannelService {
         System.out.println(queryNo);
         System.out.println(ls);
         try {
-            PayFeeResultExtend _return = null;
+            com.crunii.ccn.ectchannel.server.webservice.impl.PayFeeResultExtend _return = null;
             return _return;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -676,12 +676,12 @@ public class EctChannelPortImpl implements EctChannelService {
     /* (non-Javadoc)
      * @see com.crunii.ccn.ectchannel.server.webservice.impl.EctChannelService#intfQueryCardTypeInfo(java.lang.String typePassword, java.lang.String channelCode)*
      */
-    public QueryCardTypeResult intfQueryCardTypeInfo(String typePassword, String channelCode) {
+    public com.crunii.ccn.ectchannel.server.webservice.impl.QueryCardTypeResult intfQueryCardTypeInfo(String typePassword, String channelCode) {
         LOG.info("Executing operation intfQueryCardTypeInfo");
         System.out.println(typePassword);
         System.out.println(channelCode);
         try {
-            QueryCardTypeResult _return = null;
+            com.crunii.ccn.ectchannel.server.webservice.impl.QueryCardTypeResult _return = null;
             return _return;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1034,12 +1034,12 @@ public class EctChannelPortImpl implements EctChannelService {
     /* (non-Javadoc)
      * @see com.crunii.ccn.ectchannel.server.webservice.impl.EctChannelService#intfQuertBindMobile(java.lang.String mnAndUN, java.lang.String channelCode)*
      */
-    public BindingMobileNumber intfQuertBindMobile(String mnAndUN, String channelCode) {
+    public com.crunii.ccn.ectchannel.server.webservice.impl.BindingMobileNumber intfQuertBindMobile(String mnAndUN, String channelCode) {
         LOG.info("Executing operation intfQuertBindMobile");
         System.out.println(mnAndUN);
         System.out.println(channelCode);
         try {
-            BindingMobileNumber _return = null;
+            com.crunii.ccn.ectchannel.server.webservice.impl.BindingMobileNumber _return = null;
             return _return;
         } catch (Exception ex) {
             ex.printStackTrace();

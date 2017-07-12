@@ -1,11 +1,11 @@
 package com.uflowertv.dao;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
-
-import org.hibernate.criterion.DetachedCriteria;
 
 /**
  * 基础数据库操作类

@@ -50,7 +50,7 @@ public class TeacherServiceImpl implements TeacherServiceI{
 	/**
 	 * 年级下的教师列表
 	 * @
-	 * @see TeacherServiceI#getGradeTeacherList(int)
+	 * @see com.uflowertv.service.TeacherServiceI#getGradeTeacherList(int)
 	 */
 	@Override
 	public Map<String, Object> getGradeTeacherList(int grade_id) {
@@ -71,7 +71,7 @@ public class TeacherServiceImpl implements TeacherServiceI{
 	/**
 	 * 科目下的教师列表
 	 * @
-	 * @see TeacherServiceI#getSubjectTeacherList(int)
+	 * @see com.uflowertv.service.TeacherServiceI#getSubjectTeacherList(int)
 	 */
 	@Override
 	public Map<String, Object> getSubjectTeacherList(int subject_id) {
@@ -91,7 +91,7 @@ public class TeacherServiceImpl implements TeacherServiceI{
 	
 	/**
 	 * 教师详情
-	 * @see TeacherServiceI#getTeacherInfo(int)
+	 * @see com.uflowertv.service.TeacherServiceI#getTeacherInfo(int)
 	 */
 	@Override
 	public Map<String, Object> getTeacherInfo(int teacher_id) {
@@ -148,7 +148,7 @@ public class TeacherServiceImpl implements TeacherServiceI{
 	
 	/**
 	 * 教师下科目详情
-	 * @see TeacherServiceI#getTeacherSubjectDetail(int, int, int)
+	 * @see com.uflowertv.service.TeacherServiceI#getTeacherSubjectDetail(int, int, int)
 	 */
 	@Override
 	public Map<String,Object> getTeacherSubjectDetail(int user_id,int product_id,int teacher_id) {

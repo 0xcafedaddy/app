@@ -61,7 +61,7 @@ public class PHPPackageServiceImpl implements PHPPackageServiceI{
 
 	/**
 	 * 
-	 * @see PHPPackageServiceI#getSpecialInfo(int)
+	 * @see com.uflowertv.service.PHPPackageServiceI#getSpecialInfo(int)
 	 */
 	@Override
 	public Map<String, Object> getSpecialInfo(int product_id){
@@ -224,7 +224,7 @@ public class PHPPackageServiceImpl implements PHPPackageServiceI{
 
 	/**
 	 * 同步课详情
-	 * @see PHPPackageServiceI#getSynCourseInfo(int)
+	 * @see com.uflowertv.service.PHPPackageServiceI#getSynCourseInfo(int)
 	 */
 	@Override
 	public Map<String, Object> getSynCourseInfo(int product_id) {
@@ -340,7 +340,7 @@ public class PHPPackageServiceImpl implements PHPPackageServiceI{
 	
 	/**
 	 * 教师科目详情
-	 * @see PHPPackageServiceI#getTeacherSubjectInfo(int)
+	 * @see com.uflowertv.service.PHPPackageServiceI#getTeacherSubjectInfo(int)
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -405,7 +405,7 @@ public class PHPPackageServiceImpl implements PHPPackageServiceI{
 
 	/**
 	 * 零元试听
-	 * @see PHPPackageServiceI#getFreeVideoListInfo(int)
+	 * @see com.uflowertv.service.PHPPackageServiceI#getFreeVideoListInfo(int)
 	 */
 	@Override
 	public Map<String, Object> getFreeVideoListInfo(int grade_id){
