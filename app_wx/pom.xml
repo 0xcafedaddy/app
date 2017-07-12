@@ -1,20 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>app</artifactId>
+        <artifactId>app_parent</artifactId>
         <groupId>com</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>app_wx</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>app_wx Maven Webapp</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>app_wx_model</module>
+        <module>app_wx_service</module>
+        <module>app_wx_dao</module>
+        <module>app_wx_web</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>com</groupId>
             <artifactId>app_common</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.elkan1788</groupId>
+            <artifactId>mpsdk4j</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
