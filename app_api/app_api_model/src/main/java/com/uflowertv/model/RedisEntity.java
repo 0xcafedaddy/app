@@ -12,7 +12,7 @@ import java.util.Map;
  * 项目名称：uflowertv_api   
  *
  * 类描述：Redis实体类
- * 类名称：com.uflowertv.model.RedisEntity     
+ * 类名称：RedisEntity
  * 创建人：liguoliang 
  * 创建时间：2017年3月8日 下午5:59:19   
  * 修改人：

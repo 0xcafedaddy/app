@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * 项目名称：uflowertv_api   
  *
  * 类描述：封装api返回结果, 输出实体类
- * 类名称：com.uflowertv.model.ApiResult     
+ * 类名称：ApiResult
  * 创建人：liguoliang 
  * 创建时间：2016年9月27日 下午2:08:58   
  * 修改人：

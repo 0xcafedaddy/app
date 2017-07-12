@@ -1,12 +1,11 @@
 package com.uflowertv.model.vo;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.google.common.base.MoreObjects;
 import com.uflowertv.model.dto.XxjRatedDTO;
-
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
 /**
  * 
  * 版权所有：2016年12月28日-油菜花

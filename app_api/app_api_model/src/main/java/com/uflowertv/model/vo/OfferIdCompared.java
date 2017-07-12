@@ -7,7 +7,7 @@ import com.google.common.base.MoreObjects;
  * 项目名称：uflowertv_api   
  *
  * 类描述：套餐比较类（用于本地套餐与Boss接口套餐）
- * 类名称：com.uflowertv.model.vo.OfferIdCompared     
+ * 类名称：OfferIdCompared
  * 创建人：liguoliang 
  * 创建时间：2017年3月8日 下午5:59:47   
  * 修改人：
