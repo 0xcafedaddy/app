@@ -29,7 +29,7 @@ public interface BossServiceI {
 	 * @param channelCode 渠道来源
 	 * @return
 	 */
-	public ComboValidInfo intfComboValid(String servNo, String comboId, String channelCode);
+	public ComboValidInfo intfComboValid(String servNo,String comboId,String channelCode);
 	
 	
 	/**
@@ -43,7 +43,7 @@ public interface BossServiceI {
 	 * @param newPasswd 新密码
 	 * @return
 	 */
-	public ParentLocker intfParentLocker(String channelCode, String custId, String dealType, String passwd, String newPasswd);
+	public ParentLocker intfParentLocker(String channelCode,String custId,String dealType,String passwd,String newPasswd);
 	
 	
 	/**
