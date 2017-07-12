@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- configuration默认属性  scan="true" scanPeriod="60 seconds" debug="false" -->
+	<!--应用名称-->
+	<property name="APP_NAME" value="uflowertv_api"></property>
+	<!--日志文件的保存路径,首先查找系统属性-Dlog.dir,如果存在就使用其；否则，在当前目录下创建名为logs目录做日志存放的目录 -->
+	<!--tomcat 配置-->
+	<property name="LOG_HOME" value="${catalina.home}/logs/${APP_NAME}" />
+	<!-- 日志输出格式 -->
+	<property name="ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %level %c:%L - %msg%n" />
+    <contextName>${APP_NAME}</contextName>
+
+	<!-- Output to STDOUT -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${ENCODER_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/info.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${ENCODER_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+		</encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_HOME}/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- each file should be at most XXMB, keep XX days worth of history, but at most XXGB -->
+            <maxFileSize>5MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
+        </rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+	      <level>INFO</level>  
+	      <onMatch>ACCEPT</onMatch>  
+	      <onMismatch>DENY</onMismatch>  
+	    </filter> 
+	</appender>
+
+	<appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/warn.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${ENCODER_PATTERN}</pattern>
+			<charset class="java.nio.charset.Charset">UTF-8</charset>
+		</encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_HOME}/warn.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- each file should be at most XXMB, keep XX days worth of history, but at most XXGB -->
+            <maxFileSize>5MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
+        </rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">  
+	      <level>WARN</level>  
+	      <onMatch>ACCEPT</onMatch>  
+	      <onMismatch>DENY</onMismatch>  
+	    </filter>  
+	</appender>
+
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/error.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${ENCODER_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+		</encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_HOME}/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- each file should be at most XXMB, keep XX days worth of history, but at most XXGB -->
+            <maxFileSize>5MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
+        </rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+	      <level>ERROR</level>  
+	      <onMatch>ACCEPT</onMatch>  
+	      <onMismatch>DENY</onMismatch>
+	    </filter>
+	</appender>
+	<!--配置方案二:按指定大小生成日志文件，当文件达到上限时，会生成新的日志文件，文件数量为x-x，当超出最大数量时会覆盖最早时间文件。
+            此配置方式不会每天生成一条新记录，以覆盖文件的方式一直轮循下去。
+        -->
+	<!--<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+		<fileNamePattern>${LOG_HOME}/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+		<minIndex>1</minIndex>
+		<maxIndex>20</maxIndex>
+	</rollingPolicy>
+	<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+		<maxFileSize>5MB</maxFileSize>
+	</triggeringPolicy>-->
+	<!--配置方案一:每天生成一个新文件。当达到文件上限值时，会产生一个新的文件，索引从0开始记录。有效时间为30天，所有文件总大小为20GB-->
+	<!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+		&lt;!&ndash; rollover daily &ndash;&gt;
+		<fileNamePattern>${LOG_HOME}/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+		&lt;!&ndash; each file should be at most XXMB, keep XX days worth of history, but at most XXGB &ndash;&gt;
+		<maxFileSize>5MB</maxFileSize>
+		<maxHistory>30</maxHistory>
+		<totalSizeCap>20GB</totalSizeCap>
+	</rollingPolicy>-->
+	<!--生产环境下开启-->
+	<!--<logger name="org" level="ERROR" additivity="false" />
+	<logger name="ch.qos" level="ERROR" additivity="false"/>-->
+    <!-- 日志输出级别 -->
+	<!-- 打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和  OFF 默认是DEBUG -->
+	<root>
+		<level value="INFO" />
+        <appender-ref ref="STDOUT" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="WARN" />
+		<appender-ref ref="ERROR" />
+	</root>
+</configuration>
