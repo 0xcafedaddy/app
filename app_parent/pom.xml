@@ -7,7 +7,12 @@
   <version>1.0</version>
   <name>app_parent</name>
   <url>http://maven.apache.org</url>
-
+  <modules>
+    <module>../app_wx</module>
+    <module>../app_util</module>
+    <module>../app_api</module>
+    <module>../spring_data_jpa</module>
+  </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -36,11 +41,6 @@
         <groupId>io.github.elkan1788</groupId>
         <artifactId>mpsdk4j</artifactId>
         <version>2.b.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-jpa</artifactId>
-        <version>1.11.4.RELEASE</version>
       </dependency>
       <!-- log begin -->
       <dependency>

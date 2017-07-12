@@ -4,17 +4,24 @@
         <artifactId>app_parent</artifactId>
         <groupId>com</groupId>
         <version>1.0</version>
+        <relativePath>../app_parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>app_api</artifactId>
-    <packaging>war</packaging>
-    <name>app_api Maven Webapp</name>
+    <packaging>pom</packaging>
+    <name>app_api</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>app_api_model</module>
+        <module>app_api_service</module>
+        <module>app_api_dao</module>
+        <module>app_api_web</module>
+    </modules>
 
     <dependencies>
         <dependency>
             <groupId>com</groupId>
-            <artifactId>app_common</artifactId>
+            <artifactId>app_util</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->

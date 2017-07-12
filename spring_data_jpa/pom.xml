@@ -6,6 +6,7 @@
         <artifactId>app_parent</artifactId>
         <groupId>com</groupId>
         <version>1.0</version>
+        <relativePath>../app_parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

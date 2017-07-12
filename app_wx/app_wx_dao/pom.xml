@@ -21,7 +21,7 @@
         <dependency>
             <groupId>com</groupId>
             <artifactId>app_wx_model</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
