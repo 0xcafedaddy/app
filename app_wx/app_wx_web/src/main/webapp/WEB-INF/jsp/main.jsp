@@ -9,7 +9,7 @@
 <base href="<%=basePath%>">
 <style type="text/css">
 .global-width{ width:960px; margin:0 auto;}
-.top{ width:100%; height:88px; background:url(static/images/Top_bg.gif) repeat-x;}
+.top{ width:100%; height:88px; background:url(/static/images/Top_bg.gif) repeat-x;}
 .top .logo{ margin:17px 0 0 0;}
 .copyright{ text-align:center; font:12px Arial; margin:5px 0; color:#000;}
 </style>
@@ -19,7 +19,8 @@
 <script type="text/javascript" src="static/js/index.js"></script>
 <script type="text/javascript">
 
-	/* var themes = '${themesName}';
+	<%--
+	 var themes = '${themesName}';
 	if(themes==""){
 		if(localStorage.themesName!=undefined){
 			themes = localStorage.themesName;
@@ -27,8 +28,9 @@
 			themes = "default";
 		}
 		window.location.href = "tree/reloadthemes.do?themes="+themes;
-	} */
-	
+	}
+	--%>
+
 	$(function(){
 		//验证规则
 		$.extend($.fn.validatebox.defaults.rules, {    
@@ -212,7 +214,9 @@
 						<li>将首页模块做出相应调整</li>
 						<li>增加统计功能模块</li>
 						<li>增加统计功能模块下日活跃用户量统计</li>
-					<hr />
+						<hr />
+					</ul>
+				</div>
 		    </div>
        	</div>
     </div> 

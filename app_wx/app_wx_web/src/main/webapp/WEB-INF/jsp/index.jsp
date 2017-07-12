@@ -1,5 +1,5 @@
-<%@page import="com.uflowertv.bean.dto.SessionInfo"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.uflowertv.model.dto.SessionInfo" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
