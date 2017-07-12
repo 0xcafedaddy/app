@@ -84,7 +84,7 @@
     </bean>
 
     <!-- 总错误处理 -->
-    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
         <property name="exceptionMappings">
             <props>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.uflowertv.statistics.mapper.StartMapper" >
-  <resultMap id="BaseResultMap" type="com.uflowertv.statistics.model.Start" >
+  <resultMap id="BaseResultMap" type="com.uflowertv.model.Start" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="dt" property="dt" jdbcType="TIMESTAMP" />
     <result column="platformID" property="platformid" jdbcType="INTEGER" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     id, dt, platformID, zoneID, deviceID, entryID, params
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.uflowertv.statistics.model.StartExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.uflowertv.model.StartExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from start_2017
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.uflowertv.statistics.model.StartExample" >
+  <delete id="deleteByExample" parameterType="com.uflowertv.model.StartExample" >
     delete from start_2017
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.uflowertv.statistics.model.Start" >
+  <insert id="insert" parameterType="com.uflowertv.model.Start" >
     insert into start_2017 (id, dt, platformID, 
       zoneID, deviceID, entryID, 
       params)
@@ -109,7 +109,7 @@
       #{zoneid,jdbcType=VARCHAR}, #{deviceid,jdbcType=VARCHAR}, #{entryid,jdbcType=SMALLINT}, 
       #{params,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.uflowertv.statistics.model.Start" >
+  <insert id="insertSelective" parameterType="com.uflowertv.model.Start" >
     insert into start_2017
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.uflowertv.statistics.model.StartExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.uflowertv.model.StartExample" resultType="java.lang.Integer" >
     select count(*) from start_2017
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.uflowertv.statistics.model.Start" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.uflowertv.model.Start" >
     update start_2017
     <set >
       <if test="dt != null" >
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.uflowertv.statistics.model.Start" >
+  <update id="updateByPrimaryKey" parameterType="com.uflowertv.model.Start" >
     update start_2017
     set dt = #{dt,jdbcType=TIMESTAMP},
       platformID = #{platformid,jdbcType=INTEGER},
@@ -241,7 +241,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <!-- 统计 -->
-  <resultMap id="newResultMap" type="com.uflowertv.statistics.model.DayActiveCount" >
+  <resultMap id="newResultMap" type="com.uflowertv.model.DayActiveCount" >
 	    <result column="datetime" property="dateTime" jdbcType="DATE" />
 	    <result column="total" property="total" jdbcType="INTEGER" />
 	    <result column="platformID" property="platformID" jdbcType="INTEGER"/>

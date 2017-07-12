@@ -1,4 +1,4 @@
-package io.github.elkan1788.mpsdk4j.api;
+package com.uflowertv.base;
 
 /**
  * 

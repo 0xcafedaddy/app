@@ -10,13 +10,15 @@
 			http://www.springframework.org/schema/aop 
 			http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	 <bean id="TJDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" >
-		<property name="driverClassName" value="${jdbc.driverClassName}" /> 
-		<property name="url" value="${ychstatistics.jdbc.url}" /> 
-		<property name="username" value="${ychstatistics.jdbc.username}" /> 
-		<property name="password" value="${ychstatistics.jdbc.password}" /> 
-		<!-- 连接池配置 -->
+	 <!-- 激活自动代理功能 -->
+	 <aop:aspectj-autoproxy proxy-target-class="true" />
 
+	 <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" >
+		<property name="driverClassName" value="${jdbc.driverClassName}" /> 
+		<property name="url" value="${ychweixin.jdbc.url}" /> 
+		<property name="username" value="${ychweixin.jdbc.username}" /> 
+		<property name="password" value="${ychweixin.jdbc.password}" /> 
+		<!-- 连接池配置 -->
 		 <!-- 初始化连接大小 -->
 		 <property name="initialSize" value="0"/>
 		 <!-- 连接池最大使用连接数量 -->
@@ -46,25 +48,34 @@
 		 <!-- 监控数据库 -->
 		 <property name="filters" value="mergeStat"/>
 	</bean>
-	
-	<!-- sessionFactory 将spring和mybatis整合 -->
-	<bean id="sqlSessionFactoryTJ" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="TJDataSource" />
+
+	<!-- MyBatis SqlSessionFactoryBean 配置 -->
+	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:xml/mybatis-config.xml" />
+		<property name="typeAliasesPackage" value="com.uflowertv.model" />
 		<property name="mapperLocations" value="classpath:mapper/*.xml" />
-		<property name="configLocation" value="classpath:xml/mybatis.xml" />
+		<property name="plugins">
+			<array>
+				<!-- 分页插件配置 -->
+				<bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
+					<property name="dialectType" value="mysql"/>
+				</bean>
+			</array>
+		</property>
 	</bean>
-	<!-- 相当于实现类的@Repository,因为接口不能用@Repository. -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.uflowertv.statistics.mapper" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryTJ" />
+	<!-- 加载 mapper.xml 接口 配置文件 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.uflowertv.wechat.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+	<!-- 事务 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<!-- 事务 -->
-	<bean id="transactionManagerTJ" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="TJDataSource" />
-	</bean>
 	<!-- 为service添加事务处理 -->
-	<tx:advice id="txAdviceTJ" transaction-manager="transactionManagerTJ">
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="init*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
 			<tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
@@ -85,8 +96,8 @@
 	<!-- 需要引入aop的命名空间（配置事物的切入点） -->
 	<aop:config>
 		<!-- 切入点指明了在执行Service的所有方法时产生事务拦截操作 -->
-		<aop:pointcut expression="execution(public * com.uflowertv.statistics.service.*.*(..))" id="txPointCutTJ" />
+		<aop:pointcut expression="execution(public * com.uflowertv.service.*.*(..))" id="txPointCut" />
 		<!-- 定义了将采用何种拦截操作，这里引用到 txAdvice -->
-		<aop:advisor advice-ref="txAdviceTJ" pointcut-ref="txPointCutTJ" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
 	</aop:config>
 </beans>

@@ -140,7 +140,7 @@
     <!-- 需要引入aop的命名空间（配置事物的切入点） -->
 	<aop:config>
         <!-- 切入点指明了在执行Service的所有方法时产生事务拦截操作 -->
-        <aop:pointcut expression="execution(public * com.uflowertv.wechat.service.*.*(..))" id="txPointCut" />
+        <aop:pointcut expression="execution(public * com.uflowertv.service.*.*(..))" id="txPointCut" />
         <!-- 定义了将采用何种拦截操作，这里引用到 txAdvice -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" order="2"/>
         <!--多数据源动态切换-->
