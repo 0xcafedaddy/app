@@ -3,7 +3,11 @@ package com.uflowertv.model.dto;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import lombok.Data;
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class TransParmeter extends ResponseError{
 	//请求翻译query	UTF-8编码
 	private String q;
