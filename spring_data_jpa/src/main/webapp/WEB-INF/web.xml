@@ -61,4 +61,10 @@
         <!-- 此处可以可以配置成 *.do ，对应struts的后缀习惯 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <mime-mapping>
+        <extension>ico</extension>
+        <mime-type>image/x-icon</mime-type>
+    </mime-mapping>
+
 </web-app>

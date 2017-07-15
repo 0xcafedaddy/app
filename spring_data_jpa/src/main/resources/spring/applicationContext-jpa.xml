@@ -8,9 +8,10 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 
-        <property name="persistenceUnitName" value="jpaXml"/>
+        <property name="persistenceUnitName" value="jpaXml" />
 
-        <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"></property>
+        <property name="persistenceXmlLocation" value="classpath:persistence.xml"/>
+
         <!-- 指定Entity实体类包路径 -->
         <property name="packagesToScan" value="com.springdata.entity"/>
 
@@ -22,9 +23,9 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
 
-        <!--<property name="persistenceProvider">
+        <property name="persistenceProvider">
             <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
-        </property>-->
+        </property>
 
         <!-- 指定JPA属性；如Hibernate中指定是否显示SQL的是否显示、方言等 -->
         <property name="jpaProperties">
@@ -32,7 +33,7 @@
             <props>
                 <!--常见的还有 MySQL5Dialect、MySQL5InnoDBDialect、MySQL57InnoDBDialect、MySQLDialect、MySQLInnoDBDialect、MySQLMyISAMDialect-->
                 <!--如果你使用的数据库是 5.7 的话可以考虑用：MySQL57InnoDBDialect-->
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <!--是否显示 SQL-->
                 <prop key="hibernate.show_sql">true</prop>
                 <!--如果显示 SQL，输出的 SQL 时候要格式化-->
@@ -47,8 +48,6 @@
                 <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
                 <!--设置最大的外链接深度，关键建议是0~3，0表示禁用-->
                 <!--<prop key="hibernate.max_fetch_depth">3</prop>-->
-
-
                 <!-- 开启二级缓存，这里使用的EhCache，如果要使用这个也需要引入对应的依赖包（下面的参数都是适用于二级缓存的，如果二级缓存关闭，其他的都没有意义） -->
                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
                 <!-- 开启查询缓存 -->
