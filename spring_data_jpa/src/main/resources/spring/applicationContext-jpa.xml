@@ -23,17 +23,13 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
 
-        <property name="persistenceProvider">
-            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
-        </property>
-
         <!-- 指定JPA属性；如Hibernate中指定是否显示SQL的是否显示、方言等 -->
         <property name="jpaProperties">
             <!--hibernate 官网说明这些配置属性：http://docs.jboss.org/hibernate/orm/3.3/reference/en/html/session-configuration.html-->
             <props>
                 <!--常见的还有 MySQL5Dialect、MySQL5InnoDBDialect、MySQL57InnoDBDialect、MySQLDialect、MySQLInnoDBDialect、MySQLMyISAMDialect-->
                 <!--如果你使用的数据库是 5.7 的话可以考虑用：MySQL57InnoDBDialect-->
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
                 <!--是否显示 SQL-->
                 <prop key="hibernate.show_sql">true</prop>
                 <!--如果显示 SQL，输出的 SQL 时候要格式化-->
