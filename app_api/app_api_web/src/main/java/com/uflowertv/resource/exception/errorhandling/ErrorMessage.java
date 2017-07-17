@@ -3,7 +3,6 @@ package com.uflowertv.resource.exception.errorhandling;
 import com.util.BeanUtilsApache;
 
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -76,8 +75,8 @@ public class ErrorMessage {
 	}
 	
 	public ErrorMessage(NotFoundException ex){
-		this.status = Response.Status.NOT_FOUND.getStatusCode();
-		this.code = Response.Status.NOT_FOUND.getStatusCode();
+		this.status = 404;
+		this.code = 404;
 		this.message = ex.getMessage();
 		this.link = "省缺";	
 //		this.link = "https://jersey.java.net/apidocs/2.8/jersey/javax/ws/rs/NotFoundException.html";	

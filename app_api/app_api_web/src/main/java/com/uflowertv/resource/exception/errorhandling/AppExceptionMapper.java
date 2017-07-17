@@ -14,5 +14,4 @@ public class AppExceptionMapper implements ExceptionMapper<AppException> {
 				.type(MediaType.APPLICATION_JSON) //this has to be set to get the generated JSON 
 				.build();
 	}
-
 }
