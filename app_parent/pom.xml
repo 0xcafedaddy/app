@@ -305,7 +305,13 @@
         <artifactId>hibernate-validator</artifactId>
         <version>5.4.1.Final</version>
       </dependency>
-      <!--shiro start-->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.5.6-Final</version>
+        </dependency>
+        <!--shiro start-->
       <dependency>
         <groupId>net.mingsoft</groupId>
         <artifactId>shiro-freemarker-tags</artifactId>

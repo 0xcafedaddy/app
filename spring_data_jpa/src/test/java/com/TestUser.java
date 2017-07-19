@@ -14,7 +14,7 @@ import java.util.Date;
  * Created by Administrator on 2017/7/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/*.xml"})
+@ContextConfiguration(locations = {"classpath:spring/applicationContext*.xml"})
 public class TestUser {
 
     @Autowired

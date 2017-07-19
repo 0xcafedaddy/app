@@ -10,7 +10,7 @@
 
         <property name="persistenceUnitName" value="jpaXml" />
 
-        <property name="persistenceXmlLocation" value="classpath:persistence.xml"/>
+        <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"/>
 
         <!-- 指定Entity实体类包路径 -->
         <property name="packagesToScan" value="com.springdata.entity"/>

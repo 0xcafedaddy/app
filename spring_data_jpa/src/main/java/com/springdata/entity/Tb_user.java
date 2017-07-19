@@ -6,11 +6,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
-@Entity
-@Table
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "entityCache")
 @Cacheable
+@Entity
+@Table
+@Data
 public class Tb_user {
 
   @Id
@@ -20,5 +20,4 @@ public class Tb_user {
   private String address;
   private Date gmt_created;
   private Date gmt_modified;
-
 }
