@@ -1,14 +1,15 @@
 package com.uflowertv.model.po;
 
-import java.io.Serializable;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="xxj_xued")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY,region = "entityCache")
 public class XxjXued implements Serializable{
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)

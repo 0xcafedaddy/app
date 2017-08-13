@@ -12,6 +12,7 @@
     <module>../app_util</module>
     <module>../app_api</module>
     <module>../spring_data_jpa</module>
+    <module>../shiro</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -282,35 +283,22 @@
         <artifactId>hibernate-ehcache</artifactId>
         <version>${hibernate.version}</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
-      <dependency>
-        <groupId>net.sf.ehcache</groupId>
-        <artifactId>ehcache</artifactId>
-        <version>2.10.4</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-core -->
-      <dependency>
-        <groupId>net.sf.ehcache</groupId>
-        <artifactId>ehcache-core</artifactId>
-        <version>2.6.11</version>
-      </dependency>
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-entitymanager</artifactId>
         <version>${hibernate.version}</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>5.4.1.Final</version>
       </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.5.6-Final</version>
-        </dependency>
+      <dependency>
+        <groupId>net.sf.ehcache</groupId>
+        <artifactId>ehcache-core</artifactId>
+        <version>2.6.11</version>
+      </dependency>
+        <!--hibernate end-->
         <!--shiro start-->
       <dependency>
         <groupId>net.mingsoft</groupId>

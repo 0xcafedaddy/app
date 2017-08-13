@@ -7,7 +7,7 @@ import com.uflowertv.model.User;
 import com.uflowertv.model.dto.News;
 import com.uflowertv.service.QuestionService;
 import com.uflowertv.service.UserService;
-import com.util.FreeMarkerTemplateUtil;
+import com.uflowertv.util.FreeMarkerTemplateUtil;
 import com.util.GUIDUtil;
 import com.util.commons.ConstantHolder;
 import io.github.elkan1788.mpsdk4j.api.WechatAPI;

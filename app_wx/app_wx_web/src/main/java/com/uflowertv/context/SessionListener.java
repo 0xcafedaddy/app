@@ -1,6 +1,6 @@
 package com.uflowertv.context;
 
-import com.util.ApplicationConstants;
+import com.uflowertv.util.ApplicationConstants;
 
 import javax.servlet.http.*;
 import java.util.Date;

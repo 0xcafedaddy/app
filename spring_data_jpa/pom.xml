@@ -95,8 +95,8 @@
             <artifactId>hibernate-ehcache</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
